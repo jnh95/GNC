@@ -1,0 +1,143 @@
+.space {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.buttonwork {
+	position: relative;
+	font-size: 14px;
+	background-color: transparent;
+	float: right;
+	padding: 0px 0px;
+	border: 0px;
+	color: #000;
+	font-weight: bold;
+	opacity: 0.6;
+}
+
+.buttonwork:hover {
+	background-color: transparent;
+	color: #000;
+	opacity: 1;
+	cursor: pointer;
+}
+
+#boximg {
+	display: inline-block;
+}
+
+#boximg img {
+	width: 170px;
+	height: 170px;
+	border-radius: 50%;
+	margin: 25px 15px 0px 25px;
+}
+
+.imgbutton {
+	background-color:transparent;
+	border : 0px solid transparent;
+	border-radius: 50%;
+	margin: 25px 15px 0px 25px;
+		width: 170px;
+	height: 170px;
+}
+
+.inlineblock {
+	display: inline-block;
+}
+
+.box1 {
+	display: inline-block;
+	width: 32.2%;
+	min-width: 193px;
+	/* padding-top:0; */
+	padding-left: 30px;
+	margin-top: 25px;
+	margin-left: 10px;
+}
+
+.box2 {
+	background-color: #fff;
+	background-clip: border-box;
+	border: 1px solid #e3e6f0;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.box3 {
+	display: inline-block;
+	width: 45.33%;
+	min-width: 320px;
+	padding-left: 30px;
+	margin-top: 25px;
+	margin-left: 10px;
+}
+
+.box4 {
+	word-wrap: break-word;
+	background-color: #fff;
+	background-clip: border-box;
+	border: 1px solid #e3e6f0;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.buttonbox {
+	position: relative;
+	font-size: 13px;
+	background-color: transparent;
+	float: right;
+	padding: 0px 0px;
+	border: 0px;
+	color: #000;
+	font-weight: bold;
+	opacity: 0.6;
+}
+
+.buttonbox:hover {
+	background-color: transparent;
+	color: #000;
+	opacity: 1;
+	cursor: pointer;
+}
+
+.boxtext {
+	padding-top: 10px;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.pwdbox {
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.pwdbox:hover {
+	font-size: 17px;
+	font-weight: bold;
+	color: red;
+}
+
+.pwdbox:active {
+	font-size: 17px;
+	font-weight: bold;
+	color: blue;
+}
+
+.nonebox {
+	display: none;
+}
+
+.blockbox {
+	display: block;
+}
+
+.boxcursor {
+	cursor: pointer;
+}
+
+.inputbox {
+	display: none;
+	width: 220px;
+}
