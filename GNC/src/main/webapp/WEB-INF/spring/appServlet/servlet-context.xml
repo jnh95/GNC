@@ -1,28 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+	xmlns:webflow="http://www.springframework.org/schema/webflow-config"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- 매트릭스 변수를 사용 할수 있도록 내용을 추가합니다. -->
+	<annotation-driven enable-matrix-variables="true" />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	<!-- js, css, 이미지 파일의 경로 를 매핑 합니다. -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<!-- jsp 파일을 찾을수 있게 다음과 같이 설정 합니다. -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" /><!-- 
+			jsp 파일 이름 기준 앞쪽 url 경로 -->
+		<beans:property name="suffix" value=".jsp" /> <!-- jsp 파일 이름 기준 뒷쪽 url 경로 -->
+	</beans:bean>
+
+	<!-- com.green.으로 시작되는 모든 패키지를 사용하기 위해서 base-package 설정 값을 * 로 바꿔 줍니다. -->
+	<context:component-scan
+		base-package="com.green.*" />
+
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- 파일 업로드위한 multipartResolver 등록 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10240000" /><!-- 
+			업로드파일 최대 크기 -->
 	</beans:bean>
 	
-	<context:component-scan base-package="com.green.GNC" />
 	
-	
-	
+	<!-- 데이터베이스 연결 위한 JDBC 드라이버 설정및 데이터베이스 접속url, 데이터베이스 접근 ID,password 설정하기 -->
+	<beans:bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<!-- 데이터베이스 드라이버 설정 -->
+		<beans:property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver" />
+		<!-- 데이터베이스 url 설정 -->
+		<beans:property name="url"
+			value="jdbc:mysql://localhost:3306/GNC?serverTimezone=UTC" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="0000" />
+	</beans:bean>
+
+	<beans:bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+
 </beans:beans>

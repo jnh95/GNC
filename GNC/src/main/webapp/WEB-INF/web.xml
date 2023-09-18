@@ -4,6 +4,8 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	
+	<!-- security-context.xml 설정 사용을 위한 context-param 경로 설정하기 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
@@ -29,5 +31,31 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+	<!-- 웹 요청 url에 한글을 포함하여 전송 할수 있게 하는 filter 와 filter-mapping 추가하기 -->
+	<filter>
+      <filter-name>encodingFilter</filter-name>		 
+      <filter-class>org.springframework.web.filter.CharacterEncodingFilter
+      </filter-class>
+      <init-param>
+         <param-name>encoding</param-name>
+         <param-value>UTF-8</param-value>
+      </init-param>
+   </filter>
+   <filter-mapping>
+      <filter-name>encodingFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>
+    
+    <!-- HiddenHttpMethodFilter 필터 설정하기 -->
+    <!-- GET,PUT,POST,DELETE 등 HttpMethod를 사용하려면 아래 필터를 등록 해야 합니다. -->
+    <filter>
+        <filter-name>httpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>httpMethodFilter</filter-name>
+        <servlet-name>appServlet</servlet-name>
+    </filter-mapping>
 
 </web-app>

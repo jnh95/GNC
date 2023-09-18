@@ -17,7 +17,21 @@ public class Member {
 	MEM_BIRTH,
 	
 	LEV_NO,
-	LEV_LEVEL
+	LEV_LEVEL,
+	
+	SEA_NO,
+	SEA_TITLE,
+	SEA_CONTENT,
+	SEA_DATE,
+	SEA_IN,
+	SEA_IMAGE,
+	
+	BOA_NO,
+	BOA_TITLE,
+	BOA_CONTENT,
+	BOA_DATE,
+	BOA_IN,
+	BOA_IMAGE
 	;
 	
 	private MultipartFile fileName;
@@ -129,6 +143,102 @@ public class Member {
 
 	public void setFileName(MultipartFile fileName) {
 		this.fileName = fileName;
+	}
+
+	public String getSEA_NO() {
+		return SEA_NO;
+	}
+
+	public void setSEA_NO(String sEA_NO) {
+		SEA_NO = sEA_NO;
+	}
+
+	public String getSEA_TITLE() {
+		return SEA_TITLE;
+	}
+
+	public void setSEA_TITLE(String sEA_TITLE) {
+		SEA_TITLE = sEA_TITLE;
+	}
+
+	public String getSEA_CONTENT() {
+		return SEA_CONTENT;
+	}
+
+	public void setSEA_CONTENT(String sEA_CONTENT) {
+		SEA_CONTENT = sEA_CONTENT;
+	}
+
+	public String getSEA_DATE() {
+		return SEA_DATE;
+	}
+
+	public void setSEA_DATE(String sEA_DATE) {
+		SEA_DATE = sEA_DATE;
+	}
+
+	public String getSEA_IN() {
+		return SEA_IN;
+	}
+
+	public void setSEA_IN(String sEA_IN) {
+		SEA_IN = sEA_IN;
+	}
+
+	public String getSEA_IMAGE() {
+		return SEA_IMAGE;
+	}
+
+	public void setSEA_IMAGE(String sEA_IMAGE) {
+		SEA_IMAGE = sEA_IMAGE;
+	}
+
+	public String getBOA_NO() {
+		return BOA_NO;
+	}
+
+	public void setBOA_NO(String bOA_NO) {
+		BOA_NO = bOA_NO;
+	}
+
+	public String getBOA_TITLE() {
+		return BOA_TITLE;
+	}
+
+	public void setBOA_TITLE(String bOA_TITLE) {
+		BOA_TITLE = bOA_TITLE;
+	}
+
+	public String getBOA_CONTENT() {
+		return BOA_CONTENT;
+	}
+
+	public void setBOA_CONTENT(String bOA_CONTENT) {
+		BOA_CONTENT = bOA_CONTENT;
+	}
+
+	public String getBOA_DATE() {
+		return BOA_DATE;
+	}
+
+	public void setBOA_DATE(String bOA_DATE) {
+		BOA_DATE = bOA_DATE;
+	}
+
+	public String getBOA_IN() {
+		return BOA_IN;
+	}
+
+	public void setBOA_IN(String bOA_IN) {
+		BOA_IN = bOA_IN;
+	}
+
+	public String getBOA_IMAGE() {
+		return BOA_IMAGE;
+	}
+
+	public void setBOA_IMAGE(String bOA_IMAGE) {
+		BOA_IMAGE = bOA_IMAGE;
 	}
 	
 }

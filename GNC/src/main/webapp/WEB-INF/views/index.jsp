@@ -19,8 +19,6 @@ String pw = (String) session.getAttribute("pwkey");
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-
-
 	<!-- 좌상단 GNC 우상단 로그인 -->
 	<div style="margin: 5px;">
 		<a href="<c:url value="/"/>" class="w3-bar-item w3-button w3-xlarge"><b>GNC</b></a>
@@ -65,15 +63,17 @@ String pw = (String) session.getAttribute("pwkey");
 		<hr>
 
 		<!-- for문으로 여러개 넣기 -->
+		<c:forEach items="${boardlist }" var="board">
 		<div class="w3-row-padding w3-grayscale">
 			<div class="w3-col l3 m6 w3-margin-bottom">
-				<h4>블로그 제목</h4>
+				<h4>${board.BOA_TITLE }</h4>
 				<hr>
 				<img alt="메인 사진" style="width: 100%">
 				<hr>
-				<p>블로그 내용</p>
+				<p>${board.BOA_CONTENT }</p>
 			</div>
 		</div>
+		</c:forEach>
 	</div>
 
 </body>

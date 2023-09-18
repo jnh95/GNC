@@ -40,7 +40,7 @@ public class JoinRepositoryImpl implements JoinRepository {
 		
 		String name = request.getParameter("MEM_NAME");
 		String id = request.getParameter("MEM_ID");
-		String pw = request.getParameter("MEM_PW");
+		String pw = request.getParameter("MEM_PWD");
 		String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		String phone = request.getParameter("MEM_PHONE");
 		String mail = request.getParameter("MEM_MAIL");
