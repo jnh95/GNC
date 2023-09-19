@@ -1,5 +1,6 @@
 package com.green.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,11 @@ public class IndexServiceImpl implements IndexService {
 	public List<Member> board() {
 		// TODO Auto-generated method stub
 		
-		return indexRepository.board();
+		List<Member> boardList = new ArrayList<Member>();
+		
+		boardList = indexRepository.board();
+		
+		return boardList;
 	}
 
 }

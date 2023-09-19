@@ -63,17 +63,17 @@ String pw = (String) session.getAttribute("pwkey");
 		<hr>
 
 		<!-- for문으로 여러개 넣기 -->
-		<c:forEach items="${boardlist }" var="board">
 		<div class="w3-row-padding w3-grayscale">
-			<div class="w3-col l3 m6 w3-margin-bottom">
-				<h4>${board.BOA_TITLE }</h4>
-				<hr>
-				<img alt="메인 사진" style="width: 100%">
-				<hr>
-				<p>${board.BOA_CONTENT }</p>
-			</div>
+			<c:forEach items="${boardList }" var="board">
+				<div class="w3-col l3 m6" style="margin-bottom:50px;">
+					<h4>${board.BOA_TITLE }</h4>
+					<hr>
+					<img alt="메인 사진" style="width: 100%">
+					<hr>
+					<p>${board.BOA_CONTENT }</p>
+				</div>
+			</c:forEach>
 		</div>
-		</c:forEach>
 	</div>
 
 </body>

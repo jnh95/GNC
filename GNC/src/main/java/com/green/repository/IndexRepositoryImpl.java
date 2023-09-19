@@ -29,16 +29,10 @@ public class IndexRepositoryImpl implements IndexRepository {
 		// TODO Auto-generated method stub
 		
 		List<Member> boardList = new ArrayList<Member>();
-		
-		System.out.println("repository1");
 
-		String SQL = "select * from board a join member b ON a.MEM_NO=b.MEM_NO";
+		String SQL = "select * from board a join member b ON a.MEM_NO=b.MEM_NO ORDER BY BOA_NO DESC limit 8";
 
 		boardList = template.query(SQL, new BoardRowMapper());
-		
-		System.out.println("repository2");
-		
-		System.out.println(boardList.toString());
 		
 		return boardList;
 

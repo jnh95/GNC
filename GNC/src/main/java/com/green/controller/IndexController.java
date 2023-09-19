@@ -26,14 +26,10 @@ public class IndexController {
 	
 	@GetMapping
 	public String index(Model model) {
-		System.out.println("controller1");
 		
 		List<Member> list = indexService.board();
 
-		
 		model.addAttribute("boardList", list);
-		
-		System.out.println("controller2");
 
 		return "index";
 	}
