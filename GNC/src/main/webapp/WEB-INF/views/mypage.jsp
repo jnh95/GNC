@@ -17,7 +17,7 @@ String birth = (String) session.getAttribute("birthkey");
 <!DOCTYPE html>
 <html>
 <head>
-<title>GNC</title>
+<title>GNC mypage</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -26,62 +26,40 @@ String birth = (String) session.getAttribute("birthkey");
 	src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.2"></script>
 </head>
 <body>
-	<!-- 좌상단 GNC 우상단 로그인 -->
-	<div style="margin: 5px;">
-		<a href="<c:url value="/"/>" class="w3-bar-item w3-button w3-xlarge"><b>GNC</b></a>
-		<%
-		if (id == null & pw == null) {
-		%>
-		<!-- 로그인 버튼  -->
-		<div class="w3-right" style="margin-top: 2px;">
-			<jsp:include page="login.jsp" />
-		</div>
+<jsp:include page="sidebar.jsp"/>
 
-		<%
-		} else {
-		%>
-		<!-- 로그인이 되었을 때  -->
-		<form action="<c:url value="/logout"/>" method="post" class="w3-right"
-			style="margin-top: 8px;">
-			안녕하세요. <a href="<c:url value="/mypage"/>" class="w3-button"
-				style="margin-bottom: 4px; padding: 10px;"><%=name%>님 </a>
-			<button type="submit" class="w3-button"
-				style="margin-bottom: 4px; padding: 10px;">로그아웃</button>
-		</form>
-	</div>
-	<%
-	}
-	%>
-
-	<div class="w3-modal-content w3-card-4" style="max-width: 600px">
+	<div class="w3-modal-content w3-card-4" style="max-width: 600px;">
 
 		<div class="w3-section">
 
 			<!-- 이름 -->
-			<div style="padding: 16px 10px 0px 10px;">
+			<div style="padding: 30px 10px 0px 10px;">
 				<label><b>이름</b></label>
 				<div>
 					<%=name%>
 				</div>
 			</div>
+			<hr>
 
 			<!-- ID -->
-			<div style="padding: 16px 10px 0px 10px;">
+			<div style="padding: 0px 10px 0px 10px;">
 				<label><b>ID</b></label>
 				<div>
 					<%=id%>
 				</div>
 			</div>
+			<hr>
 
 			<!-- 가입일 -->
-			<div style="padding: 16px 10px 0px 10px;">
+			<div style="padding: 0px 10px 0px 10px;">
 				<label><b>가입일</b></label>
 				<div>
 					<%=date%>
 				</div>
 			</div>
+			<hr>
 
-			<div style="padding: 16px 10px 0px 10px;">
+			<div style="padding: 0px 10px 0px 10px;">
 				<label><b id="pw">비밀번호</b></label>
 				<div class="space">
 					<div id="pwBox" style="padding: 10px 0 0 0;">
@@ -123,8 +101,9 @@ String birth = (String) session.getAttribute("birthkey");
 
 				</div>
 			</div>
+			<hr>
 
-			<div style="padding: 8px 10px 0px 10px;">
+			<div style="padding: 0px 10px 0px 10px;">
 				<label><b id="phone">전화번호</b></label>
 				<div class="space">
 					<div style="padding: 8px 0 0 0;">
@@ -156,8 +135,9 @@ String birth = (String) session.getAttribute("birthkey");
 
 				</div>
 			</div>
+			<hr>
 
-			<div style="padding: 8px 10px 0px 10px;">
+			<div style="padding: 0px 10px 0px 10px;">
 				<label><b id="mail">이메일</b></label>
 				<div class="space">
 					<div style="padding: 8px 0 0 0;">
@@ -190,8 +170,9 @@ String birth = (String) session.getAttribute("birthkey");
 
 				</div>
 			</div>
+			<hr>
 
-			<div style="padding: 8px 10px 0px 10px;">
+			<div style="padding: 0px 10px 0px 10px;">
 				<label><b id="add">주소</b></label>
 				<div class="space">
 					<div style="padding: 8px 0 0 0;">
@@ -221,8 +202,9 @@ String birth = (String) session.getAttribute("birthkey");
 					</div>
 				</div>
 			</div>
+			<hr>
 
-			<div style="padding: 8px 10px;">
+			<div style="padding: 0px 10px 20px 10px;">
 				<label><b id="birth">생년월일</b></label>
 				<div class="space">
 					<div style="padding: 8px 0 0 0;">

@@ -30,7 +30,7 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> boardList = new ArrayList<Member>();
 
-		String SQL = "select * from board a join member b ON a.MEM_NO=b.MEM_NO ORDER BY BOA_NO DESC limit 8";
+		String SQL = "select * from board a join member b ON a.MEM_NO=b.MEM_NO ORDER BY BOA_NO DESC limit 4";
 
 		boardList = template.query(SQL, new BoardRowMapper());
 		

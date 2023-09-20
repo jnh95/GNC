@@ -22,6 +22,12 @@ public class LogoutController {
 		HttpSession session = request.getSession();
 		
 		session.invalidate();
+		
+		String blog = request.getParameter("blog");
+		
+		if("blog".equals(blog)) {
+			return "redirect:/blog";
+		}
 
 		return "redirect:/";
 	}

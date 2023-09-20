@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,6 +30,8 @@ public class LoginController {
 
 		String id = request.getParameter("MEM_ID");
 		String pw = request.getParameter("MEM_PW");
+		
+		String blog = request.getParameter("blog");
 
 		Cookie[] cookies = request.getCookies();
 
@@ -53,6 +56,10 @@ public class LoginController {
 			cookie.setMaxAge(60 * 60 * 365);
 			cookie.setPath("/");
 			response.addCookie(cookie);
+		}
+		
+		if("blog".equals(blog)) {
+			return "redirect:/blog";
 		}
 		
 		return "redirect:/";

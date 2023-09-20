@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script
 	src="${pageContext.request.contextPath}/resources/js/join.js?ver=0.1"></script>
-<title>GNC</title>
+<title>GNC 회원가입</title>
 </head>
 <body>
 	<!-- 좌상단 GNC 우상단 로그인 -->

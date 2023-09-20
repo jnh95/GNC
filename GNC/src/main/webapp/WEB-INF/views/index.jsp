@@ -59,6 +59,7 @@ String pw = (String) session.getAttribute("pwkey");
 	<!-- 블로그 -->
 	<div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
+		<a class="w3-button" style="font-size: 20px;" href="<c:url value="/blog"/>">블로그</a>
 
 		<hr>
 

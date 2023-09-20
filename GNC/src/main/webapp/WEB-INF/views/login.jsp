@@ -16,6 +16,8 @@ if (cookies != null) {
 		}
 	}
 }
+
+String blog = (String) request.getAttribute("blog");
 %>
 <script src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.2"></script>
 <button onclick="document.getElementById('id01').style.display='block'"
@@ -27,6 +29,13 @@ if (cookies != null) {
 
 		<form class="w3-container" action="<c:url value="/login"/>"
 			method="post">
+			<%
+			if (blog == "blog") {
+			%>
+				<input name="blog" id="blog" style="display:none;" value="blog">
+			<%
+			}
+			%>
 			<div class="w3-section">
 				<label><b>ID</b></label>
 				<%
