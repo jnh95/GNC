@@ -12,7 +12,7 @@ String pw = (String) session.getAttribute("pwkey");
 %>
 <!DOCTYPE html>
 <html>
-<title>블로그</title>
+<title>블로그 상세</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
@@ -21,20 +21,19 @@ String pw = (String) session.getAttribute("pwkey");
 <div style="margin: 0 0 0 250px;">
 <div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
-		<p style="font-size: 20px;">블로그</p>
+		<a class="w3-button" style="font-size: 20px;" href="<c:url value="/blog"/>">블로그</a>
 
 		<hr>
 
 		<div class="w3-row-padding w3-grayscale">
 			<c:forEach items="${blogList }" var="blog">
-				<form action="<c:url value="/blog/blogDetail"/>" method="get" id="blogForm" name="blogForm">
-				<div class="w3-col l3 m6" style="margin-bottom:50px;">
-					<a>${blog.BLO_TITLE }</a>
+				<form action="<c:url value="/blogDetail"/>" method="get">
+				<div class="w3-col l3 m6" style="margin-bottom:50px;" id="${blog.BLO_TITLE }" onclick="blog()">
+					<h4>${blog.BLO_TITLE }</h4>
 					<hr>
-					<input type="image" style="width: 100%">
+					<img alt="메인 사진" style="width: 100%">
 					<hr>
-					<a>${blog.BLO_CONTENT }</a>
-					<input style="display:none;" value="${blog.BLO_NO }" id="BLO_NO" name="BLO_NO">
+					<p>${blog.BLO_CONTENT }</p>
 				</div>
 				</form>
 			</c:forEach>
@@ -43,4 +42,9 @@ String pw = (String) session.getAttribute("pwkey");
 </div>
 
 </body>
+<script>
+function blog() {
+	document.pageFrm.submit();
+}
+</script>
 </html> 

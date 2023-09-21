@@ -16,14 +16,47 @@ public class IndexServiceImpl implements IndexService {
 	private IndexRepository indexRepository;
 	
 	@Override
-	public List<Member> board() {
+	public List<Member> blog() {
 		// TODO Auto-generated method stub
 		
-		List<Member> boardList = new ArrayList<Member>();
+		List<Member> blogList = new ArrayList<Member>();
 		
-		boardList = indexRepository.board();
+		blogList = indexRepository.blog();
 		
-		return boardList;
+		return blogList;
+	}
+	
+	@Override
+	public List<Member> blog(String bloNo) {
+		// TODO Auto-generated method stub
+		
+		List<Member> blogList = new ArrayList<Member>();
+		
+		blogList = indexRepository.blog(bloNo);
+		
+		return blogList;
+	}
+	
+	@Override
+	public List<Member> question() {
+		// TODO Auto-generated method stub
+		
+		List<Member> questionList = new ArrayList<Member>();
+		
+		questionList = indexRepository.question();
+		
+		return questionList;
+	}
+	
+	@Override
+	public List<Member> answer() {
+		// TODO Auto-generated method stub
+		
+		List<Member> answerList = new ArrayList<Member>();
+		
+		answerList = indexRepository.answer();
+		
+		return answerList;
 	}
 
 }

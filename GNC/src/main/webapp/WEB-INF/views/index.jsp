@@ -65,13 +65,54 @@ String pw = (String) session.getAttribute("pwkey");
 
 		<!-- for문으로 여러개 넣기 -->
 		<div class="w3-row-padding w3-grayscale">
-			<c:forEach items="${boardList }" var="board">
+			<c:forEach items="${blogList }" var="blog" end="3">
 				<div class="w3-col l3 m6" style="margin-bottom:50px;">
-					<h4>${board.BOA_TITLE }</h4>
+					<h4>${blog.BLO_TITLE }</h4>
 					<hr>
 					<img alt="메인 사진" style="width: 100%">
 					<hr>
-					<p>${board.BOA_CONTENT }</p>
+					<p>${blog.BLO_CONTENT }</p>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	
+	<!-- 질문 -->
+	<div class="w3-content w3-padding"
+		style="max-width: 1500px; padding-top: 0px !important;">
+		<a class="w3-button" style="font-size: 20px;" href="<c:url value="/question"/>">질문</a>
+
+		<hr>
+
+		<div class="w3-row-padding w3-grayscale">
+			<c:forEach items="${questionList }" var="question" end="3">
+				<div class="w3-col l3 m6" style="margin-bottom:50px;">
+					<h4>${question.QUE_TITLE }</h4>
+					<hr>
+					<img alt="메인 사진" style="width: 100%">
+					<hr>
+					<p>${question.QUE_CONTENT }</p>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	
+	<!-- 답변 -->
+	<div class="w3-content w3-padding"
+		style="max-width: 1500px; padding-top: 0px !important;">
+		<a class="w3-button" style="font-size: 20px;" href="<c:url value="/answer"/>">답변</a>
+
+		<hr>
+
+		<!-- for문으로 여러개 넣기 -->
+		<div class="w3-row-padding w3-grayscale">
+			<c:forEach items="${answerList }" var="answer" end="3">
+				<div class="w3-col l3 m6" style="margin-bottom:50px;">
+					<h4>${answer.ANS_TITLE }</h4>
+					<hr>
+					<img alt="메인 사진" style="width: 100%">
+					<hr>
+					<p>${answer.ANS_CONTENT }</p>
 				</div>
 			</c:forEach>
 		</div>

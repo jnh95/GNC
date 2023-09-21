@@ -27,9 +27,17 @@ public class IndexController {
 	@GetMapping
 	public String index(Model model) {
 		
-		List<Member> list = indexService.board();
+		List<Member> bloglist = indexService.blog();
 
-		model.addAttribute("boardList", list);
+		model.addAttribute("blogList", bloglist);
+		
+		List<Member> questionlist = indexService.question();
+
+		model.addAttribute("questionList", questionlist);
+		
+		List<Member> answerlist = indexService.answer();
+
+		model.addAttribute("answerList", answerlist);
 
 		return "index";
 	}

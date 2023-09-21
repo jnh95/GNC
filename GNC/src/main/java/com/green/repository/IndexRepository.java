@@ -6,5 +6,11 @@ import com.green.domain.Member;
 
 public interface IndexRepository {
 	
-	List<Member> board();
+	List<Member> blog();
+	
+	List<Member> blog(String bloNo);
+	
+	List<Member> question();
+	
+	List<Member> answer();
 }
