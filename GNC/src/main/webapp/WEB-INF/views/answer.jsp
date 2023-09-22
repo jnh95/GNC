@@ -23,7 +23,7 @@ String pw = (String) session.getAttribute("pwkey");
 		<div class="w3-content w3-padding"
 			style="max-width: 1500px; padding-top: 0px !important;">
 			<p class="w3-left"
-				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">답변.,</p>
+				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">답변</p>
 			<a class="w3-right w3-button w3-medium"
 				style="margin: 20px 0 10px 0;">답변하기</a>
 
