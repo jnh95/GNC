@@ -11,10 +11,15 @@ String id = (String) session.getAttribute("idkey");
 String pw = (String) session.getAttribute("pwkey");
 
 String blog = (String) request.getAttribute("blog");
+String blogDetail = (String) request.getAttribute("blogDetail");
+String question = (String) request.getAttribute("question");
+String questionDetail = (String) request.getAttribute("questionDetail");
+String answer = (String) request.getAttribute("answer");
+String answerDetail = (String) request.getAttribute("answerDetail");
 %>
 <!DOCTYPE html>
 <html>
-<title>블로그</title>
+<title>로그인</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
@@ -39,20 +44,7 @@ String blog = (String) request.getAttribute("blog");
 	<!-- 로그인이 되었을 때  -->
 	<form action="<c:url value="/logout"/>" method="post" class="w3-right"
 		style="margin: 13px 5px 5px 5px;">
-
-		안녕하세요. <a href="<c:url value="/mypage"/>" class="w3-button"
-			style="margin-bottom: 4px; padding: 10px;"> <%=name%>님
-		</a>
-
-		<button type="submit" class="w3-button"
-			style="margin-bottom: 4px; padding: 10px;">로그아웃</button>
-		<%
-		if (blog == "blog") {
-		%>
-		<input name="blog" id="blog" style="display: none;" value="blog">
-		<%
-		}
-		%>
+		<jsp:include page="logout.jsp" />
 	<%
 	}
 	%>

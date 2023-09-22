@@ -66,12 +66,38 @@ public class IndexRepositoryImpl implements IndexRepository {
 	}
 	
 	@Override
+	public List<Member> question(String queNo) {
+		// TODO Auto-generated method stub
+		
+		List<Member> questionList = new ArrayList<Member>();
+
+		String SQL = "select * from question a join member b ON a.MEM_NO=b.MEM_NO where QUE_NO = '" + queNo +"' ORDER BY QUE_NO DESC limit 8";
+
+		questionList = template.query(SQL, new QuestionRowMapper());
+		
+		return questionList;
+	}
+	
+	@Override
 	public List<Member> answer() {
 		// TODO Auto-generated method stub
 		
 		List<Member> answerList = new ArrayList<Member>();
 
 		String SQL = "select * from answer a join member b ON a.MEM_NO=b.MEM_NO ORDER BY ANS_NO DESC limit 8";
+
+		answerList = template.query(SQL, new AnswerRowMapper());
+		
+		return answerList;
+	}
+	
+	@Override
+	public List<Member> answer(String ansNo) {
+		// TODO Auto-generated method stub
+		
+		List<Member> answerList = new ArrayList<Member>();
+
+		String SQL = "select * from answer a join member b ON a.MEM_NO=b.MEM_NO where ANS_NO = '" + ansNo +"' ORDER BY ANS_NO DESC limit 8";
 
 		answerList = template.query(SQL, new AnswerRowMapper());
 		

@@ -12,14 +12,23 @@ if (cookies != null) {
 		String value = c.getValue();
 
 		if (name.equals("rememberId")) {
-			id = value;
+	id = value;
 		}
 	}
 }
 
 String blog = (String) request.getAttribute("blog");
+String blogDetail = (String) request.getAttribute("blogDetail");
+String bloNo = (String) request.getAttribute("bloNo");
+String question = (String) request.getAttribute("question");
+String questionDetail = (String) request.getAttribute("questionDetail");
+String queNo = (String) request.getAttribute("queNo");
+String answer = (String) request.getAttribute("answer");
+String answerDetail = (String) request.getAttribute("answerDetail");
+String ansNo = (String) request.getAttribute("ansNo");
 %>
-<script src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.2"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.2"></script>
 <button onclick="document.getElementById('id01').style.display='block'"
 	class="w3-button w3-large">로그인</button>
 
@@ -32,7 +41,50 @@ String blog = (String) request.getAttribute("blog");
 			<%
 			if (blog == "blog") {
 			%>
-				<input name="blog" id="blog" style="display:none;" value="blog">
+			<input name="blog" id="blog" style="display: none;" value="blog">
+			<%
+			}
+			%>
+			<%
+			if (blogDetail == "blogDetail") {
+			%>
+			<input name="blogDetail" id="blogDetail" style="display: none;"
+				value="blogDetail"> <input style="display: none;"
+				value="<%=bloNo%>" name="bloNo">
+			<%
+			}
+			%>
+			<%
+			if (question == "question") {
+			%>
+			<input name="question" id="question" style="display: none;"
+				value="question">
+			<%
+			}
+			%>
+			<%
+			if (questionDetail == "questionDetail") {
+			%>
+			<input name="questionDetail" id="questionDetail"
+				style="display: none;" value="questionDetail"> <input
+				style="display: none;" value="<%=queNo%>" name="queNo">
+			<%
+			}
+			%>
+			<%
+			if (answer == "answer") {
+			%>
+			<input name="answer" id="answer" style="display: none;"
+				value="answer">
+			<%
+			}
+			%>
+			<%
+			if (answerDetail == "answerDetail") {
+			%>
+			<input name="answerDetail" id="answerDetail" style="display: none;"
+				value="answerDetail"> <input style="display: none;"
+				value="<%=ansNo%>" name="ansNo">
 			<%
 			}
 			%>
@@ -52,12 +104,11 @@ String blog = (String) request.getAttribute("blog");
 				}
 				%>
 				<label><b>비밀번호</b></label> <input id="pw" name="MEM_PW"
-					class="w3-input w3-border" type="password" placeholder="비밀번호를 입력해주세요."
-					required />
-				<a class="w3-right" onclick="pwOn3()" id="pw3"
-						style="display: block; cursor: pointer;">비밀번호 보기</a>
-				<a class="w3-right" onclick="pwOff3()" id="pw4"
-						style="display: none; cursor: pointer;">비밀번호 숨기기</a>
+					class="w3-input w3-border" type="password"
+					placeholder="비밀번호를 입력해주세요." required /> <a class="w3-right"
+					onclick="pwOn3()" id="pw3" style="display: block; cursor: pointer;">비밀번호
+					보기</a> <a class="w3-right" onclick="pwOff3()" id="pw4"
+					style="display: none; cursor: pointer;">비밀번호 숨기기</a>
 
 				<button
 					class="w3-button w3-block w3-light-grey w3-section w3-padding"
@@ -73,8 +124,9 @@ String blog = (String) request.getAttribute("blog");
 		</form>
 
 		<div class="w3-container w3-border-top w3-padding w3-light-grey">
-			<span class="w3-left w3-padding w3-hide-small"><a href="<c:url value="/forgetPw"/>">비밀번호를
-					잊으셨나요?</a></span> <span class="w3-right w3-padding w3-hide-small"><a
+			<span class="w3-left w3-padding w3-hide-small"><a
+				href="<c:url value="/forgetPw"/>">비밀번호를 잊으셨나요?</a></span> <span
+				class="w3-right w3-padding w3-hide-small"><a
 				href="<c:url value="/join"/>">ID가 없으신가요?</a></span>
 		</div>
 

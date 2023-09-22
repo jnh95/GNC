@@ -16,35 +16,27 @@ String pw = (String) session.getAttribute("pwkey");
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
-<jsp:include page="sidebar.jsp" />
+	<jsp:include page="sidebar.jsp" />
 
-<div style="margin: 0 0 0 250px;">
-<div class="w3-content w3-padding"
-		style="max-width: 1500px; padding-top: 0px !important;">
-		<a class="w3-button" style="font-size: 20px;" href="<c:url value="/blog"/>">블로그</a>
+	<div style="margin: 0 0 0 250px;">
+		<div class="w3-content w3-padding"
+			style="max-width: 1500px; padding-top: 0px !important;">
+			<p class="w3-left" style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">블로그</p>
 
-		<hr>
 
-		<div class="w3-row-padding w3-grayscale">
-			<c:forEach items="${blogList }" var="blog">
-				<form action="<c:url value="/blogDetail"/>" method="get">
-				<div class="w3-col l3 m6" style="margin-bottom:50px;" id="${blog.BLO_TITLE }" onclick="blog()">
-					<h4>${blog.BLO_TITLE }</h4>
-					<hr>
-					<img alt="메인 사진" style="width: 100%">
-					<hr>
-					<p>${blog.BLO_CONTENT }</p>
-				</div>
-				</form>
-			</c:forEach>
+			<div class="w3-row-padding">
+				<c:forEach items="${blogList }" var="blog">
+						<h4 class="w3-center">${blog.BLO_TITLE }</h4>
+						<hr>
+						<img
+							src="<c:url value="/resources/images/${blog.BLO_IMAGE }.jpg"/>"
+							style="max-width: 400px; max-height: 400px;">
+						<hr>
+						<p>${blog.BLO_CONTENT }</p>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
-</div>
 
 </body>
-<script>
-function blog() {
-	document.pageFrm.submit();
-}
-</script>
-</html> 
+</html>

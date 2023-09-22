@@ -34,10 +34,7 @@ String pw = (String) session.getAttribute("pwkey");
 		<!-- 로그인이 되었을 때  -->
 		<form action="<c:url value="/logout"/>" method="post" class="w3-right"
 			style="margin-top: 8px;">
-			안녕하세요. <a href="<c:url value="/mypage"/>" class="w3-button"
-				style="margin-bottom: 4px; padding: 10px;"><%=name%>님 </a>
-			<button type="submit" class="w3-button"
-				style="margin-bottom: 4px; padding: 10px;">로그아웃</button>
+			<jsp:include page="logout.jsp" />
 		</form>
 	</div>
 	<%
@@ -59,20 +56,22 @@ String pw = (String) session.getAttribute("pwkey");
 	<!-- 블로그 -->
 	<div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
-		<a class="w3-button" style="font-size: 20px;" href="<c:url value="/blog"/>">블로그</a>
+		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;" href="<c:url value="/blog"/>">블로그</a>
 
-		<hr>
 
 		<!-- for문으로 여러개 넣기 -->
-		<div class="w3-row-padding w3-grayscale">
+		<div class="w3-row-padding">
 			<c:forEach items="${blogList }" var="blog" end="3">
+			<form action="<c:url value="/blog/blogDetail"/>" method="get">
 				<div class="w3-col l3 m6" style="margin-bottom:50px;">
 					<h4>${blog.BLO_TITLE }</h4>
 					<hr>
-					<img alt="메인 사진" style="width: 100%">
+					<input type="image" src="<c:url value="/resources/images/${blog.BLO_IMAGE }.jpg"/>" style="max-width: 180px; max-height: 180px;">
 					<hr>
 					<p>${blog.BLO_CONTENT }</p>
+					<input style="display:none;" value="${blog.BLO_NO }" id="BLO_NO" name="BLO_NO">
 				</div>
+				</form>
 			</c:forEach>
 		</div>
 	</div>
@@ -80,19 +79,21 @@ String pw = (String) session.getAttribute("pwkey");
 	<!-- 질문 -->
 	<div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
-		<a class="w3-button" style="font-size: 20px;" href="<c:url value="/question"/>">질문</a>
+		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;" href="<c:url value="/question"/>">질문</a>
 
-		<hr>
 
-		<div class="w3-row-padding w3-grayscale">
+		<div class="w3-row-padding">
 			<c:forEach items="${questionList }" var="question" end="3">
+			<form action="<c:url value="/question/questionDetail"/>" method="get">
 				<div class="w3-col l3 m6" style="margin-bottom:50px;">
 					<h4>${question.QUE_TITLE }</h4>
 					<hr>
-					<img alt="메인 사진" style="width: 100%">
+					<input type="image" src="<c:url value="/resources/images/${question.QUE_IMAGE }.jpg"/>" style="max-width: 180px; max-height: 180px;">
 					<hr>
 					<p>${question.QUE_CONTENT }</p>
+					<input style="display:none;" value="${question.QUE_NO }" id="QUE_NO" name="QUE_NO">
 				</div>
+				</form>
 			</c:forEach>
 		</div>
 	</div>
@@ -100,20 +101,22 @@ String pw = (String) session.getAttribute("pwkey");
 	<!-- 답변 -->
 	<div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
-		<a class="w3-button" style="font-size: 20px;" href="<c:url value="/answer"/>">답변</a>
+		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;" href="<c:url value="/answer"/>">답변</a>
 
-		<hr>
 
 		<!-- for문으로 여러개 넣기 -->
-		<div class="w3-row-padding w3-grayscale">
+		<div class="w3-row-padding">
 			<c:forEach items="${answerList }" var="answer" end="3">
+			<form action="<c:url value="/answer/answerDetail"/>" method="get">
 				<div class="w3-col l3 m6" style="margin-bottom:50px;">
 					<h4>${answer.ANS_TITLE }</h4>
 					<hr>
-					<img alt="메인 사진" style="width: 100%">
+					<input type="image" src="<c:url value="/resources/images/${answer.ANS_IMAGE }.jpg"/>" style="max-width: 180px; max-height: 180px;">
 					<hr>
 					<p>${answer.ANS_CONTENT }</p>
+					<input style="display:none;" value="${answer.ANS_NO }" id="ANS_NO" name="ANS_NO">
 				</div>
+				</form>
 			</c:forEach>
 		</div>
 	</div>

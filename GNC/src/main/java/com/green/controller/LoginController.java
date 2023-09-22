@@ -26,12 +26,20 @@ public class LoginController {
 	private LoginService loginService;
 
 	@PostMapping
-	public String login(HttpServletRequest request, HttpServletResponse response) {
+	public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
 
 		String id = request.getParameter("MEM_ID");
 		String pw = request.getParameter("MEM_PW");
 		
 		String blog = request.getParameter("blog");
+		String blogDetail = request.getParameter("blogDetail");
+		String bloNo = request.getParameter("bloNo");
+		String question = request.getParameter("question");
+		String questionDetail = request.getParameter("questionDetail");
+		String queNo = request.getParameter("queNo");
+		String answer = request.getParameter("answer");
+		String answerDetail = request.getParameter("blogDeanswerDetailtail");
+		String ansNo = request.getParameter("ansNo");
 
 		Cookie[] cookies = request.getCookies();
 
@@ -60,6 +68,35 @@ public class LoginController {
 		
 		if("blog".equals(blog)) {
 			return "redirect:/blog";
+		}
+		
+		if("blogDetail".equals(blogDetail)) {
+			
+			model.addAttribute("BLO_NO", bloNo);
+			
+			return "redirect:/blog/blogDetail";
+		}
+		
+		if("question".equals(question)) {
+			return "redirect:/question";
+		}
+		
+		if("questionDetail".equals(questionDetail)) {
+			
+			model.addAttribute("QUE_NO", queNo);
+			
+			return "redirect:/question/questionDetail";
+		}
+		
+		if("answer".equals(answer)) {
+			return "redirect:/answer";
+		}
+		
+		if("answerDetail".equals(answerDetail)) {
+			
+			model.addAttribute("ANS_NO", ansNo);
+			
+			return "redirect:/answer/answerDetail";
 		}
 		
 		return "redirect:/";

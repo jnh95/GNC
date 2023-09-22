@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.green.domain.Member;
 import com.green.service.IndexService;
@@ -19,7 +20,7 @@ public class AnswerController {
 	private IndexService indexService;
 
 	@GetMapping
-	public String blog(Model model) {
+	public String answer(Model model) {
 		
 		List<Member> answerlist = indexService.answer();
 
@@ -28,6 +29,19 @@ public class AnswerController {
 		model.addAttribute("answer", "answer");
 		
 		return "answer";
+	}
+	
+	@GetMapping("answerDetail")
+	public String answerDetail(Model model, @RequestParam("ANS_NO") String ansNo) {
+		
+		model.addAttribute("answerDetail", "answerDetail");
+		
+		List<Member> answerlist = indexService.answer(ansNo);
+		
+		model.addAttribute("answerList", answerlist);
+		model.addAttribute("ansNo", ansNo);
+		
+		return "answerDetail";
 	}
 	
 }

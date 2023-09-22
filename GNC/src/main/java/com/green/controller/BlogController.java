@@ -41,6 +41,7 @@ public class BlogController {
 		List<Member> bloglist = indexService.blog(bloNo);
 		
 		model.addAttribute("blogList", bloglist);
+		model.addAttribute("bloNo", bloNo);
 		
 		return "blogDetail";
 	}

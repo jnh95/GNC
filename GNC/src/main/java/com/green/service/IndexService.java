@@ -9,8 +9,12 @@ public interface IndexService {
 	List<Member> blog();
 	
 	List<Member> blog(String bloNo);
-
+	
 	List<Member> question();
-
+	
+	List<Member> question(String queNo);
+	
 	List<Member> answer();
+	
+	List<Member> answer(String ansNo);
 }
