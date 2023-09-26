@@ -271,3 +271,15 @@ function pwOff3() {
 	document.querySelector('#pw3').style.display = "block";
 	document.querySelector('#pw4').style.display = "none";
 }
+
+function myBlog() {
+	document.myBlogForm.submit();
+}
+
+function myQuestion() {
+	document.myQuestionForm.submit();
+}
+
+function myAnswer() {
+	document.myAnswerForm.submit();
+}

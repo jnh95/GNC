@@ -9,6 +9,8 @@ request.setCharacterEncoding("UTF-8");
 String name = (String) session.getAttribute("namekey");
 String id = (String) session.getAttribute("idkey");
 String pw = (String) session.getAttribute("pwkey");
+
+String loginFailed = (String) session.getAttribute("loginFailed");
 %>
 <!DOCTYPE html>
 <html>
@@ -19,11 +21,22 @@ String pw = (String) session.getAttribute("pwkey");
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
+	<%
+	if ("loginFailed".equals(loginFailed)) {
+	%>
+	<script>
+		alert("로그인에 실패하셨습니다.");
+	</script>
+	<%
+	session.removeAttribute("loginFailed");
+	}
+	%>
+
 	<!-- 좌상단 GNC 우상단 로그인 -->
 	<div style="margin: 5px;">
 		<a href="<c:url value="/"/>" class="w3-bar-item w3-button w3-xlarge"><b>GNC</b></a>
 		<%
-		if (id == null & pw == null) {
+		if (id == null || pw == null) {
 		%>
 		<!-- 로그인 버튼  -->
 		<div class="w3-right" style="margin-top: 2px;">
@@ -56,66 +69,79 @@ String pw = (String) session.getAttribute("pwkey");
 	<!-- 블로그 -->
 	<div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
-		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;" href="<c:url value="/blog"/>">블로그</a>
+		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+			href="<c:url value="/blog"/>">블로그</a>
 
 
 		<!-- for문으로 여러개 넣기 -->
 		<div class="w3-row-padding">
 			<c:forEach items="${blogList }" var="blog" end="3">
-			<form action="<c:url value="/blog/blogDetail"/>" method="get">
-				<div class="w3-col l3 m6" style="margin-bottom:50px;">
-					<h4>${blog.BLO_TITLE }</h4>
-					<hr>
-					<input type="image" src="<c:url value="/resources/images/${blog.BLO_IMAGE }.jpg"/>" style="max-width: 180px; max-height: 180px;">
-					<hr>
-					<p>${blog.BLO_CONTENT }</p>
-					<input style="display:none;" value="${blog.BLO_NO }" id="BLO_NO" name="BLO_NO">
-				</div>
+				<form action="<c:url value="/blog/blogDetail"/>" method="get">
+					<div class="w3-col l3 m6" style="margin-bottom: 50px;">
+						<h4>${blog.BLO_TITLE }</h4>
+						<hr>
+						<input type="image"
+							src="<c:url value="/resources/images/${blog.BLO_IMAGE }.jpg"/>"
+							style="max-width: 180px; max-height: 180px;">
+						<hr>
+						<p>${blog.BLO_CONTENT }</p>
+						<input style="display: none;" value="${blog.BLO_NO }" id="BLO_NO"
+							name="BLO_NO">
+					</div>
 				</form>
 			</c:forEach>
 		</div>
 	</div>
-	
+
 	<!-- 질문 -->
 	<div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
-		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;" href="<c:url value="/question"/>">질문</a>
+		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+			href="<c:url value="/question"/>">질문</a>
 
 
 		<div class="w3-row-padding">
 			<c:forEach items="${questionList }" var="question" end="3">
-			<form action="<c:url value="/question/questionDetail"/>" method="get">
-				<div class="w3-col l3 m6" style="margin-bottom:50px;">
-					<h4>${question.QUE_TITLE }</h4>
-					<hr>
-					<input type="image" src="<c:url value="/resources/images/${question.QUE_IMAGE }.jpg"/>" style="max-width: 180px; max-height: 180px;">
-					<hr>
-					<p>${question.QUE_CONTENT }</p>
-					<input style="display:none;" value="${question.QUE_NO }" id="QUE_NO" name="QUE_NO">
-				</div>
+				<form action="<c:url value="/question/questionDetail"/>"
+					method="get">
+					<div class="w3-col l3 m6" style="margin-bottom: 50px;">
+						<h4>${question.QUE_TITLE }</h4>
+						<hr>
+						<input type="image"
+							src="<c:url value="/resources/images/${question.QUE_IMAGE }.jpg"/>"
+							style="max-width: 180px; max-height: 180px;">
+						<hr>
+						<p>${question.QUE_CONTENT }</p>
+						<input style="display: none;" value="${question.QUE_NO }"
+							id="QUE_NO" name="QUE_NO">
+					</div>
 				</form>
 			</c:forEach>
 		</div>
 	</div>
-	
+
 	<!-- 답변 -->
 	<div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
-		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;" href="<c:url value="/answer"/>">답변</a>
+		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+			href="<c:url value="/answer"/>">답변</a>
 
 
 		<!-- for문으로 여러개 넣기 -->
 		<div class="w3-row-padding">
 			<c:forEach items="${answerList }" var="answer" end="3">
-			<form action="<c:url value="/answer/answerDetail"/>" method="get">
-				<div class="w3-col l3 m6" style="margin-bottom:50px;">
-					<h4>${answer.ANS_TITLE }</h4>
-					<hr>
-					<input type="image" src="<c:url value="/resources/images/${answer.ANS_IMAGE }.jpg"/>" style="max-width: 180px; max-height: 180px;">
-					<hr>
-					<p>${answer.ANS_CONTENT }</p>
-					<input style="display:none;" value="${answer.ANS_NO }" id="ANS_NO" name="ANS_NO">
-				</div>
+				<form action="<c:url value="/answer/answerDetail"/>" method="get">
+					<div class="w3-col l3 m6" style="margin-bottom: 50px;">
+						<h4>${answer.ANS_TITLE }</h4>
+						<hr>
+						<input type="image"
+							src="<c:url value="/resources/images/${answer.ANS_IMAGE }.jpg"/>"
+							style="max-width: 180px; max-height: 180px;">
+						<hr>
+						<p>${answer.ANS_CONTENT }</p>
+						<input style="display: none;" value="${answer.ANS_NO }"
+							id="ANS_NO" name="ANS_NO">
+					</div>
 				</form>
 			</c:forEach>
 		</div>

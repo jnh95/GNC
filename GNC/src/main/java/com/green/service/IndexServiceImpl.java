@@ -38,6 +38,17 @@ public class IndexServiceImpl implements IndexService {
 	}
 	
 	@Override
+	public List<Member> myBlog(String memNo) {
+		// TODO Auto-generated method stub
+		
+		List<Member> blogList = new ArrayList<Member>();
+		
+		blogList = indexRepository.blog(memNo);
+		
+		return blogList;
+	}
+	
+	@Override
 	public List<Member> question() {
 		// TODO Auto-generated method stub
 		
@@ -60,6 +71,17 @@ public class IndexServiceImpl implements IndexService {
 	}
 	
 	@Override
+	public List<Member> myQuestion(String memNo) {
+		// TODO Auto-generated method stub
+		
+		List<Member> questionList = new ArrayList<Member>();
+		
+		questionList = indexRepository.question(memNo);
+		
+		return questionList;
+	}
+	
+	@Override
 	public List<Member> answer() {
 		// TODO Auto-generated method stub
 		
@@ -77,6 +99,17 @@ public class IndexServiceImpl implements IndexService {
 		List<Member> answerList = new ArrayList<Member>();
 		
 		answerList = indexRepository.answer(ansNo);
+		
+		return answerList;
+	}
+	
+	@Override
+	public List<Member> myAnswer(String memNo) {
+		// TODO Auto-generated method stub
+		
+		List<Member> answerList = new ArrayList<Member>();
+		
+		answerList = indexRepository.answer(memNo);
 		
 		return answerList;
 	}

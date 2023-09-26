@@ -44,4 +44,24 @@ public class AnswerController {
 		return "answerDetail";
 	}
 	
+	@GetMapping("myAnswer")
+	public String myAnswer(Model model, @RequestParam("myAnswer") String memNo) {
+		
+		model.addAttribute("myAnswer", "myAnswer");
+		
+		List<Member> answerlist = indexService.myAnswer(memNo);
+		
+		model.addAttribute("answerlist", answerlist);
+		
+		return "answer";
+	}
+	
+	@GetMapping("answerWrite")
+	public String answerWrite(Model model) {
+		
+		model.addAttribute("answerWrite", "answerWrite");
+		
+		return "answerWrite";
+	}
+	
 }

@@ -40,6 +40,8 @@ public class LoginRepositoryImpl implements LoginRepository {
 			login = template.queryForObject(SQL, new MemberRowMapper(), id, pw);
 
 			if (login != null) {
+				session.removeAttribute("pwkey");
+				
 				session.setAttribute("nokey", login.getMEM_NO());
 				session.setAttribute("namekey", login.getMEM_NAME());
 				session.setAttribute("idkey", login.getMEM_ID());
@@ -50,7 +52,9 @@ public class LoginRepositoryImpl implements LoginRepository {
 				session.setAttribute("addkey", login.getMEM_ADD());
 				session.setAttribute("birthkey", login.getMEM_BIRTH());
 				session.setAttribute("lenokey", login.getLEV_NO());
-			}
+			}				
+		} else {
+			session.setAttribute("loginFailed", "loginFailed");
 		}
 	}
 

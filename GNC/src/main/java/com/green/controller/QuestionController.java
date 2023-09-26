@@ -44,4 +44,24 @@ public class QuestionController {
 		return "questionDetail";
 	}
 	
+	@GetMapping("myQuestion")
+	public String myQuestion(Model model, @RequestParam("myQuestion") String memNo) {
+		
+		model.addAttribute("myQuestion", "myQuestion");
+		
+		List<Member> questionlist = indexService.myQuestion(memNo);
+		
+		model.addAttribute("questionlist", questionlist);
+		
+		return "question";
+	}
+	
+	@GetMapping("questionWrite")
+	public String questionWrite(Model model) {
+		
+		model.addAttribute("questionWrite", "questionWrite");
+		
+		return "questionWrite";
+	}
+	
 }

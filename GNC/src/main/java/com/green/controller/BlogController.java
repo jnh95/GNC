@@ -46,4 +46,24 @@ public class BlogController {
 		return "blogDetail";
 	}
 	
+	@GetMapping("myBlog")
+	public String myBlog(Model model, @RequestParam("myBlog") String memNo) {
+		
+		model.addAttribute("myBlog", "myBlog");
+		
+		List<Member> bloglist = indexService.myBlog(memNo);
+		
+		model.addAttribute("blogList", bloglist);
+		
+		return "blog";
+	}
+	
+	@GetMapping("blogWrite")
+	public String blogWrite(Model model) {
+		
+		model.addAttribute("blogWrite", "blogWrite");
+		
+		return "blogWrite";
+	}
+	
 }

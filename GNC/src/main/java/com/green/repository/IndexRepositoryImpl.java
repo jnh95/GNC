@@ -45,9 +45,22 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> blogList = new ArrayList<Member>();
 
-		String SQL = "select * from blog a join member b ON a.MEM_NO=b.MEM_NO where BLO_NO = '" + bloNo +"' ORDER BY BLO_NO DESC limit 8";
+		String SQL = "select * from blog a join member b ON a.MEM_NO=b.MEM_NO where BLO_NO = ?";
 
-		blogList = template.query(SQL, new BlogRowMapper());
+		blogList = template.query(SQL, new BlogRowMapper(), bloNo);
+		
+		return blogList;
+	}
+	
+	@Override
+	public List<Member> myBlog(String memNo) {
+		// TODO Auto-generated method stub
+		
+		List<Member> blogList = new ArrayList<Member>();
+
+		String SQL = "select * from blog where MEM_NO = ?";
+
+		blogList = template.query(SQL, new BlogRowMapper(), memNo);
 		
 		return blogList;
 	}
@@ -71,9 +84,22 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> questionList = new ArrayList<Member>();
 
-		String SQL = "select * from question a join member b ON a.MEM_NO=b.MEM_NO where QUE_NO = '" + queNo +"' ORDER BY QUE_NO DESC limit 8";
+		String SQL = "select * from question a join member b ON a.MEM_NO=b.MEM_NO where QUE_NO = ?";
 
-		questionList = template.query(SQL, new QuestionRowMapper());
+		questionList = template.query(SQL, new QuestionRowMapper(), queNo);
+		
+		return questionList;
+	}
+	
+	@Override
+	public List<Member> myQuestion(String memNo) {
+		// TODO Auto-generated method stub
+		
+		List<Member> questionList = new ArrayList<Member>();
+
+		String SQL = "select * from question where MEM_NO = ?";
+
+		questionList = template.query(SQL, new QuestionRowMapper(), memNo);
 		
 		return questionList;
 	}
@@ -97,9 +123,22 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> answerList = new ArrayList<Member>();
 
-		String SQL = "select * from answer a join member b ON a.MEM_NO=b.MEM_NO where ANS_NO = '" + ansNo +"' ORDER BY ANS_NO DESC limit 8";
+		String SQL = "select * from answer a join member b ON a.MEM_NO=b.MEM_NO where ANS_NO = ?";
 
-		answerList = template.query(SQL, new AnswerRowMapper());
+		answerList = template.query(SQL, new AnswerRowMapper(), ansNo);
+		
+		return answerList;
+	}
+	
+	@Override
+	public List<Member> myAnswer(String memNo) {
+		// TODO Auto-generated method stub
+		
+		List<Member> answerList = new ArrayList<Member>();
+
+		String SQL = "select * from answer where MEM_NO = ?";
+
+		answerList = template.query(SQL, new AnswerRowMapper(), memNo);
 		
 		return answerList;
 	}
