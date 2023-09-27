@@ -12,7 +12,7 @@ String id = (String) session.getAttribute("idkey");
 String pw = (String) session.getAttribute("pwkey");
 String memNo = (String) session.getAttribute("nokey");
 
-String myAnswer = (String) session.getAttribute("myAnswer");
+String myAnswer = (String) request.getAttribute("myAnswer");
 %>
 <!DOCTYPE html>
 <html>
@@ -27,47 +27,7 @@ String myAnswer = (String) session.getAttribute("myAnswer");
 </form>
 	<jsp:include page="sidebar.jsp" />
 
-	<c:choose>
-	<c:when test="'myAnswer'.equals(<%=myAnswer%>)">
-	<div style="margin: 0 0 0 250px;">
-		<div class="w3-content w3-padding"
-			style="max-width: 1500px; padding-top: 0px !important;">
-			<p class="w3-left"
-				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">답변</p>
-			<%
-			if (id != null & pw != null) {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;" href="<c:url value="/answer/answerWrite"/>">답변하기</a>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;" onclick="myAnswer()">내 답변</a>
-			<%
-			}
-			%>
-
-
-			<div class="w3-row-padding">
-				<c:forEach items="${answerList }" var="answer">
-					<form action="<c:url value="/answer/answerDetail"/>" method="get">
-						<div class="w3-col l3 m6" style="margin-bottom: 50px;">
-							<h4>${answer.ANS_TITLE }</h4>
-							<hr>
-							<input type="image"
-								src="<c:url value="/resources/images/${answer.ANS_IMAGE }.jpg"/>"
-								style="max-width: 180px; max-height: 180px;">
-							<hr>
-							<p>${fn:substring(answer.ANS_CONTENT, 0, 10) }</p>
-							<input style="display: none;" value="${answer.ANS_NO }"
-								id="ANS_NO" name="ANS_NO">
-						</div>
-					</form>
-				</c:forEach>
-			</div>
-		</div>
-	</div>
-	</c:when>
 	
-	<c:otherwise>
 		<div style="margin: 0 0 0 250px;">
 		<div class="w3-content w3-padding"
 			style="max-width: 1500px; padding-top: 0px !important;">
@@ -78,8 +38,19 @@ String myAnswer = (String) session.getAttribute("myAnswer");
 			%>
 			<a class="w3-right w3-button w3-medium"
 				style="margin: 20px 0 10px 0;" href="<c:url value="/answer/answerWrite"/>">답변하기</a>
+			<%
+			if ("myAnswer".equals(myAnswer)) {
+			%>
+			<a class="w3-right w3-button w3-medium"
+				style="margin: 20px 0 10px 0;" href="<c:url value="/answer"/>">답변</a>
+			<%
+			} else {
+			%>
 			<a class="w3-right w3-button w3-medium"
 				style="margin: 20px 0 10px 0;" onclick="myAnswer()">내 답변</a>
+			<%
+			}
+			%>
 			<%
 			}
 			%>
@@ -98,13 +69,19 @@ String myAnswer = (String) session.getAttribute("myAnswer");
 							<p>${fn:substring(answer.ANS_CONTENT, 0, 10) }</p>
 							<input style="display: none;" value="${answer.ANS_NO }"
 								id="ANS_NO" name="ANS_NO">
+							<%
+							if ("myAnswer".equals(myAnswer)) {
+							%>
+							<a href="<c:url value="/answer/answerWrite?ANS_NO=${answer.ANS_NO }"/>"
+								class="w3-button w3-block w3-light-grey w3-padding">수정하기</a>
+							<%
+							}
+							%>
 						</div>
 					</form>
 				</c:forEach>
 			</div>
 		</div>
 	</div>
-	</c:otherwise>
-	</c:choose>
 </body>
 </html>

@@ -45,17 +45,19 @@
 					placeholder="동일한 비밀번호를 입력해주세요." required />
 					
 					<a class="w3-right"
-					onclick="forgetPwOn()" id="MEM_PW3" style="display: block; cursor: pointer;">비밀번호
+					onclick="forgetPwOn()" id="MEM_PW3" style="display: block; margin-top: 3px; cursor: pointer;">비밀번호
 					보기</a>
 					
 					<a class="w3-right" onclick="forgetPwOff()" id="MEM_PW4"
-					style="display: none; cursor: pointer;">비밀번호 숨기기</a>
+					style="display: none; margin-top: 3px; cursor: pointer;">비밀번호 숨기기</a>
 			</div>
 		</form>
 		
 		<button
-			class="w3-button w3-block w3-light-grey w3-section w3-padding"
+			class="w3-button w3-block w3-light-grey w3-padding" style="margin-top: 16px;"
 			onclick="pwChange()">비밀번호 바꾸기</button>
+			
+		<a href="<c:url value="/"/>" class="w3-button w3-block w3-red w3-padding">취소</a>
 	</div>
 
 </body>

@@ -219,6 +219,7 @@
 		</form>
 
 		<button class="w3-button w3-block w3-light-grey" onclick="join()">회원가입하기</button>
+		<a href="<c:url value="/"/>" class="w3-button w3-block w3-red w3-padding">취소</a>
 	</div>
 
 </body>
