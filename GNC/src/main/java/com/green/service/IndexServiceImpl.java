@@ -43,9 +43,23 @@ public class IndexServiceImpl implements IndexService {
 		
 		List<Member> blogList = new ArrayList<Member>();
 		
-		blogList = indexRepository.blog(memNo);
+		blogList = indexRepository.myBlog(memNo);
 		
 		return blogList;
+	}
+	
+	@Override
+	public void blogChange(Member blog) {
+		// TODO Auto-generated method stub
+		
+		indexRepository.blogChange(blog);
+	}
+	
+	@Override
+	public void blogInsert(Member blog) {
+		// TODO Auto-generated method stub
+		
+		indexRepository.blogInsert(blog);
 	}
 	
 	@Override
@@ -76,7 +90,7 @@ public class IndexServiceImpl implements IndexService {
 		
 		List<Member> questionList = new ArrayList<Member>();
 		
-		questionList = indexRepository.question(memNo);
+		questionList = indexRepository.myQuestion(memNo);
 		
 		return questionList;
 	}
@@ -109,7 +123,7 @@ public class IndexServiceImpl implements IndexService {
 		
 		List<Member> answerList = new ArrayList<Member>();
 		
-		answerList = indexRepository.answer(memNo);
+		answerList = indexRepository.myAnswer(memNo);
 		
 		return answerList;
 	}

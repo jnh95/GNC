@@ -30,7 +30,7 @@ String blogModify = (String) request.getAttribute("blogModify");
 	<jsp:include page="sidebar.jsp" />
 
 	<%
-	if ("blogModify".equals(blogModify)) {
+	if ("blogModify".equals(blogModify)) { //수정하기
 	%>
 	<c:forEach items="${blogList }" var="blog">
 		<div style="margin: 0 0 0 250px;">
@@ -41,30 +41,55 @@ String blogModify = (String) request.getAttribute("blogModify");
 					작성하기</p>
 
 				<div class="w3-row-padding">
-					<form method="get">
+					<form:form method="post" modelAttribute="blogChange" action="${pageContext.request.contextPath}/blog/blogChange"
+					enctype="multipart/form-data">
+						
 						<div style="padding: 10px;">
-							<input id="title" placeholder="제목을 입력해주세요."
-								style="width: 1200px;" value="${blog.BLO_TITLE }">
+							<input name="BLO_TITLE" placeholder="제목을 입력해주세요."
+								style="width: 1200px;" value="${blog.BLO_TITLE }" />
 						</div>
 
 						<div style="padding: 10px;">
-							<input id="content" placeholder="내용을 입력해주세요."
-								style="width: 1200px; height: 1000px;" value="${blog.BLO_CONTENT }">
+							<input name="BLO_CONTENT"
+								placeholder="내용을 입력해주세요." style="width: 1200px; height: 1000px;"
+								value="${blog.BLO_CONTENT }" />
 						</div>
 
 						<div style="padding: 10px;">
-							<img src="<c:url value="/resources/images/${blog.BLO_IMAGE }.jpg"/>">
+							<c:if test="${not empty blog.BLO_IMAGE }">
+								<img
+									src="<c:url value="/resources/images/${blog.BLO_IMAGE }"/>"
+									onclick="img()" id="bloImg"
+									style="max-width: 300px; max-height: 300px;">
+								<input id="file" name="fileName" type="file" style="display: none;" accept="image/jpeg" onchange="change(event)" />
+							</c:if>
+
+							<c:if test="${empty blog.BLO_IMAGE }">
+								<img
+									src="<c:url value="/resources/images/noimg.jpg"/>"
+									onclick="img()" id="bloImg"
+									style="max-width: 300px; max-height: 300px;">
+								<input id="file" name="fileName" type="file" style="display: none;" accept="image/jpeg" onchange="change(event)" />
+							</c:if>
 						</div>
+						<input name="BLO_NO" style="display: none;"
+							value="${blog.BLO_NO }" />
+						
+						<input name="MEM_NO" style="display: none;"
+							value="${blog.MEM_NO }" />
+							
+						<input name="BLO_IMAGE" style="display: none;"
+							value="${blog.BLO_IMAGE }" />
 
 						<button class="w3-button w3-right"
 							style="border: 1px solid #000; border-radius: 20px;">작성하기</button>
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>
 	</c:forEach>
 	<%
-	} else {
+	} else { //작성하기
 	%>
 	<div style="margin: 0 0 0 250px;">
 		<div class="w3-content w3-padding"
@@ -74,23 +99,30 @@ String blogModify = (String) request.getAttribute("blogModify");
 				작성하기</p>
 
 			<div class="w3-row-padding">
-				<form method="get">
+				<form:form method="post" modelAttribute="blog" action="${pageContext.request.contextPath}/blog/blogInsert"
+					enctype="multipart/form-data">
 					<div style="padding: 10px;">
-						<input id="title" placeholder="제목을 입력해주세요." style="width: 1200px;">
+						<input name="BLO_TITLE" placeholder="제목을 입력해주세요." style="width: 1200px;">
 					</div>
 
 					<div style="padding: 10px;">
-						<input id="content" placeholder="내용을 입력해주세요."
+						<input name="BLO_CONTENT" placeholder="내용을 입력해주세요."
 							style="width: 1200px; height: 1000px;">
 					</div>
 
-					<div style="padding: 10px;">
-						<input id="image" placeholder="이미지를 넣어주세요." style="width: 1200px;">
-					</div>
+					<img src="<c:url value="/resources/images/noimg.jpg"/>"
+									onclick="img()" id="bloImg"
+									style="max-width: 300px; max-height: 300px;">
+					<input id="file" name="fileName" type="file" style="display: none;" accept="image/jpeg" onchange="change(event)" />
+						
+					<input name="MEM_NO" style="display: none;"
+							value="<%=memNo%>">
+							
+					<input name="BLO_IMAGE" style="display: none;" value="noimg.jpg" />
 
 					<button class="w3-button w3-right"
 						style="border: 1px solid #000; border-radius: 20px;">작성하기</button>
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>
@@ -98,4 +130,21 @@ String blogModify = (String) request.getAttribute("blogModify");
 	}
 	%>
 </body>
+<script>
+						function img() {
+							document.getElementById('file').click();
+						}
+
+						function change(event) {
+							var reader = new FileReader();
+
+							reader.onload = function(event) {
+								let img = document.getElementById("bloImg");
+								document.querySelector('#bloImg').style.display = "block";
+								img.setAttribute("src", event.target.result);
+							};
+
+							reader.readAsDataURL(event.target.files[0]);
+						}
+</script>
 </html>

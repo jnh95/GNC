@@ -30,7 +30,7 @@ String pw = (String) session.getAttribute("pwkey");
 						<h4 class="w3-center">${answer.ANS_TITLE }</h4>
 						<hr>
 						<img
-							src="<c:url value="/resources/images/${answer.ANS_IMAGE }.jpg"/>"
+							src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
 							style="max-width: 400px; max-height: 400px;">
 						<hr>
 						<p>${answer.ANS_CONTENT }</p>

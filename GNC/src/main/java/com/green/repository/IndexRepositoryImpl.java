@@ -1,8 +1,11 @@
 package com.green.repository;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,11 +61,41 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> blogList = new ArrayList<Member>();
 
-		String SQL = "select * from blog where MEM_NO = ?";
+		String SQL = "select * from blog a join member b ON a.MEM_NO=? AND b.mem_no=?";
 
-		blogList = template.query(SQL, new BlogRowMapper(), memNo);
+		blogList = template.query(SQL, new BlogRowMapper(), memNo, memNo);
 		
 		return blogList;
+	}
+	
+	@Override
+	public void blogChange(Member blog) {
+		// TODO Auto-generated method stub
+		
+		String title = blog.getBLO_TITLE();
+		String content = blog.getBLO_CONTENT();
+		String img = blog.getBLO_IMAGE();
+		String bloNo = blog.getBLO_NO();
+		
+		String SQL = "UPDATE blog SET BLO_TITLE=?, BLO_CONTENT=?, BLO_IMAGE=? where BLO_NO=?";
+		
+		template.update(SQL, title, content, img, bloNo);
+	}
+	
+	@Override
+	public void blogInsert(Member blog) {
+		// TODO Auto-generated method stub
+		
+		String title = blog.getBLO_TITLE();
+		String content = blog.getBLO_CONTENT();
+		String img = blog.getBLO_IMAGE();
+		String memNo = blog.getMEM_NO();
+		String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		
+		String SQL = "INSERT INTO blog (BLO_TITLE, BLO_CONTENT, BLO_DATE, BLO_IMAGE, MEM_NO)"
+				+ "VALUES(?, ?, ?, ?, ?)";
+		
+		template.update(SQL, title, content, date, img, memNo);
 	}
 	
 	@Override

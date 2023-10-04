@@ -12,6 +12,10 @@ public interface IndexRepository {
 	
 	List<Member> myBlog(String memNo);
 	
+	void blogChange(Member blog);
+	
+	void blogInsert(Member blog);
+	
 	List<Member> question();
 	
 	List<Member> question(String queNo);

@@ -63,7 +63,7 @@ String myAnswer = (String) request.getAttribute("myAnswer");
 							<h4>${answer.ANS_TITLE }</h4>
 							<hr>
 							<input type="image"
-								src="<c:url value="/resources/images/${answer.ANS_IMAGE }.jpg"/>"
+								src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
 								style="max-width: 180px; max-height: 180px;">
 							<hr>
 							<p>${fn:substring(answer.ANS_CONTENT, 0, 10) }</p>

@@ -81,7 +81,7 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 						<h4>${blog.BLO_TITLE }</h4>
 						<hr>
 						<input type="image"
-							src="<c:url value="/resources/images/${blog.BLO_IMAGE }.jpg"/>"
+							src="<c:url value="/resources/images/${blog.BLO_IMAGE }"/>"
 							style="max-width: 180px; max-height: 180px;">
 						<hr>
 						<p>${blog.BLO_CONTENT }</p>
@@ -108,7 +108,7 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 						<h4>${question.QUE_TITLE }</h4>
 						<hr>
 						<input type="image"
-							src="<c:url value="/resources/images/${question.QUE_IMAGE }.jpg"/>"
+							src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
 							style="max-width: 180px; max-height: 180px;">
 						<hr>
 						<p>${question.QUE_CONTENT }</p>
@@ -135,7 +135,7 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 						<h4>${answer.ANS_TITLE }</h4>
 						<hr>
 						<input type="image"
-							src="<c:url value="/resources/images/${answer.ANS_IMAGE }.jpg"/>"
+							src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
 							style="max-width: 180px; max-height: 180px;">
 						<hr>
 						<p>${answer.ANS_CONTENT }</p>

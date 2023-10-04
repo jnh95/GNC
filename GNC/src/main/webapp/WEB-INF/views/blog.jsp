@@ -24,7 +24,7 @@ String myBlog = (String) request.getAttribute("myBlog");
 <body>
 	<form id="myBlogForm" name="myBlogForm"
 		action="<c:url value="/blog/myBlog"/>">
-		<input style="display: none;" id="myBlog" name="myBlog"
+		<input style="display: none;" id="MEM_NO" name="MEM_NO"
 			value="<%=memNo%>">
 	</form>
 	<jsp:include page="sidebar.jsp" />
@@ -36,23 +36,23 @@ String myBlog = (String) request.getAttribute("myBlog");
 				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">블로그</p>
 			<%
 			if (id != null & pw != null) {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;"
-				href="<c:url value="/blog/blogWrite"/>">작성하기</a>
-			<%
-			if ("myBlog".equals(myBlog)) {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;" href="<c:url value="/blog"/>">블로그</a>
-			<%
-			} else {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;" onclick="myBlog()">내 블로그</a>
-			<%
-			}
-			%>
+				%>
+				<a class="w3-right w3-button w3-medium"
+					style="margin: 20px 0 10px 0;"
+					href="<c:url value="/blog/blogWrite"/>">작성하기</a>
+				<%
+				if ("myBlog".equals(myBlog)) {
+					%>
+					<a class="w3-right w3-button w3-medium"
+						style="margin: 20px 0 10px 0;" href="<c:url value="/blog"/>">블로그</a>
+					<%
+				} else {
+					%>
+					<a class="w3-right w3-button w3-medium"
+						style="margin: 20px 0 10px 0;" onclick="myBlog()">내 블로그</a>
+					<%
+				}
+				%>
 			<%
 			}
 			%>
@@ -60,11 +60,11 @@ String myBlog = (String) request.getAttribute("myBlog");
 			<div class="w3-row-padding">
 				<c:forEach items="${blogList }" var="blog">
 					<form action="<c:url value="/blog/blogDetail"/>" method="get">
-						<div class="w3-col l3 m6" style="margin-bottom: 50px;">
+						<div class="w3-col l3 m6" style="margin: 0 10px 50px 10px;">
 							<h4>${blog.BLO_TITLE }</h4>
 							<hr>
 							<input type="image"
-								src="<c:url value="/resources/images/${blog.BLO_IMAGE }.jpg"/>"
+								src="<c:url value="/resources/images/${blog.BLO_IMAGE }"/>"
 								style="max-width: 180px; max-height: 180px;">
 							<hr>
 							<p>${blog.BLO_CONTENT }</p>
@@ -73,7 +73,8 @@ String myBlog = (String) request.getAttribute("myBlog");
 							<%
 							if ("myBlog".equals(myBlog)) {
 							%>
-							<a href="<c:url value="/blog/blogModify?BLO_NO=${blog.BLO_NO }"/>"
+							<a
+								href="<c:url value="/blog/blogModify?BLO_NO=${blog.BLO_NO }"/>"
 								class="w3-button w3-block w3-light-grey w3-padding">수정하기</a>
 							<%
 							}

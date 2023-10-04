@@ -28,8 +28,7 @@ String pw = (String) session.getAttribute("pwkey");
 				<c:forEach items="${blogList }" var="blog">
 						<h4 class="w3-center">${blog.BLO_TITLE }</h4>
 						<hr>
-						<img
-							src="<c:url value="/resources/images/${blog.BLO_IMAGE }.jpg"/>"
+						<img src="<c:url value="/resources/images/${blog.BLO_IMAGE }"/>"
 							style="max-width: 400px; max-height: 400px;">
 						<hr>
 						<p>${blog.BLO_CONTENT }</p>

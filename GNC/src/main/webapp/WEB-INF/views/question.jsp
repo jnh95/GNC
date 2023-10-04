@@ -66,7 +66,7 @@ String myQuestion = (String) request.getAttribute("myQuestion");
 							<h4>${question.QUE_TITLE }</h4>
 							<hr>
 							<input type="image"
-								src="<c:url value="/resources/images/${question.QUE_IMAGE }.jpg"/>"
+								src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
 								style="max-width: 180px; max-height: 180px;">
 							<hr>
 							<p>${fn:substring(question.QUE_CONTENT, 0, 10) }</p>
