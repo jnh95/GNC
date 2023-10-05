@@ -41,43 +41,46 @@ String blogModify = (String) request.getAttribute("blogModify");
 					작성하기</p>
 
 				<div class="w3-row-padding">
-					<form:form method="post" modelAttribute="blogChange" action="${pageContext.request.contextPath}/blog/blogChange"
-					enctype="multipart/form-data">
-						
+					<form:form method="post" modelAttribute="blogChange"
+						action="${pageContext.request.contextPath}/blog/blogChange"
+						enctype="multipart/form-data">
+
 						<div style="padding: 10px;">
 							<input name="BLO_TITLE" placeholder="제목을 입력해주세요."
 								style="width: 1200px;" value="${blog.BLO_TITLE }" />
 						</div>
 
 						<div style="padding: 10px;">
-							<input name="BLO_CONTENT"
-								placeholder="내용을 입력해주세요." style="width: 1200px; height: 1000px;"
+							<input name="BLO_CONTENT" placeholder="내용을 입력해주세요."
+								style="width: 1200px; height: 1000px;"
 								value="${blog.BLO_CONTENT }" />
 						</div>
 
 						<div style="padding: 10px;">
 							<c:if test="${not empty blog.BLO_IMAGE }">
-								<img
-									src="<c:url value="/resources/images/${blog.BLO_IMAGE }"/>"
+								<img src="<c:url value="/resources/images/${blog.BLO_IMAGE }"/>"
 									onclick="img()" id="bloImg"
 									style="max-width: 300px; max-height: 300px;">
-								<input id="file" name="fileName" type="file" style="display: none;" accept="image/jpeg" onchange="change(event)" />
+								<input id="file" name="fileName" type="file"
+									style="display: none;" accept="image/jpeg"
+									onchange="change(event)" />
 							</c:if>
 
 							<c:if test="${empty blog.BLO_IMAGE }">
-								<img
-									src="<c:url value="/resources/images/noimg.jpg"/>"
+								<img src="<c:url value="/resources/images/noimg.jpg"/>"
 									onclick="img()" id="bloImg"
 									style="max-width: 300px; max-height: 300px;">
-								<input id="file" name="fileName" type="file" style="display: none;" accept="image/jpeg" onchange="change(event)" />
+								<input id="file" name="fileName" type="file"
+									style="display: none;" accept="image/jpeg"
+									onchange="change(event)" />
 							</c:if>
 						</div>
 						<input name="BLO_NO" style="display: none;"
 							value="${blog.BLO_NO }" />
-						
+
 						<input name="MEM_NO" style="display: none;"
 							value="${blog.MEM_NO }" />
-							
+
 						<input name="BLO_IMAGE" style="display: none;"
 							value="${blog.BLO_IMAGE }" />
 
@@ -99,10 +102,12 @@ String blogModify = (String) request.getAttribute("blogModify");
 				작성하기</p>
 
 			<div class="w3-row-padding">
-				<form:form method="post" modelAttribute="blog" action="${pageContext.request.contextPath}/blog/blogInsert"
+				<form:form method="post" modelAttribute="blog"
+					action="${pageContext.request.contextPath}/blog/blogInsert"
 					enctype="multipart/form-data">
 					<div style="padding: 10px;">
-						<input name="BLO_TITLE" placeholder="제목을 입력해주세요." style="width: 1200px;">
+						<input name="BLO_TITLE" placeholder="제목을 입력해주세요."
+							style="width: 1200px;">
 					</div>
 
 					<div style="padding: 10px;">
@@ -111,13 +116,13 @@ String blogModify = (String) request.getAttribute("blogModify");
 					</div>
 
 					<img src="<c:url value="/resources/images/noimg.jpg"/>"
-									onclick="img()" id="bloImg"
-									style="max-width: 300px; max-height: 300px;">
-					<input id="file" name="fileName" type="file" style="display: none;" accept="image/jpeg" onchange="change(event)" />
-						
-					<input name="MEM_NO" style="display: none;"
-							value="<%=memNo%>">
-							
+						onclick="img()" id="bloImg"
+						style="max-width: 300px; max-height: 300px;">
+					<input id="file" name="fileName" type="file" style="display: none;"
+						accept="image/jpeg" onchange="change(event)" />
+
+					<input name="MEM_NO" style="display: none;" value="<%=memNo%>">
+
 					<input name="BLO_IMAGE" style="display: none;" value="noimg.jpg" />
 
 					<button class="w3-button w3-right"
@@ -131,20 +136,20 @@ String blogModify = (String) request.getAttribute("blogModify");
 	%>
 </body>
 <script>
-						function img() {
-							document.getElementById('file').click();
-						}
+	function img() {
+		document.getElementById('file').click();
+	}
 
-						function change(event) {
-							var reader = new FileReader();
+	function change(event) {
+		var reader = new FileReader();
 
-							reader.onload = function(event) {
-								let img = document.getElementById("bloImg");
-								document.querySelector('#bloImg').style.display = "block";
-								img.setAttribute("src", event.target.result);
-							};
+		reader.onload = function(event) {
+			let img = document.getElementById("bloImg");
+			document.querySelector('#bloImg').style.display = "block";
+			img.setAttribute("src", event.target.result);
+		};
 
-							reader.readAsDataURL(event.target.files[0]);
-						}
+		reader.readAsDataURL(event.target.files[0]);
+	}
 </script>
 </html>

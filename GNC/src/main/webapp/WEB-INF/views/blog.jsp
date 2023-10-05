@@ -22,18 +22,26 @@ String myBlog = (String) request.getAttribute("myBlog");
 <script
 	src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.12"></script>
 <body>
-	<form id="myBlogForm" name="myBlogForm"
-		action="<c:url value="/blog/myBlog"/>">
-		<input style="display: none;" id="MEM_NO" name="MEM_NO"
-			value="<%=memNo%>">
+	<form id="myBlogForm" name="myBlogForm" action="<c:url value="/blog/myBlog"/>">
+		<input style="display: none;" id="MEM_NO" name="MEM_NO" value="<%=memNo%>">
 	</form>
+	
 	<jsp:include page="sidebar.jsp" />
 
 	<div style="margin: 0 0 0 250px;">
 		<div class="w3-content w3-padding"
 			style="max-width: 1500px; padding-top: 0px !important;">
-			<p class="w3-left"
-				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">블로그</p>
+			<%
+			if ("myBlog".equals(myBlog)) {
+				%>
+				<p class="w3-left"
+					style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">내 블로그</p>
+				<%
+			} else {
+			%><p class="w3-left"
+						style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">블로그</p>
+			<%} %>
+			
 			<%
 			if (id != null & pw != null) {
 				%>
@@ -60,7 +68,7 @@ String myBlog = (String) request.getAttribute("myBlog");
 			<div class="w3-row-padding">
 				<c:forEach items="${blogList }" var="blog">
 					<form action="<c:url value="/blog/blogDetail"/>" method="get">
-						<div class="w3-col l3 m6" style="margin: 0 10px 50px 10px;">
+						<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px;">
 							<h4>${blog.BLO_TITLE }</h4>
 							<hr>
 							<input type="image"
@@ -83,6 +91,7 @@ String myBlog = (String) request.getAttribute("myBlog");
 					</form>
 				</c:forEach>
 			</div>
+			<button>1</button>
 		</div>
 	</div>
 

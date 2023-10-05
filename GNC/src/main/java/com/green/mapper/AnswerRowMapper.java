@@ -29,6 +29,7 @@ public class AnswerRowMapper implements RowMapper<Member> {
 		answer.setANS_DATE(rs.getString("ANS_DATE"));
 		answer.setANS_IN(rs.getString("ANS_IN"));
 		answer.setANS_IMAGE(rs.getString("ANS_IMAGE"));
+		answer.setQUE_NO(rs.getString("QUE_NO"));
 		
 		return answer;
 	}

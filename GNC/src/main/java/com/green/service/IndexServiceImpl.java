@@ -96,6 +96,20 @@ public class IndexServiceImpl implements IndexService {
 	}
 	
 	@Override
+	public void questionChange(Member question) {
+		// TODO Auto-generated method stub
+		
+		indexRepository.questionChange(question);
+	}
+	
+	@Override
+	public void questionInsert(Member question) {
+		// TODO Auto-generated method stub
+		
+		indexRepository.questionInsert(question);
+	}
+	
+	@Override
 	public List<Member> answer() {
 		// TODO Auto-generated method stub
 		
@@ -126,6 +140,20 @@ public class IndexServiceImpl implements IndexService {
 		answerList = indexRepository.myAnswer(memNo);
 		
 		return answerList;
+	}
+	
+	@Override
+	public void answerChange(Member answer) {
+		// TODO Auto-generated method stub
+		
+		indexRepository.answerChange(answer);
+	}
+	
+	@Override
+	public void answerInsert(Member answer) {
+		// TODO Auto-generated method stub
+		
+		indexRepository.answerInsert(answer);
 	}
 
 }

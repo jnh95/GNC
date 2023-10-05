@@ -13,7 +13,7 @@ public interface IndexService {
 	List<Member> myBlog(String memNo);
 	
 	void blogChange(Member blog);
-
+	
 	void blogInsert(Member blog);
 	
 	List<Member> question();
@@ -22,9 +22,17 @@ public interface IndexService {
 	
 	List<Member> myQuestion(String memNo);
 	
+	void questionChange(Member question);
+	
+	void questionInsert(Member question);
+	
 	List<Member> answer();
 	
 	List<Member> answer(String ansNo);
 	
 	List<Member> myAnswer(String memNo);
+	
+	void answerChange(Member answer);
+	
+	void answerInsert(Member answer);
 }

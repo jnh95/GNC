@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +60,7 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> blogList = new ArrayList<Member>();
 
-		String SQL = "select * from blog a join member b ON a.MEM_NO=? AND b.mem_no=?";
+		String SQL = "select * from blog a join member b ON a.MEM_NO=? AND b.mem_no=? ORDER BY BLO_NO DESC limit 0,8";
 
 		blogList = template.query(SQL, new BlogRowMapper(), memNo, memNo);
 		
@@ -130,11 +129,41 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> questionList = new ArrayList<Member>();
 
-		String SQL = "select * from question where MEM_NO = ?";
+		String SQL = "select * from question a join member b ON a.MEM_NO=? AND b.mem_no=? ORDER BY QUE_NO DESC limit 0,8";
 
-		questionList = template.query(SQL, new QuestionRowMapper(), memNo);
+		questionList = template.query(SQL, new QuestionRowMapper(), memNo, memNo);
 		
 		return questionList;
+	}
+	
+	@Override
+	public void questionChange(Member question) {
+		// TODO Auto-generated method stub
+		
+		String title = question.getQUE_TITLE();
+		String content = question.getQUE_CONTENT();
+		String img = question.getQUE_IMAGE();
+		String queNo = question.getQUE_NO();
+		
+		String SQL = "UPDATE question SET QUE_TITLE=?, QUE_CONTENT=?, QUE_IMAGE=? where QUE_NO=?";
+		
+		template.update(SQL, title, content, img, queNo);
+	}
+	
+	@Override
+	public void questionInsert(Member question) {
+		// TODO Auto-generated method stub
+		
+		String title = question.getQUE_TITLE();
+		String content = question.getQUE_CONTENT();
+		String img = question.getQUE_IMAGE();
+		String memNo = question.getMEM_NO();
+		String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		
+		String SQL = "INSERT INTO question (QUE_TITLE, QUE_CONTENT, QUE_DATE, QUE_IMAGE, MEM_NO)"
+				+ "VALUES(?, ?, ?, ?, ?)";
+		
+		template.update(SQL, title, content, date, img, memNo);
 	}
 	
 	@Override
@@ -169,11 +198,42 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> answerList = new ArrayList<Member>();
 
-		String SQL = "select * from answer where MEM_NO = ?";
+		String SQL = "select * from answer a join member b ON a.MEM_NO=? AND b.mem_no=? ORDER BY ANS_NO DESC limit 0,8";
 
-		answerList = template.query(SQL, new AnswerRowMapper(), memNo);
+		answerList = template.query(SQL, new AnswerRowMapper(), memNo, memNo);
 		
 		return answerList;
+	}
+	
+	@Override
+	public void answerChange(Member answer) {
+		// TODO Auto-generated method stub
+		
+		String title = answer.getANS_TITLE();
+		String content = answer.getANS_CONTENT();
+		String img = answer.getANS_IMAGE();
+		String ansNo = answer.getANS_NO();
+		
+		String SQL = "UPDATE answer SET ANS_TITLE=?, ANS_CONTENT=?, ANS_IMAGE=? where ANS_NO=?";
+		
+		template.update(SQL, title, content, img, ansNo);
+	}
+	
+	@Override
+	public void answerInsert(Member answer) {
+		// TODO Auto-generated method stub
+		
+		String title = answer.getANS_TITLE();
+		String content = answer.getANS_CONTENT();
+		String img = answer.getANS_IMAGE();
+		String memNo = answer.getMEM_NO();
+		String queNo = answer.getQUE_NO();
+		String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		
+		String SQL = "INSERT INTO answer (ANS_TITLE, ANS_CONTENT, ANS_DATE, ANS_IMAGE, MEM_NO, QUE_NO)"
+				+ "VALUES(?, ?, ?, ?, ?, ?)";
+		
+		template.update(SQL, title, content, date, img, memNo, queNo);
 	}
 
 }

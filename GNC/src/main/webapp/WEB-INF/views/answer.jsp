@@ -22,36 +22,40 @@ String myAnswer = (String) request.getAttribute("myAnswer");
 <script
 	src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.12"></script>
 <body>
-<form id="myAnswerForm" name="myAnswerForm" action="<c:url value="/answer/myAnswer"/>">
-<input style="display:none;" id="myAnswer" name="myAnswer" value="<%=memNo %>">
-</form>
+	<form name="myAnswerForm" action="<c:url value="/answer/myAnswer"/>">
+		<input style="display:none;" id="MEM_NO" name="MEM_NO" value="<%=memNo %>">
+	</form>
+	
 	<jsp:include page="sidebar.jsp" />
 
 	
 		<div style="margin: 0 0 0 250px;">
 		<div class="w3-content w3-padding"
 			style="max-width: 1500px; padding-top: 0px !important;">
-			<p class="w3-left"
-				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">답변</p>
-			<%
-			if (id != null & pw != null) {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;" href="<c:url value="/answer/answerWrite"/>">답변하기</a>
 			<%
 			if ("myAnswer".equals(myAnswer)) {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;" href="<c:url value="/answer"/>">답변</a>
-			<%
+				%>
+				<p class="w3-left"
+					style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">내 답변</p>
+				<%
 			} else {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;" onclick="myAnswer()">내 답변</a>
+			%><p class="w3-left"
+					style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">답변</p>
+			<%} %>
+			
 			<%
-			}
-			%>
-			<%
+			if (id != null & pw != null) {
+				if ("myAnswer".equals(myAnswer)) {
+				%>
+				<a class="w3-right w3-button w3-medium"
+					style="margin: 20px 0 10px 0;" href="<c:url value="/answer"/>">답변</a>
+				<%
+				} else {
+				%>
+				<a class="w3-right w3-button w3-medium"
+					style="margin: 20px 0 10px 0;" onclick="myAnswer()">내 답변</a>
+				<%
+				}
 			}
 			%>
 
@@ -59,7 +63,7 @@ String myAnswer = (String) request.getAttribute("myAnswer");
 			<div class="w3-row-padding">
 				<c:forEach items="${answerList }" var="answer">
 					<form action="<c:url value="/answer/answerDetail"/>" method="get">
-						<div class="w3-col l3 m6" style="margin-bottom: 50px;">
+						<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px;">
 							<h4>${answer.ANS_TITLE }</h4>
 							<hr>
 							<input type="image"
@@ -69,10 +73,12 @@ String myAnswer = (String) request.getAttribute("myAnswer");
 							<p>${fn:substring(answer.ANS_CONTENT, 0, 10) }</p>
 							<input style="display: none;" value="${answer.ANS_NO }"
 								id="ANS_NO" name="ANS_NO">
+							<input style="display: none;" value="${answer.QUE_NO }"
+								id="QUE_NO" name="QUE_NO">
 							<%
 							if ("myAnswer".equals(myAnswer)) {
 							%>
-							<a href="<c:url value="/answer/answerWrite?ANS_NO=${answer.ANS_NO }"/>"
+							<a href="<c:url value="/answer/answerModify?ANS_NO=${answer.ANS_NO }&QUE_NO=${answer.QUE_NO }"/>"
 								class="w3-button w3-block w3-light-grey w3-padding">수정하기</a>
 							<%
 							}

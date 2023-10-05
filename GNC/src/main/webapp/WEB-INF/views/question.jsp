@@ -22,18 +22,26 @@ String myQuestion = (String) request.getAttribute("myQuestion");
 <script
 	src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.12"></script>
 <body>
-	<form id="myQuestionForm" name="myQuestionForm"
-		action="<c:url value="/question/myQuestion"/>">
-		<input style="display: none;" id="myQuestion" name="myQuestion"
-			value="<%=memNo%>">
+	<form name="myQuestionForm" action="<c:url value="/question/myQuestion"/>">
+		<input style="display: none;" id="MEM_NO" name="MEM_NO" value="<%=memNo%>">
 	</form>
+	
 	<jsp:include page="sidebar.jsp" />
 
 	<div style="margin: 0 0 0 250px;">
 		<div class="w3-content w3-padding"
 			style="max-width: 1500px; padding-top: 0px !important;">
-			<p class="w3-left"
-				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">질문</p>
+			<%
+			if ("myQuestion".equals(myQuestion)) {
+				%>
+				<p class="w3-left"
+					style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">내 질문</p>
+				<%
+			} else {
+			%><p class="w3-left"
+						style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">질문</p>
+			<%} %>
+			
 			<%
 			if (id != null & pw != null) {
 			%>
@@ -62,7 +70,7 @@ String myQuestion = (String) request.getAttribute("myQuestion");
 				<c:forEach items="${questionList }" var="question">
 					<form action="<c:url value="/question/questionDetail"/>"
 						method="get">
-						<div class="w3-col l3 m6" style="margin-bottom: 50px;">
+						<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px;">
 							<h4>${question.QUE_TITLE }</h4>
 							<hr>
 							<input type="image"
@@ -76,7 +84,7 @@ String myQuestion = (String) request.getAttribute("myQuestion");
 							if ("myQuestion".equals(myQuestion)) {
 							%>
 							<a
-								href="<c:url value="/question/questionWrite?QUE_NO=${question.QUE_NO }"/>"
+								href="<c:url value="/question/questionModify?QUE_NO=${question.QUE_NO }"/>"
 								class="w3-button w3-block w3-light-grey w3-padding">수정하기</a>
 							<%
 							}

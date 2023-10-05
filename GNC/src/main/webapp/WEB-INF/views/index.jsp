@@ -3,6 +3,7 @@
 <%@ page import="java.util.*, com.green.domain.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 request.setCharacterEncoding("UTF-8");
 
@@ -70,14 +71,14 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 	<div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
 		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
-			href="<c:url value="/blog"/>">블로그</a>
+			href="<c:url value="/blog"/>">최근 작성된 블로그</a>
 
 
 		<!-- for문으로 여러개 넣기 -->
 		<div class="w3-row-padding">
-			<c:forEach items="${blogList }" var="blog" end="3">
+			<c:forEach items="${blogList }" var="blog" end="2">
 				<form action="<c:url value="/blog/blogDetail"/>" method="get">
-					<div class="w3-col l3 m6" style="margin-bottom: 50px;">
+					<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px;">
 						<h4>${blog.BLO_TITLE }</h4>
 						<hr>
 						<input type="image"
@@ -97,14 +98,14 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 	<div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
 		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
-			href="<c:url value="/question"/>">질문</a>
+			href="<c:url value="/question"/>">최근 작성된 질문</a>
 
 
 		<div class="w3-row-padding">
-			<c:forEach items="${questionList }" var="question" end="3">
+			<c:forEach items="${questionList }" var="question" end="2">
 				<form action="<c:url value="/question/questionDetail"/>"
 					method="get">
-					<div class="w3-col l3 m6" style="margin-bottom: 50px;">
+					<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px;">
 						<h4>${question.QUE_TITLE }</h4>
 						<hr>
 						<input type="image"
@@ -124,14 +125,14 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 	<div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
 		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
-			href="<c:url value="/answer"/>">답변</a>
+			href="<c:url value="/answer"/>">최근 작성된 답변</a>
 
 
 		<!-- for문으로 여러개 넣기 -->
 		<div class="w3-row-padding">
-			<c:forEach items="${answerList }" var="answer" end="3">
+			<c:forEach items="${answerList }" var="answer" end="2">
 				<form action="<c:url value="/answer/answerDetail"/>" method="get">
-					<div class="w3-col l3 m6" style="margin-bottom: 50px;">
+					<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px;">
 						<h4>${answer.ANS_TITLE }</h4>
 						<hr>
 						<input type="image"
@@ -141,6 +142,8 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 						<p>${answer.ANS_CONTENT }</p>
 						<input style="display: none;" value="${answer.ANS_NO }"
 							id="ANS_NO" name="ANS_NO">
+						<input style="display: none;" value="${answer.QUE_NO }"
+							id="QUE_NO" name="QUE_NO">
 					</div>
 				</form>
 			</c:forEach>
