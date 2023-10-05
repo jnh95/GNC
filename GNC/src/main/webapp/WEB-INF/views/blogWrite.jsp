@@ -151,5 +151,6 @@ String blogModify = (String) request.getAttribute("blogModify");
 
 		reader.readAsDataURL(event.target.files[0]);
 	}
+	
 </script>
 </html>

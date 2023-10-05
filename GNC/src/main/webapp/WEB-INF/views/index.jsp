@@ -141,9 +141,8 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 						<hr>
 						<p>${answer.ANS_CONTENT }</p>
 						<input style="display: none;" value="${answer.ANS_NO }"
-							id="ANS_NO" name="ANS_NO">
-						<input style="display: none;" value="${answer.QUE_NO }"
-							id="QUE_NO" name="QUE_NO">
+							id="ANS_NO" name="ANS_NO"> <input style="display: none;"
+							value="${answer.QUE_NO }" id="QUE_NO" name="QUE_NO">
 					</div>
 				</form>
 			</c:forEach>

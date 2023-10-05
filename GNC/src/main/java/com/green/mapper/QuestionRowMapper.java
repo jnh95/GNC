@@ -32,4 +32,5 @@ public class QuestionRowMapper implements RowMapper<Member> {
 		
 		return queston;
 	}
+	
 }

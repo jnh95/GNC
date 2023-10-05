@@ -27,27 +27,27 @@ String pw = (String) session.getAttribute("pwkey");
 
 			<div class="w3-row-padding">
 				<c:forEach items="${questionList }" var="question">
-						<h4>${question.QUE_TITLE }</h4>
-						<hr>
-						<img
-							src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
-							style="max-width: 400px; max-height: 400px;">
-						<hr>
-						<p>${question.QUE_CONTENT }</p>
+					<h4>${question.QUE_TITLE }</h4>
+					<hr>
+					<img
+						src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
+						style="max-width: 400px; max-height: 400px;">
+					<hr>
+					<p>${question.QUE_CONTENT }</p>
 				</c:forEach>
 			</div>
-			
+
 			<p class="w3-left"
-				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">질문에 대한 답변</p>
+				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">질문에
+				대한 답변</p>
 			<div class="w3-row-padding">
 				<c:forEach items="${answerList }" var="answer">
-						<h4>${answer.ANS_TITLE }</h4>
-						<hr>
-						<img
-							src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
-							style="max-width: 400px; max-height: 400px;">
-						<hr>
-						<p>${answer.ANS_CONTENT }</p>
+					<h4>${answer.ANS_TITLE }</h4>
+					<hr>
+					<img src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
+						style="max-width: 400px; max-height: 400px;">
+					<hr>
+					<p>${answer.ANS_CONTENT }</p>
 				</c:forEach>
 			</div>
 		</div>

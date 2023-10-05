@@ -59,7 +59,8 @@ String queNo = (String) request.getAttribute("QUE_NO");
 
 						<div style="padding: 10px;">
 							<c:if test="${not empty answer.ANS_IMAGE }">
-								<img src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
+								<img
+									src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
 									onclick="img()" id="ansImg"
 									style="max-width: 300px; max-height: 300px;">
 								<input id="file" name="fileName" type="file"

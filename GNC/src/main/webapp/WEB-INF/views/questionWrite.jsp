@@ -58,7 +58,8 @@ String questionModify = (String) request.getAttribute("questionModify");
 
 						<div style="padding: 10px;">
 							<c:if test="${not empty question.QUE_IMAGE }">
-								<img src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
+								<img
+									src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
 									onclick="img()" id="queImg"
 									style="max-width: 300px; max-height: 300px;">
 								<input id="file" name="fileName" type="file"

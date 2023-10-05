@@ -23,39 +23,43 @@ String myAnswer = (String) request.getAttribute("myAnswer");
 	src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.12"></script>
 <body>
 	<form name="myAnswerForm" action="<c:url value="/answer/myAnswer"/>">
-		<input style="display:none;" id="MEM_NO" name="MEM_NO" value="<%=memNo %>">
+		<input style="display: none;" id="MEM_NO" name="MEM_NO"
+			value="<%=memNo%>">
 	</form>
-	
+
 	<jsp:include page="sidebar.jsp" />
 
-	
-		<div style="margin: 0 0 0 250px;">
+
+	<div style="margin: 0 0 0 250px;">
 		<div class="w3-content w3-padding"
 			style="max-width: 1500px; padding-top: 0px !important;">
 			<%
 			if ("myAnswer".equals(myAnswer)) {
-				%>
-				<p class="w3-left"
-					style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">내 답변</p>
-				<%
+			%>
+			<p class="w3-left"
+				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">내
+				답변</p>
+			<%
 			} else {
 			%><p class="w3-left"
-					style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">답변</p>
-			<%} %>
-			
+				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">답변</p>
+			<%
+			}
+			%>
+
 			<%
 			if (id != null & pw != null) {
 				if ("myAnswer".equals(myAnswer)) {
-				%>
-				<a class="w3-right w3-button w3-medium"
-					style="margin: 20px 0 10px 0;" href="<c:url value="/answer"/>">답변</a>
-				<%
-				} else {
-				%>
-				<a class="w3-right w3-button w3-medium"
-					style="margin: 20px 0 10px 0;" onclick="myAnswer()">내 답변</a>
-				<%
-				}
+			%>
+			<a class="w3-right w3-button w3-medium"
+				style="margin: 20px 0 10px 0;" href="<c:url value="/answer"/>">답변</a>
+			<%
+			} else {
+			%>
+			<a class="w3-right w3-button w3-medium"
+				style="margin: 20px 0 10px 0;" onclick="myAnswer()">내 답변</a>
+			<%
+			}
 			}
 			%>
 
@@ -72,13 +76,13 @@ String myAnswer = (String) request.getAttribute("myAnswer");
 							<hr>
 							<p>${fn:substring(answer.ANS_CONTENT, 0, 10) }</p>
 							<input style="display: none;" value="${answer.ANS_NO }"
-								id="ANS_NO" name="ANS_NO">
-							<input style="display: none;" value="${answer.QUE_NO }"
-								id="QUE_NO" name="QUE_NO">
+								id="ANS_NO" name="ANS_NO"> <input style="display: none;"
+								value="${answer.QUE_NO }" id="QUE_NO" name="QUE_NO">
 							<%
 							if ("myAnswer".equals(myAnswer)) {
 							%>
-							<a href="<c:url value="/answer/answerModify?ANS_NO=${answer.ANS_NO }&QUE_NO=${answer.QUE_NO }"/>"
+							<a
+								href="<c:url value="/answer/answerModify?ANS_NO=${answer.ANS_NO }&QUE_NO=${answer.QUE_NO }"/>"
 								class="w3-button w3-block w3-light-grey w3-padding">수정하기</a>
 							<%
 							}
@@ -87,6 +91,7 @@ String myAnswer = (String) request.getAttribute("myAnswer");
 					</form>
 				</c:forEach>
 			</div>
+			<button>i</button>
 		</div>
 	</div>
 </body>

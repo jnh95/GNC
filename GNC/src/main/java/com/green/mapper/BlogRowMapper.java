@@ -32,4 +32,5 @@ public class BlogRowMapper implements RowMapper<Member> {
 		
 		return blog;
 	}
+	
 }

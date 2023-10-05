@@ -35,4 +35,5 @@ public interface IndexService {
 	void answerChange(Member answer);
 	
 	void answerInsert(Member answer);
+	
 }

@@ -235,5 +235,4 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		template.update(SQL, title, content, date, img, memNo, queNo);
 	}
-
 }

@@ -22,10 +22,12 @@ String myBlog = (String) request.getAttribute("myBlog");
 <script
 	src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.12"></script>
 <body>
-	<form id="myBlogForm" name="myBlogForm" action="<c:url value="/blog/myBlog"/>">
-		<input style="display: none;" id="MEM_NO" name="MEM_NO" value="<%=memNo%>">
+	<form id="myBlogForm" name="myBlogForm"
+		action="<c:url value="/blog/myBlog"/>">
+		<input style="display: none;" id="MEM_NO" name="MEM_NO"
+			value="<%=memNo%>">
 	</form>
-	
+
 	<jsp:include page="sidebar.jsp" />
 
 	<div style="margin: 0 0 0 250px;">
@@ -33,34 +35,37 @@ String myBlog = (String) request.getAttribute("myBlog");
 			style="max-width: 1500px; padding-top: 0px !important;">
 			<%
 			if ("myBlog".equals(myBlog)) {
-				%>
-				<p class="w3-left"
-					style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">내 블로그</p>
-				<%
+			%>
+			<p class="w3-left"
+				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">내
+				블로그</p>
+			<%
 			} else {
 			%><p class="w3-left"
-						style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">블로그</p>
-			<%} %>
-			
+				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">블로그</p>
+			<%
+			}
+			%>
+
 			<%
 			if (id != null & pw != null) {
-				%>
-				<a class="w3-right w3-button w3-medium"
-					style="margin: 20px 0 10px 0;"
-					href="<c:url value="/blog/blogWrite"/>">작성하기</a>
-				<%
-				if ("myBlog".equals(myBlog)) {
-					%>
-					<a class="w3-right w3-button w3-medium"
-						style="margin: 20px 0 10px 0;" href="<c:url value="/blog"/>">블로그</a>
-					<%
-				} else {
-					%>
-					<a class="w3-right w3-button w3-medium"
-						style="margin: 20px 0 10px 0;" onclick="myBlog()">내 블로그</a>
-					<%
-				}
-				%>
+			%>
+			<a class="w3-right w3-button w3-medium"
+				style="margin: 20px 0 10px 0;"
+				href="<c:url value="/blog/blogWrite"/>">작성하기</a>
+			<%
+			if ("myBlog".equals(myBlog)) {
+			%>
+			<a class="w3-right w3-button w3-medium"
+				style="margin: 20px 0 10px 0;" href="<c:url value="/blog"/>">블로그</a>
+			<%
+			} else {
+			%>
+			<a class="w3-right w3-button w3-medium"
+				style="margin: 20px 0 10px 0;" onclick="myBlog()">내 블로그</a>
+			<%
+			}
+			%>
 			<%
 			}
 			%>
@@ -91,7 +96,7 @@ String myBlog = (String) request.getAttribute("myBlog");
 					</form>
 				</c:forEach>
 			</div>
-			<button>1</button>
+			<button>i</button>
 		</div>
 	</div>
 

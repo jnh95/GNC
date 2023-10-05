@@ -33,4 +33,5 @@ public class AnswerRowMapper implements RowMapper<Member> {
 		
 		return answer;
 	}
+	
 }

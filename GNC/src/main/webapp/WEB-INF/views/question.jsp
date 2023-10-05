@@ -22,10 +22,12 @@ String myQuestion = (String) request.getAttribute("myQuestion");
 <script
 	src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.12"></script>
 <body>
-	<form name="myQuestionForm" action="<c:url value="/question/myQuestion"/>">
-		<input style="display: none;" id="MEM_NO" name="MEM_NO" value="<%=memNo%>">
+	<form name="myQuestionForm"
+		action="<c:url value="/question/myQuestion"/>">
+		<input style="display: none;" id="MEM_NO" name="MEM_NO"
+			value="<%=memNo%>">
 	</form>
-	
+
 	<jsp:include page="sidebar.jsp" />
 
 	<div style="margin: 0 0 0 250px;">
@@ -33,15 +35,18 @@ String myQuestion = (String) request.getAttribute("myQuestion");
 			style="max-width: 1500px; padding-top: 0px !important;">
 			<%
 			if ("myQuestion".equals(myQuestion)) {
-				%>
-				<p class="w3-left"
-					style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">내 질문</p>
-				<%
+			%>
+			<p class="w3-left"
+				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">내
+				질문</p>
+			<%
 			} else {
 			%><p class="w3-left"
-						style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">질문</p>
-			<%} %>
-			
+				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">질문</p>
+			<%
+			}
+			%>
+
 			<%
 			if (id != null & pw != null) {
 			%>
@@ -93,6 +98,7 @@ String myQuestion = (String) request.getAttribute("myQuestion");
 					</form>
 				</c:forEach>
 			</div>
+			<button>i</button>
 		</div>
 	</div>
 </body>

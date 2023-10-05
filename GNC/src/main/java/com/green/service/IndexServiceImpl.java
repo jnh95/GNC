@@ -155,5 +155,4 @@ public class IndexServiceImpl implements IndexService {
 		
 		indexRepository.answerInsert(answer);
 	}
-
 }
