@@ -76,9 +76,9 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 
 		<!-- for문으로 여러개 넣기 -->
 		<div class="w3-row-padding">
-			<c:forEach items="${blogList }" var="blog" end="2">
+			<c:forEach items="${blogList }" var="blog" end="3">
 				<form action="<c:url value="/blog/blogDetail"/>" method="get">
-					<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px;">
+					<div class="w3-col l3 m6" style="margin: 0 0 50px 0;">
 						<h4>${blog.BLO_TITLE }</h4>
 						<hr>
 						<input type="image"
@@ -102,10 +102,10 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 
 
 		<div class="w3-row-padding">
-			<c:forEach items="${questionList }" var="question" end="2">
+			<c:forEach items="${questionList }" var="question" end="3">
 				<form action="<c:url value="/question/questionDetail"/>"
 					method="get">
-					<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px;">
+					<div class="w3-col l3 m6" style="margin: 0 0 50px 0;">
 						<h4>${question.QUE_TITLE }</h4>
 						<hr>
 						<input type="image"
@@ -130,9 +130,9 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 
 		<!-- for문으로 여러개 넣기 -->
 		<div class="w3-row-padding">
-			<c:forEach items="${answerList }" var="answer" end="2">
+			<c:forEach items="${answerList }" var="answer" end="3">
 				<form action="<c:url value="/answer/answerDetail"/>" method="get">
-					<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px;">
+					<div class="w3-col l3 m6" style="margin: 0 0 50px 0;">
 						<h4>${answer.ANS_TITLE }</h4>
 						<hr>
 						<input type="image"

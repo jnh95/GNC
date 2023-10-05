@@ -37,6 +37,32 @@ public class AnswerController {
 		return "answer";
 	}
 	
+	@GetMapping("answerBoard")
+	public String answerBoard(Model model, @RequestParam("end") String end) {
+		
+		model.addAttribute("answer", "answer");
+		
+		List<Member> answerlist = indexService.answer();
+		
+		model.addAttribute("answerList", answerlist);
+		model.addAttribute("end", end);
+		
+		return "answer";
+	}
+	
+	@GetMapping("myAnswerBoard")
+	public String myAnswerBoard(Model model, @RequestParam("end") String end, @RequestParam("MEM_NO") String memNo) {
+		
+		model.addAttribute("myAnswer", "myAnswer");
+		
+		List<Member> answerlist = indexService.myAnswer(memNo);
+		
+		model.addAttribute("answerList", answerlist);
+		model.addAttribute("end", end);
+		
+		return "answer";
+	}
+	
 	@GetMapping("answerDetail")
 	public String answerDetail(Model model, @RequestParam("ANS_NO") String ansNo, @RequestParam("QUE_NO") String queNo) {
 		
@@ -76,7 +102,7 @@ public class AnswerController {
 	}
 	
 	@GetMapping("answerModify")
-	public String blogModify(Model model, @RequestParam("ANS_NO") String ansNo, HttpServletRequest request) {
+	public String answerModify(Model model, @RequestParam("ANS_NO") String ansNo, HttpServletRequest request) {
 		
 		model.addAttribute("answerModify", "answerModify");
 		

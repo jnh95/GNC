@@ -34,7 +34,7 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> blogList = new ArrayList<Member>();
 
-		String SQL = "select * from blog a join member b ON a.MEM_NO=b.MEM_NO ORDER BY BLO_NO DESC limit 8";
+		String SQL = "select * from blog a join member b ON a.MEM_NO=b.MEM_NO ORDER BY BLO_NO DESC";
 
 		blogList = template.query(SQL, new BlogRowMapper());
 		
@@ -60,7 +60,7 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> blogList = new ArrayList<Member>();
 
-		String SQL = "select * from blog a join member b ON a.MEM_NO=? AND b.mem_no=? ORDER BY BLO_NO DESC limit 0,8";
+		String SQL = "select * from blog a join member b ON a.MEM_NO=? AND b.mem_no=? ORDER BY BLO_NO DESC";
 
 		blogList = template.query(SQL, new BlogRowMapper(), memNo, memNo);
 		
@@ -103,7 +103,7 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> questionList = new ArrayList<Member>();
 
-		String SQL = "select * from question a join member b ON a.MEM_NO=b.MEM_NO ORDER BY QUE_NO DESC limit 8";
+		String SQL = "select * from question a join member b ON a.MEM_NO=b.MEM_NO ORDER BY QUE_NO DESC";
 
 		questionList = template.query(SQL, new QuestionRowMapper());
 		
@@ -129,7 +129,7 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> questionList = new ArrayList<Member>();
 
-		String SQL = "select * from question a join member b ON a.MEM_NO=? AND b.mem_no=? ORDER BY QUE_NO DESC limit 0,8";
+		String SQL = "select * from question a join member b ON a.MEM_NO=? AND b.mem_no=? ORDER BY QUE_NO DESC";
 
 		questionList = template.query(SQL, new QuestionRowMapper(), memNo, memNo);
 		
@@ -172,7 +172,7 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> answerList = new ArrayList<Member>();
 
-		String SQL = "select * from answer a join member b ON a.MEM_NO=b.MEM_NO ORDER BY ANS_NO DESC limit 8";
+		String SQL = "select * from answer a join member b ON a.MEM_NO=b.MEM_NO ORDER BY ANS_NO DESC";
 
 		answerList = template.query(SQL, new AnswerRowMapper());
 		
@@ -198,7 +198,7 @@ public class IndexRepositoryImpl implements IndexRepository {
 		
 		List<Member> answerList = new ArrayList<Member>();
 
-		String SQL = "select * from answer a join member b ON a.MEM_NO=? AND b.mem_no=? ORDER BY ANS_NO DESC limit 0,8";
+		String SQL = "select * from answer a join member b ON a.MEM_NO=? AND b.mem_no=? ORDER BY ANS_NO DESC";
 
 		answerList = template.query(SQL, new AnswerRowMapper(), memNo, memNo);
 		

@@ -13,6 +13,16 @@ String pw = (String) session.getAttribute("pwkey");
 String memNo = (String) session.getAttribute("nokey");
 
 String myAnswer = (String) request.getAttribute("myAnswer");
+
+String end = (String) request.getAttribute("end");
+
+int answerBegin = 0;
+int answerEnd = 8;
+
+if (end != null) {
+	answerBegin = Integer.parseInt(end) - 9;
+	answerEnd = Integer.parseInt(end) - 1;
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -22,13 +32,13 @@ String myAnswer = (String) request.getAttribute("myAnswer");
 <script
 	src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.12"></script>
 <body>
-	<form name="myAnswerForm" action="<c:url value="/answer/myAnswer"/>">
+	<form id="myAnswerForm" name="myAnswerForm"
+		action="<c:url value="/answer/myAnswer"/>">
 		<input style="display: none;" id="MEM_NO" name="MEM_NO"
 			value="<%=memNo%>">
 	</form>
 
 	<jsp:include page="sidebar.jsp" />
-
 
 	<div style="margin: 0 0 0 250px;">
 		<div class="w3-content w3-padding"
@@ -49,7 +59,12 @@ String myAnswer = (String) request.getAttribute("myAnswer");
 
 			<%
 			if (id != null & pw != null) {
-				if ("myAnswer".equals(myAnswer)) {
+			%>
+			<a class="w3-right w3-button w3-medium"
+				style="margin: 20px 0 10px 0;"
+				href="<c:url value="/answer/answerWrite"/>">작성하기</a>
+			<%
+			if ("myAnswer".equals(myAnswer)) {
 			%>
 			<a class="w3-right w3-button w3-medium"
 				style="margin: 20px 0 10px 0;" href="<c:url value="/answer"/>">답변</a>
@@ -60,12 +75,14 @@ String myAnswer = (String) request.getAttribute("myAnswer");
 				style="margin: 20px 0 10px 0;" onclick="myAnswer()">내 답변</a>
 			<%
 			}
+			%>
+			<%
 			}
 			%>
 
-
 			<div class="w3-row-padding">
-				<c:forEach items="${answerList }" var="answer">
+				<c:forEach items="${answerList }" var="answer"
+					begin="<%=answerBegin %>" end="<%=answerEnd %>">
 					<form action="<c:url value="/answer/answerDetail"/>" method="get">
 						<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px;">
 							<h4>${answer.ANS_TITLE }</h4>
@@ -74,15 +91,14 @@ String myAnswer = (String) request.getAttribute("myAnswer");
 								src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
 								style="max-width: 180px; max-height: 180px;">
 							<hr>
-							<p>${fn:substring(answer.ANS_CONTENT, 0, 10) }</p>
+							<p>${answer.ANS_CONTENT }</p>
 							<input style="display: none;" value="${answer.ANS_NO }"
-								id="ANS_NO" name="ANS_NO"> <input style="display: none;"
-								value="${answer.QUE_NO }" id="QUE_NO" name="QUE_NO">
+								id="ANS_NO" name="ANS_NO">
 							<%
 							if ("myAnswer".equals(myAnswer)) {
 							%>
 							<a
-								href="<c:url value="/answer/answerModify?ANS_NO=${answer.ANS_NO }&QUE_NO=${answer.QUE_NO }"/>"
+								href="<c:url value="/answer/answerModify?ANS_NO=${answer.ANS_NO }"/>"
 								class="w3-button w3-block w3-light-grey w3-padding">수정하기</a>
 							<%
 							}
@@ -91,8 +107,54 @@ String myAnswer = (String) request.getAttribute("myAnswer");
 					</form>
 				</c:forEach>
 			</div>
-			<button>i</button>
+
+			<div style="margin-left: 25px;">
+				<c:if test="${answerList.size() > 9 }">
+					<c:choose>
+						<c:when test="${myAnswer eq 'myAnswer' }">
+							<c:forEach items="${answerList }" step="9">
+								<c:set var="i" value="${i+1 }"></c:set>
+								<input type="submit" onclick="MyAnswerButton(${i*9})"
+									value="${i }"></input>
+							</c:forEach>
+						</c:when>
+
+						<c:otherwise>
+							<c:forEach items="${answerList }" step="9">
+								<c:set var="i" value="${i+1 }"></c:set>
+								<input type="submit" onclick="answerButton(${i*9})"
+									value="${i }"></input>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
+			</div>
 		</div>
 	</div>
+
+	<script>
+	function myAnswerButton(button) {
+		document.myAnswerBoardForm.end.value = button;
+		document.myAnswerBoardForm.submit();
+	}
+
+	function answerButton(button) {
+		document.answerBoardForm.end.value = button;
+		document.answerBoardForm.submit();
+	}
+	</script>
+
+	<form method="get" action="<c:url value="/answer/myAnswerBoard"/>"
+		name="myAnswerBoardForm" style="display: none;">
+		<input name="MEM_NO" style="display: none;" value="<%=memNo%>">
+		<input name="end" style="display: none;">
+	</form>
+
+	<form method="get" action="<c:url value="/answer/answerBoard"/>"
+		name="answerBoardForm" style="display: none;">
+		<input name="end" style="display: none;">
+	</form>
+
 </body>
+
 </html>

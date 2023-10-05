@@ -13,6 +13,16 @@ String pw = (String) session.getAttribute("pwkey");
 String memNo = (String) session.getAttribute("nokey");
 
 String myQuestion = (String) request.getAttribute("myQuestion");
+
+String end = (String) request.getAttribute("end");
+
+int questionBegin = 0;
+int questionEnd = 8;
+
+if (end != null) {
+	questionBegin = Integer.parseInt(end) - 9;
+	questionEnd = Integer.parseInt(end) - 1;
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -22,7 +32,7 @@ String myQuestion = (String) request.getAttribute("myQuestion");
 <script
 	src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.12"></script>
 <body>
-	<form name="myQuestionForm"
+	<form id="myQuestionForm" name="myQuestionForm"
 		action="<c:url value="/question/myQuestion"/>">
 		<input style="display: none;" id="MEM_NO" name="MEM_NO"
 			value="<%=memNo%>">
@@ -52,7 +62,7 @@ String myQuestion = (String) request.getAttribute("myQuestion");
 			%>
 			<a class="w3-right w3-button w3-medium"
 				style="margin: 20px 0 10px 0;"
-				href="<c:url value="/question/questionWrite"/>">질문하기</a>
+				href="<c:url value="/question/questionWrite"/>">작성하기</a>
 			<%
 			if ("myQuestion".equals(myQuestion)) {
 			%>
@@ -70,9 +80,9 @@ String myQuestion = (String) request.getAttribute("myQuestion");
 			}
 			%>
 
-
 			<div class="w3-row-padding">
-				<c:forEach items="${questionList }" var="question">
+				<c:forEach items="${questionList }" var="question"
+					begin="<%=questionBegin %>" end="<%=questionEnd %>">
 					<form action="<c:url value="/question/questionDetail"/>"
 						method="get">
 						<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px;">
@@ -82,7 +92,7 @@ String myQuestion = (String) request.getAttribute("myQuestion");
 								src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
 								style="max-width: 180px; max-height: 180px;">
 							<hr>
-							<p>${fn:substring(question.QUE_CONTENT, 0, 10) }</p>
+							<p>${question.QUE_CONTENT }</p>
 							<input style="display: none;" value="${question.QUE_NO }"
 								id="QUE_NO" name="QUE_NO">
 							<%
@@ -98,8 +108,54 @@ String myQuestion = (String) request.getAttribute("myQuestion");
 					</form>
 				</c:forEach>
 			</div>
-			<button>i</button>
+
+			<div style="margin-left: 25px;">
+				<c:if test="${questionList.size() > 9 }">
+					<c:choose>
+						<c:when test="${myQuestion eq 'myQuestion' }">
+							<c:forEach items="${questionList }" step="9">
+								<c:set var="i" value="${i+1 }"></c:set>
+								<input type="submit" onclick="MyQuestionButton(${i*9})"
+									value="${i }"></input>
+							</c:forEach>
+						</c:when>
+
+						<c:otherwise>
+							<c:forEach items="${questionList }" step="9">
+								<c:set var="i" value="${i+1 }"></c:set>
+								<input type="submit" onclick="questionButton(${i*9})"
+									value="${i }"></input>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
+			</div>
 		</div>
 	</div>
+
+	<script>
+	function myQuestionButton(button) {
+		document.myQuestionBoardForm.end.value = button;
+		document.myQuestionBoardForm.submit();
+	}
+
+	function questionButton(button) {
+		document.questionBoardForm.end.value = button;
+		document.questionBoardForm.submit();
+	}
+	</script>
+
+	<form method="get" action="<c:url value="/question/myQuestionBoard"/>"
+		name="myQuestionBoardForm" style="display: none;">
+		<input name="MEM_NO" style="display: none;" value="<%=memNo%>">
+		<input name="end" style="display: none;">
+	</form>
+
+	<form method="get" action="<c:url value="/question/questionBoard"/>"
+		name="questionBoardForm" style="display: none;">
+		<input name="end" style="display: none;">
+	</form>
+
 </body>
+
 </html>

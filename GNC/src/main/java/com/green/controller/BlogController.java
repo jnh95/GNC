@@ -37,17 +37,30 @@ public class BlogController {
 		return "blog";
 	}
 	
-	@GetMapping("blogDetail")
-	public String blogDetail(Model model, @RequestParam("BLO_NO") String bloNo) {
+	@GetMapping("blogBoard")
+	public String blogBoard(Model model, @RequestParam("end") String end) {
 		
-		model.addAttribute("blogDetail", "blogDetail");
+		model.addAttribute("blog", "blog");
 		
-		List<Member> bloglist = indexService.blog(bloNo);
+		List<Member> bloglist = indexService.blog();
 		
 		model.addAttribute("blogList", bloglist);
-		model.addAttribute("bloNo", bloNo);
+		model.addAttribute("end", end);
 		
-		return "blogDetail";
+		return "blog";
+	}
+	
+	@GetMapping("myBlogBoard")
+	public String myBlogBoard(Model model, @RequestParam("end") String end, @RequestParam("MEM_NO") String memNo) {
+		
+		model.addAttribute("myBlog", "myBlog");
+		
+		List<Member> bloglist = indexService.myBlog(memNo);
+		
+		model.addAttribute("blogList", bloglist);
+		model.addAttribute("end", end);
+		
+		return "blog";
 	}
 	
 	@GetMapping("myBlog")
@@ -60,6 +73,19 @@ public class BlogController {
 		model.addAttribute("blogList", bloglist);
 		
 		return "blog";
+	}
+	
+	@GetMapping("blogDetail")
+	public String blogDetail(Model model, @RequestParam("BLO_NO") String bloNo) {
+		
+		model.addAttribute("blogDetail", "blogDetail");
+		
+		List<Member> bloglist = indexService.blog(bloNo);
+		
+		model.addAttribute("blogList", bloglist);
+		model.addAttribute("bloNo", bloNo);
+		
+		return "blogDetail";
 	}
 	
 	@GetMapping("blogWrite")
