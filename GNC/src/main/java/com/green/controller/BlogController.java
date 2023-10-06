@@ -16,21 +16,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.green.domain.Member;
-import com.green.service.IndexService;
+import com.green.service.BlogService;
 
 @Controller
 @RequestMapping("/blog")
 public class BlogController {
 	
 	@Autowired
-	private IndexService indexService;
+	private BlogService blogService;
 
 	@GetMapping
 	public String blog(Model model) {
 		
 		model.addAttribute("blog", "blog");
 		
-		List<Member> bloglist = indexService.blog();
+		List<Member> bloglist = blogService.blog();
 		
 		model.addAttribute("blogList", bloglist);
 		
@@ -42,7 +42,7 @@ public class BlogController {
 		
 		model.addAttribute("blog", "blog");
 		
-		List<Member> bloglist = indexService.blog();
+		List<Member> bloglist = blogService.blog();
 		
 		model.addAttribute("blogList", bloglist);
 		model.addAttribute("end", end);
@@ -55,7 +55,7 @@ public class BlogController {
 		
 		model.addAttribute("myBlog", "myBlog");
 		
-		List<Member> bloglist = indexService.myBlog(memNo);
+		List<Member> bloglist = blogService.myBlog(memNo);
 		
 		model.addAttribute("blogList", bloglist);
 		model.addAttribute("end", end);
@@ -68,7 +68,7 @@ public class BlogController {
 		
 		model.addAttribute("myBlog", "myBlog");
 		
-		List<Member> bloglist = indexService.myBlog(memNo);
+		List<Member> bloglist = blogService.myBlog(memNo);
 		
 		model.addAttribute("blogList", bloglist);
 		
@@ -80,7 +80,9 @@ public class BlogController {
 		
 		model.addAttribute("blogDetail", "blogDetail");
 		
-		List<Member> bloglist = indexService.blog(bloNo);
+		blogService.blogIn(bloNo);
+		
+		List<Member> bloglist = blogService.blog(bloNo);
 		
 		model.addAttribute("blogList", bloglist);
 		model.addAttribute("bloNo", bloNo);
@@ -101,7 +103,7 @@ public class BlogController {
 		
 		model.addAttribute("blogModify", "blogModify");
 		
-		List<Member> bloglist = indexService.blog(bloNo);
+		List<Member> bloglist = blogService.blog(bloNo);
 		
 		model.addAttribute("blogList", bloglist);
 		
@@ -127,9 +129,9 @@ public class BlogController {
 			}
 		}
 		
-		indexService.blogChange(blog);
+		blogService.blogChange(blog);
 		
-		List<Member> bloglist = indexService.blog(blog.getBLO_NO());
+		List<Member> bloglist = blogService.blog(blog.getBLO_NO());
 		
 		model.addAttribute("blogList", bloglist);
 		
@@ -157,9 +159,9 @@ public class BlogController {
 			}
 		}
 		
-		indexService.blogInsert(blog);
+		blogService.blogInsert(blog);
 		
-		List<Member> bloglist = indexService.blog(blog.getBLO_NO());
+		List<Member> bloglist = blogService.blog(blog.getBLO_NO());
 		
 		model.addAttribute("blogList", bloglist);
 		

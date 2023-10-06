@@ -16,19 +16,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.green.domain.Member;
-import com.green.service.IndexService;
+import com.green.service.AnswerService;
+import com.green.service.QuestionService;
 
 @Controller
 @RequestMapping("/answer")
 public class AnswerController {
 	
 	@Autowired
-	private IndexService indexService;
+	private AnswerService answerService;
+	
+	@Autowired
+	private QuestionService questionService;
 
 	@GetMapping
 	public String answer(Model model) {
 		
-		List<Member> answerlist = indexService.answer();
+		List<Member> answerlist = answerService.answer();
 
 		model.addAttribute("answerList", answerlist);
 		
@@ -42,7 +46,7 @@ public class AnswerController {
 		
 		model.addAttribute("answer", "answer");
 		
-		List<Member> answerlist = indexService.answer();
+		List<Member> answerlist = answerService.answer();
 		
 		model.addAttribute("answerList", answerlist);
 		model.addAttribute("end", end);
@@ -55,7 +59,7 @@ public class AnswerController {
 		
 		model.addAttribute("myAnswer", "myAnswer");
 		
-		List<Member> answerlist = indexService.myAnswer(memNo);
+		List<Member> answerlist = answerService.myAnswer(memNo);
 		
 		model.addAttribute("answerList", answerlist);
 		model.addAttribute("end", end);
@@ -68,8 +72,10 @@ public class AnswerController {
 		
 		model.addAttribute("answerDetail", "answerDetail");
 		
-		List<Member> answerlist = indexService.answer(ansNo);
-		List<Member> qustionlist = indexService.question(queNo);
+		answerService.answerIn(ansNo);
+		
+		List<Member> answerlist = answerService.answer(ansNo);
+		List<Member> qustionlist = questionService.question(queNo);
 		
 		model.addAttribute("answerList", answerlist);
 		model.addAttribute("ansNo", ansNo);
@@ -85,7 +91,7 @@ public class AnswerController {
 		
 		model.addAttribute("myAnswer", "myAnswer");
 		
-		List<Member> answerlist = indexService.myAnswer(memNo);
+		List<Member> answerlist = answerService.myAnswer(memNo);
 		
 		model.addAttribute("answerList", answerlist);
 		
@@ -106,7 +112,7 @@ public class AnswerController {
 		
 		model.addAttribute("answerModify", "answerModify");
 		
-		List<Member> answerlist = indexService.answer(ansNo);
+		List<Member> answerlist = answerService.answer(ansNo);
 		
 		model.addAttribute("answerList", answerlist);
 		
@@ -132,9 +138,9 @@ public class AnswerController {
 			}
 		}
 		
-		indexService.answerChange(answer);
+		answerService.answerChange(answer);
 		
-		List<Member> answerlist = indexService.answer(answer.getANS_NO());
+		List<Member> answerlist = answerService.answer(answer.getANS_NO());
 		
 		model.addAttribute("answerList", answerlist);
 		
@@ -162,9 +168,9 @@ public class AnswerController {
 			}
 		}
 		
-		indexService.answerInsert(answer);
+		answerService.answerInsert(answer);
 		
-		List<Member> answerlist = indexService.answer(answer.getANS_NO());
+		List<Member> answerlist = answerService.answer(answer.getANS_NO());
 		
 		model.addAttribute("answerList", answerlist);
 		

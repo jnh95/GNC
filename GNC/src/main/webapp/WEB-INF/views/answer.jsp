@@ -59,12 +59,7 @@ if (end != null) {
 
 			<%
 			if (id != null & pw != null) {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;"
-				href="<c:url value="/answer/answerWrite"/>">작성하기</a>
-			<%
-			if ("myAnswer".equals(myAnswer)) {
+				if ("myAnswer".equals(myAnswer)) {
 			%>
 			<a class="w3-right w3-button w3-medium"
 				style="margin: 20px 0 10px 0;" href="<c:url value="/answer"/>">답변</a>
@@ -93,7 +88,8 @@ if (end != null) {
 							<hr>
 							<p>${answer.ANS_CONTENT }</p>
 							<input style="display: none;" value="${answer.ANS_NO }"
-								id="ANS_NO" name="ANS_NO">
+								id="ANS_NO" name="ANS_NO"> <input style="display: none;"
+								value="${answer.QUE_NO }" id="QUE_NO" name="QUE_NO">
 							<%
 							if ("myAnswer".equals(myAnswer)) {
 							%>

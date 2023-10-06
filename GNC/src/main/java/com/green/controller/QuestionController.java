@@ -16,19 +16,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.green.domain.Member;
-import com.green.service.IndexService;
+import com.green.service.QuestionService;
 
 @Controller
 @RequestMapping("/question")
 public class QuestionController {
 	
 	@Autowired
-	private IndexService indexService;
+	private QuestionService questionService;
 
 	@GetMapping
 	public String question(Model model) {
 		
-		List<Member> questionlist = indexService.question();
+		List<Member> questionlist = questionService.question();
 
 		model.addAttribute("questionList", questionlist);
 		
@@ -42,7 +42,7 @@ public class QuestionController {
 		
 		model.addAttribute("question", "question");
 		
-		List<Member> questionlist = indexService.question();
+		List<Member> questionlist = questionService.question();
 		
 		model.addAttribute("questionList", questionlist);
 		model.addAttribute("end", end);
@@ -55,7 +55,7 @@ public class QuestionController {
 		
 		model.addAttribute("myQuestion", "myQuestion");
 		
-		List<Member> questionlist = indexService.myQuestion(memNo);
+		List<Member> questionlist = questionService.myQuestion(memNo);
 		
 		model.addAttribute("questionList", questionlist);
 		model.addAttribute("end", end);
@@ -68,7 +68,9 @@ public class QuestionController {
 		
 		model.addAttribute("questionDetail", "questionDetail");
 		
-		List<Member> questionlist = indexService.question(queNo);
+		questionService.questionIn(queNo);
+		
+		List<Member> questionlist = questionService.question(queNo);
 		
 		model.addAttribute("questionList", questionlist);
 		model.addAttribute("queNo", queNo);
@@ -81,7 +83,7 @@ public class QuestionController {
 		
 		model.addAttribute("myQuestion", "myQuestion");
 		
-		List<Member> questionlist = indexService.myQuestion(memNo);
+		List<Member> questionlist = questionService.myQuestion(memNo);
 		
 		model.addAttribute("questionList", questionlist);
 		return "question";
@@ -100,7 +102,7 @@ public class QuestionController {
 		
 		model.addAttribute("questionModify", "questionModify");
 		
-		List<Member> questionlist = indexService.question(queNo);
+		List<Member> questionlist = questionService.question(queNo);
 		
 		model.addAttribute("questionList", questionlist);
 		
@@ -126,9 +128,9 @@ public class QuestionController {
 			}
 		}
 		
-		indexService.questionChange(question);
+		questionService.questionChange(question);
 		
-		List<Member> questionlist = indexService.question(question.getQUE_NO());
+		List<Member> questionlist = questionService.question(question.getQUE_NO());
 		
 		model.addAttribute("questionList", questionlist);
 		
@@ -156,9 +158,9 @@ public class QuestionController {
 			}
 		}
 		
-		indexService.questionInsert(question);
+		questionService.questionInsert(question);
 		
-		List<Member> questionlist = indexService.question(question.getQUE_NO());
+		List<Member> questionlist = questionService.question(question.getQUE_NO());
 		
 		model.addAttribute("questionList", questionlist);
 		

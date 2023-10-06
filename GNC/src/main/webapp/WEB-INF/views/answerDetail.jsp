@@ -9,6 +9,8 @@ request.setCharacterEncoding("UTF-8");
 String name = (String) session.getAttribute("namekey");
 String id = (String) session.getAttribute("idkey");
 String pw = (String) session.getAttribute("pwkey");
+
+String answerDetail = (String) request.getAttribute("answerDetail");
 %>
 <!DOCTYPE html>
 <html>
@@ -23,6 +25,24 @@ String pw = (String) session.getAttribute("pwkey");
 			style="max-width: 1500px; padding-top: 0px !important;">
 			<p class="w3-left"
 				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">질문</p>
+				
+			<%
+			if (id != null & pw != null) {
+				if ("answerDetail".equals(answerDetail)) {
+			%>
+			<a class="w3-right w3-button w3-medium"
+				style="margin: 20px 0 10px 0;" href="<c:url value="/answer"/>">답변</a>
+			<%
+			} else {
+			%>
+			<a class="w3-right w3-button w3-medium"
+				style="margin: 20px 0 10px 0;" onclick="myAnswer()">내 답변</a>
+			<%
+			}
+			%>
+			<%
+			}
+			%>
 
 
 			<div class="w3-row-padding">
@@ -31,7 +51,7 @@ String pw = (String) session.getAttribute("pwkey");
 					<hr>
 					<img
 						src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
-						style="max-width: 400px; max-height: 400px;">
+						style="max-width: 180px; max-height: 180px;">
 					<hr>
 					<p>${question.QUE_CONTENT }</p>
 				</c:forEach>
