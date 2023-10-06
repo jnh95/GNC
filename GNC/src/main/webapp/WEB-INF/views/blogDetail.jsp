@@ -53,9 +53,11 @@ String blogDetail = (String) request.getAttribute("blogDetail");
 			<div class="w3-row-padding">
 				<c:forEach items="${blogList }" var="blog">
 					<h4>${blog.BLO_TITLE }</h4>
-					<hr>
-					<img src="<c:url value="/resources/images/${blog.BLO_IMAGE }"/>"
-						style="max-width: 400px; max-height: 400px;">
+					<c:if test="${blog.BLO_IMAGE ne 'noimg.jpg' }">
+						<hr>
+						<img src="<c:url value="/resources/images/${blog.BLO_IMAGE }"/>"
+							style="max-width: 400px; max-height: 400px;">
+					</c:if>
 					<hr>
 					<p>${blog.BLO_CONTENT }</p>
 				</c:forEach>

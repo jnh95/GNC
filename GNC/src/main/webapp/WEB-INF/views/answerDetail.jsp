@@ -48,10 +48,12 @@ String answerDetail = (String) request.getAttribute("answerDetail");
 			<div class="w3-row-padding">
 				<c:forEach items="${questionList }" var="question">
 					<h4>${question.QUE_TITLE }</h4>
-					<hr>
-					<img
-						src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
-						style="max-width: 180px; max-height: 180px;">
+					<c:if test="${question.QUE_IMAGE ne 'noimg.jpg' }">
+						<hr>
+						<img
+							src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
+							style="max-width: 400px; max-height: 400px;">
+					</c:if>
 					<hr>
 					<p>${question.QUE_CONTENT }</p>
 				</c:forEach>
@@ -63,9 +65,11 @@ String answerDetail = (String) request.getAttribute("answerDetail");
 			<div class="w3-row-padding">
 				<c:forEach items="${answerList }" var="answer">
 					<h4>${answer.ANS_TITLE }</h4>
-					<hr>
-					<img src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
-						style="max-width: 400px; max-height: 400px;">
+					<c:if test="${answer.ANS_IMAGE ne 'noimg.jpg' }">
+						<hr>
+						<img src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
+							style="max-width: 400px; max-height: 400px;">
+					</c:if>
 					<hr>
 					<p>${answer.ANS_CONTENT }</p>
 				</c:forEach>

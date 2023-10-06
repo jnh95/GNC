@@ -54,24 +54,97 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 	<%
 	}
 	%>
+	<form name="newForm" style="display: none;" action="<c:url value="/search"/>">
+		<input name="content" style="display: none;">
+	</form>
+	<form name="inForm" style="display: none;" action="<c:url value="/search/in"/>">
+		<input name="content" style="display: none;">
+	</form>
+	<form name="titleForm" style="display: none;" action="<c:url value="/search/title"/>">
+		<input name="content" style="display: none;">
+	</form>
+	<form name="contentForm" style="display: none;" action="<c:url value="/search/content"/>">
+		<input name="content" style="display: none;">
+	</form>
 	<!-- 검색창 -->
 	<header class="w3-display-container w3-content w3-wide"
 		style="max-width: 1500px; padding: 100px 0px 100px 150px; margin: 50px 0px 100px 200px;"
 		id="home">
-		<form class="w3-display-middle w3-margin-top w3-center">
+		<form name="inputForm" class="w3-display-middle w3-margin-top w3-center"
+			action="<c:url value="/search"/>">
 			<div style="width: 700px;">
-				<input style="width: 600px; height: 50px;" type="search"
-					placeholder="검색어를 입력해 주세요." maxlength="255">
-				<button type="submit">검색</button>
+				
+				<c:choose>
+				<c:when test="${indexSearch eq 'indexSearch' }">
+					<input style="width: 600px; height: 50px;" type="search"
+						placeholder="검색어를 입력해 주세요." maxlength="255" name="content" value="${content }">
+					<button type="submit">검색</button>
+					<div>
+						<span onclick="inputNew(${content })" style="cursor: pointer;">최근</span>
+						<span onclick="inputIn(${content })" style="cursor: pointer;">조회수</span>
+						<span onclick="inputTitle(${content })" style="cursor: pointer;">제목</span>
+						<span onclick="inputContent(${content })" style="cursor: pointer;">제목+내용</span>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<input style="width: 600px; height: 50px;" type="search"
+						placeholder="검색어를 입력해 주세요." maxlength="255" name="content">
+					<button type="submit">검색</button>
+				</c:otherwise>
+				</c:choose>
 			</div>
 		</form>
 	</header>
 
+	<script>
+		function inputNew(input) {
+			document.newForm.content.value = input;
+			document.newForm.submit();
+		}
+		
+		function inputIn(input) {
+			document.inForm.content.value = input;
+			document.inForm.submit();
+		}
+		
+		function inputTitle(input) {
+			document.titleForm.content.value = document.inputForm.content.value;
+			document.titleForm.submit();
+		}
+		
+		function inputContent(input) {
+			document.contentForm.content.value = document.inputForm.content.value;
+			document.contentForm.submit();
+		}
+	
+	
+	</script>
+
 	<!-- 블로그 -->
 	<div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
-		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
-			href="<c:url value="/blog"/>">최근 작성된 블로그</a>
+
+		<c:choose>
+			<c:when test="${search eq 'in' }">
+				<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+					href="<c:url value="/blog"/>">조회수가 많은 블로그</a>
+			</c:when>
+
+			<c:when test="${search eq 'title' }">
+				<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+					href="<c:url value="/blog"/>">제목에 포함된 블로그</a>
+			</c:when>
+
+			<c:when test="${search eq 'content' }">
+				<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+					href="<c:url value="/blog"/>">제목 또는 내용에 포함된 블로그</a>
+			</c:when>
+
+			<c:otherwise>
+				<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+					href="<c:url value="/blog"/>">최근 작성된 블로그</a>
+			</c:otherwise>
+		</c:choose>
 
 
 		<!-- for문으로 여러개 넣기 -->
@@ -97,8 +170,28 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 	<!-- 질문 -->
 	<div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
-		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
-			href="<c:url value="/question"/>">최근 작성된 질문</a>
+
+		<c:choose>
+			<c:when test="${search eq 'in' }">
+				<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+					href="<c:url value="/question"/>">조회수가 많은 질문</a>
+			</c:when>
+
+			<c:when test="${search eq 'title' }">
+				<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+					href="<c:url value="/question"/>">제목에 포함된 질문</a>
+			</c:when>
+
+			<c:when test="${search eq 'content' }">
+				<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+					href="<c:url value="/question"/>">제목 또는 내용에 포함된 질문</a>
+			</c:when>
+
+			<c:otherwise>
+				<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+					href="<c:url value="/question"/>">최근 작성된 질문</a>
+			</c:otherwise>
+		</c:choose>
 
 
 		<div class="w3-row-padding">
@@ -124,8 +217,28 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 	<!-- 답변 -->
 	<div class="w3-content w3-padding"
 		style="max-width: 1500px; padding-top: 0px !important;">
-		<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
-			href="<c:url value="/answer"/>">최근 작성된 답변</a>
+
+		<c:choose>
+			<c:when test="${search eq 'in' }">
+				<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+					href="<c:url value="/answer"/>">조회수가 많은 답변</a>
+			</c:when>
+
+			<c:when test="${search eq 'title' }">
+				<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+					href="<c:url value="/answer"/>">제목에 포함된 답변</a>
+			</c:when>
+
+			<c:when test="${search eq 'content' }">
+				<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+					href="<c:url value="/answer"/>">제목 또는 내용에 포함된 답변</a>
+			</c:when>
+
+			<c:otherwise>
+				<a class="w3-button" style="font-size: 20px; margin: 20px 0 10px 0;"
+					href="<c:url value="/answer"/>">최근 작성된 답변</a>
+			</c:otherwise>
+		</c:choose>
 
 
 		<!-- for문으로 여러개 넣기 -->

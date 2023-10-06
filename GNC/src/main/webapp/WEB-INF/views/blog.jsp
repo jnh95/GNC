@@ -17,10 +17,10 @@ String myBlog = (String) request.getAttribute("myBlog");
 String end = (String) request.getAttribute("end");
 
 int blogBegin = 0;
-int blogEnd = 8;
+int blogEnd = 5;
 
 if (end != null) {
-	blogBegin = Integer.parseInt(end) - 9;
+	blogBegin = Integer.parseInt(end) - 6;
 	blogEnd = Integer.parseInt(end) - 1;
 }
 %>
@@ -84,7 +84,7 @@ if (end != null) {
 				<c:forEach items="${blogList }" var="blog" begin="<%=blogBegin %>"
 					end="<%=blogEnd %>">
 					<form action="<c:url value="/blog/blogDetail"/>" method="get">
-						<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px;">
+						<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px; height:400px;">
 							<h4>${blog.BLO_TITLE }</h4>
 							<hr>
 							<input type="image"
@@ -109,20 +109,20 @@ if (end != null) {
 			</div>
 
 			<div style="margin-left: 25px;">
-				<c:if test="${blogList.size() > 9 }">
+				<c:if test="${blogList.size() > 6 }">
 					<c:choose>
 						<c:when test="${myBlog eq 'myBlog' }">
-							<c:forEach items="${blogList }" step="9">
+							<c:forEach items="${blogList }" step="6">
 								<c:set var="i" value="${i+1 }"></c:set>
-								<input type="submit" onclick="MyBlogButton(${i*9})"
+								<input class="w3-button" type="submit" onclick="MyBlogButton(${i*6})"
 									value="${i }"></input>
 							</c:forEach>
 						</c:when>
 
 						<c:otherwise>
-							<c:forEach items="${blogList }" step="9">
+							<c:forEach items="${blogList }" step="6">
 								<c:set var="i" value="${i+1 }"></c:set>
-								<input type="submit" onclick="blogButton(${i*9})" value="${i }"></input>
+								<input class="w3-button" type="submit" onclick="blogButton(${i*6})" value="${i }"></input>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>

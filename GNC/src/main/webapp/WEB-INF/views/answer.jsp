@@ -17,10 +17,10 @@ String myAnswer = (String) request.getAttribute("myAnswer");
 String end = (String) request.getAttribute("end");
 
 int answerBegin = 0;
-int answerEnd = 8;
+int answerEnd = 5;
 
 if (end != null) {
-	answerBegin = Integer.parseInt(end) - 9;
+	answerBegin = Integer.parseInt(end) - 6;
 	answerEnd = Integer.parseInt(end) - 1;
 }
 %>
@@ -79,7 +79,7 @@ if (end != null) {
 				<c:forEach items="${answerList }" var="answer"
 					begin="<%=answerBegin %>" end="<%=answerEnd %>">
 					<form action="<c:url value="/answer/answerDetail"/>" method="get">
-						<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px;">
+						<div class="w3-col l3 m6" style="margin: 0 20px 50px 20px; height:400px;">
 							<h4>${answer.ANS_TITLE }</h4>
 							<hr>
 							<input type="image"
@@ -105,20 +105,20 @@ if (end != null) {
 			</div>
 
 			<div style="margin-left: 25px;">
-				<c:if test="${answerList.size() > 9 }">
+				<c:if test="${answerList.size() > 6 }">
 					<c:choose>
 						<c:when test="${myAnswer eq 'myAnswer' }">
-							<c:forEach items="${answerList }" step="9">
+							<c:forEach items="${answerList }" step="6">
 								<c:set var="i" value="${i+1 }"></c:set>
-								<input type="submit" onclick="MyAnswerButton(${i*9})"
+								<input class="w3-button" type="submit" onclick="MyAnswerButton(${i*6})"
 									value="${i }"></input>
 							</c:forEach>
 						</c:when>
 
 						<c:otherwise>
-							<c:forEach items="${answerList }" step="9">
+							<c:forEach items="${answerList }" step="6">
 								<c:set var="i" value="${i+1 }"></c:set>
-								<input type="submit" onclick="answerButton(${i*9})"
+								<input class="w3-button" type="submit" onclick="answerButton(${i*6})"
 									value="${i }"></input>
 							</c:forEach>
 						</c:otherwise>

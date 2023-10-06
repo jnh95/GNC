@@ -53,16 +53,19 @@ String questionDetail = (String) request.getAttribute("questionDetail");
 			<div class="w3-row-padding">
 				<c:forEach items="${questionList }" var="question">
 					<h4>${question.QUE_TITLE }</h4>
-					<hr>
-					<img
-						src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
-						style="max-width: 400px; max-height: 400px;">
+					<c:if test="${question.QUE_IMAGE ne 'noimg.jpg' }">
+						<hr>
+						<img
+							src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
+							style="max-width: 400px; max-height: 400px;">
+					</c:if>
 					<hr>
 					<p>${question.QUE_CONTENT }</p>
 
 					<%
 					if (id != null & pw != null) {
 					%>
+					<hr>
 					<a
 						href="<c:url value="/answer/answerWrite?QUE_NO=${question.QUE_NO }"/>"
 						class="w3-button w3-block w3-light-grey w3-padding">답변하기</a>

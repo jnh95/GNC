@@ -40,6 +40,9 @@ public class LoginController {
 		String answer = request.getParameter("answer");
 		String answerDetail = request.getParameter("blogDeanswerDetailtail");
 		String ansNo = request.getParameter("ansNo");
+		
+		String searchLogin = (String) request.getParameter("searchLogin");
+		String search = (String) request.getParameter("search");
 
 		Cookie[] cookies = request.getCookies();
 
@@ -97,6 +100,38 @@ public class LoginController {
 			model.addAttribute("ANS_NO", ansNo);
 			
 			return "redirect:/answer/answerDetail";
+		}
+		
+		if("searchLogin".equals(searchLogin)) {
+			
+			String content = (String) request.getParameter("content");
+			model.addAttribute("content", content);
+			
+			return "redirect:/search";
+		}
+		
+		if("in".equals(search)) {
+			
+			String content = (String) request.getParameter("content");
+			model.addAttribute("content", content);
+			
+			return "redirect:/search/in";
+		}
+		
+		if("title".equals(search)) {
+			
+			String content = (String) request.getParameter("content");
+			model.addAttribute("content", content);
+			
+			return "redirect:/search/title";
+		}
+		
+		if("content".equals(search)) {
+			
+			String content = (String) request.getParameter("content");
+			model.addAttribute("content", content);
+			
+			return "redirect:/search/content";
 		}
 		
 		return "redirect:/";
