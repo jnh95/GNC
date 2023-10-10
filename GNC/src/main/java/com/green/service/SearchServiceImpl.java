@@ -15,6 +15,16 @@ public class SearchServiceImpl implements SearchService {
 	@Autowired
 	private SearchRepository searchRepository;
 	
+	
+	@Override
+	public String engToKor(String eng) {
+		// TODO Auto-generated method stub
+		
+		eng = searchRepository.engToKor(eng);
+		
+		return eng;
+	}
+	
 	@Override
 	public List<Member> blog(String bloContent) {
 		// TODO Auto-generated method stub

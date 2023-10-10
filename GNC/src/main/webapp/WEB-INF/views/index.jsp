@@ -54,71 +54,94 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 	<%
 	}
 	%>
-	<form name="newForm" style="display: none;" action="<c:url value="/search"/>">
+	<form name="newForm" style="display: none;"
+		action="<c:url value="/search"/>">
 		<input name="content" style="display: none;">
 	</form>
-	<form name="inForm" style="display: none;" action="<c:url value="/search/in"/>">
+	<form name="inForm" style="display: none;"
+		action="<c:url value="/search/in"/>">
 		<input name="content" style="display: none;">
 	</form>
-	<form name="titleForm" style="display: none;" action="<c:url value="/search/title"/>">
+	<form name="titleForm" style="display: none;"
+		action="<c:url value="/search/title"/>">
 		<input name="content" style="display: none;">
 	</form>
-	<form name="contentForm" style="display: none;" action="<c:url value="/search/content"/>">
+	<form name="contentForm" style="display: none;"
+		action="<c:url value="/search/content"/>">
 		<input name="content" style="display: none;">
 	</form>
 	<!-- 검색창 -->
 	<header class="w3-display-container w3-content w3-wide"
-		style="max-width: 1500px; padding: 100px 0px 100px 150px; margin: 50px 0px 100px 200px;"
+		style="max-width: 1500px; padding: 100px 0px 100px 150px; margin: 50px 0px 0 200px;"
 		id="home">
-		<form name="inputForm" class="w3-display-middle w3-margin-top w3-center"
+		<form name="inputForm"
+			class="w3-display-middle w3-margin-top w3-center"
 			action="<c:url value="/search"/>">
 			<div style="width: 700px;">
-				
+
 				<c:choose>
-				<c:when test="${indexSearch eq 'indexSearch' }">
-					<input style="width: 600px; height: 50px;" type="search"
-						placeholder="검색어를 입력해 주세요." maxlength="255" name="content" value="${content }">
-					<button type="submit">검색</button>
-					<div>
-						<span onclick="inputNew(${content })" style="cursor: pointer;">최근</span>
-						<span onclick="inputIn(${content })" style="cursor: pointer;">조회수</span>
-						<span onclick="inputTitle(${content })" style="cursor: pointer;">제목</span>
-						<span onclick="inputContent(${content })" style="cursor: pointer;">제목+내용</span>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<input style="width: 600px; height: 50px;" type="search"
-						placeholder="검색어를 입력해 주세요." maxlength="255" name="content">
-					<button type="submit">검색</button>
-				</c:otherwise>
+					<c:when test="${indexSearch eq 'indexSearch' }">
+						<c:choose>
+							<c:when test="${english ne null }">
+								<input style="width: 600px; height: 50px; margin-top: 1px;"
+									type="search" placeholder="검색어를 입력해 주세요." maxlength="255"
+									name="content" value="${english }">
+								<button type="submit">검색</button>
+								<br>
+								<div>
+									<a style="text-decoration: none;" href="<c:url value="/search?content=${english }"/>">최근</a>
+									<a style="text-decoration: none;" href="<c:url value="/search/in?content=${english }"/>">조회수</a>
+									<a style="text-decoration: none;" href="<c:url value="/search/title?content=${english }"/>">제목</a>
+									<a style="text-decoration: none;" href="<c:url value="/search/content?content=${english }"/>">제목+내용</a>
+								</div>
+								<span> 검색하신 단어를 ${content }(으)로 검색했습니다. </span>
+								<br>
+								<a style="text-decoration: none; color : blue;" href="<c:url value="/search/english?content=${english }"/>">${english }</a>
+								<span>(으)로 검색하고 싶으신가요?</span>
+							</c:when>
+
+							<c:when test="${englishKeep eq 'englishKeep' }">
+								<input style="width: 600px; height: 50px; margin-top: 1px;"
+									type="search" placeholder="검색어를 입력해 주세요." maxlength="255"
+									name="content" value="${english }">
+								<button type="submit">검색</button>
+								<br>
+								<div>
+									<a style="text-decoration: none;" href="<c:url value="/search/englishKeep?content=${english }"/>">최근</a>
+									<a style="text-decoration: none;" href="<c:url value="/search/in/english?content=${english }"/>">조회수</a>
+									<a style="text-decoration: none;" href="<c:url value="/search/title/english?content=${english }"/>">제목</a>
+									<a style="text-decoration: none;" href="<c:url value="/search/content/english?content=${english }"/>">제목+내용</a>
+								</div>
+								<span> 검색하신 단어를 ${content }(으)로 검색했습니다. </span>
+								<br>
+								<a style="text-decoration: none; color : blue;" href="<c:url value="/search/english?content=${english }"/>">${english }</a>
+								<span>(으)로 검색하고 싶으신가요?</span>
+							</c:when>
+
+							<c:otherwise>
+								<input style="width: 600px; height: 50px; margin-top: 1px;"
+									type="search" placeholder="검색어를 입력해 주세요." maxlength="255"
+									name="content" value="${content }">
+								<button type="submit">검색</button>
+								<br>
+								<div>
+									<a style="text-decoration: none;" href="<c:url value="/search?content=${content }"/>">최근</a>
+									<a style="text-decoration: none;" href="<c:url value="/search/in?content=${content }"/>">조회수</a>
+									<a style="text-decoration: none;" href="<c:url value="/search/title?content=${content }"/>">제목</a>
+									<a style="text-decoration: none;" href="<c:url value="/search/content?content=${content }"/>">제목+내용</a>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+					<c:otherwise>
+						<input style="width: 600px; height: 50px;" type="search"
+							placeholder="검색어를 입력해 주세요." maxlength="255" name="content">
+						<button type="submit">검색</button>
+					</c:otherwise>
 				</c:choose>
 			</div>
 		</form>
 	</header>
-
-	<script>
-		function inputNew(input) {
-			document.newForm.content.value = input;
-			document.newForm.submit();
-		}
-		
-		function inputIn(input) {
-			document.inForm.content.value = input;
-			document.inForm.submit();
-		}
-		
-		function inputTitle(input) {
-			document.titleForm.content.value = document.inputForm.content.value;
-			document.titleForm.submit();
-		}
-		
-		function inputContent(input) {
-			document.contentForm.content.value = document.inputForm.content.value;
-			document.contentForm.submit();
-		}
-	
-	
-	</script>
 
 	<!-- 블로그 -->
 	<div class="w3-content w3-padding"
@@ -164,6 +187,9 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 					</div>
 				</form>
 			</c:forEach>
+			<c:if test="${blogList.size() == 0 }">
+				<p>작성된 블로그가 없습니다.</p>
+			</c:if>
 		</div>
 	</div>
 
@@ -211,6 +237,9 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 					</div>
 				</form>
 			</c:forEach>
+			<c:if test="${questionList.size() == 0 }">
+				<p>작성된 질문이 없습니다.</p>
+			</c:if>
 		</div>
 	</div>
 
@@ -259,6 +288,9 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 					</div>
 				</form>
 			</c:forEach>
+			<c:if test="${answerList.size() == 0 }">
+				<p>작성된 답변이 없습니다.</p>
+			</c:if>
 		</div>
 	</div>
 

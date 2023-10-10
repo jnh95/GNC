@@ -6,6 +6,8 @@ import com.green.domain.Member;
 
 public interface SearchRepository {
 	
+	String engToKor(String eng);
+	
 	List<Member> blog(String bloContent);
 
 	List<Member> blogIn(String bloIn);
