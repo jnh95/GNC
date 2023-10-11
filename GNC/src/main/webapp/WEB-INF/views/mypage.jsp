@@ -234,8 +234,23 @@ String birth = (String) session.getAttribute("birthkey");
 					</div>
 				</div>
 			</div>
+			
+			<form name="deleteForm" action="<c:url value="/mypage/delete"/>" method="post" style="display:none;">
+			</form>
+			<button onclick="memberDelete()" class="w3-button w3-block w3-red w3-padding">회원탈퇴</button>
 
 		</div>
 	</div>
+	
+	<script>
+		function memberDelete() {
+			if (confirm("정말 탈퇴하시겠습니까?") == true){ //확인
+				document.deleteForm.submit();
+			}else{ //취소
+				return false;
+			}
+		}
+	</script>
+	
 </body>
 </html>

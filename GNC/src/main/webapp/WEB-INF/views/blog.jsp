@@ -89,7 +89,7 @@ if (end != null) {
 							<hr>
 							<input type="image"
 								src="<c:url value="/resources/images/${blog.BLO_IMAGE }"/>"
-								style="max-width: 180px; max-height: 180px;">
+								style="max-width: 270px; height: 180px;">
 							<hr>
 							<p>${blog.BLO_CONTENT }</p>
 							<input style="display: none;" value="${blog.BLO_NO }" id="BLO_NO"

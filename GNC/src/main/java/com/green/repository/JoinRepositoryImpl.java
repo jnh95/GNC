@@ -47,11 +47,29 @@ public class JoinRepositoryImpl implements JoinRepository {
 		String add = request.getParameter("MEM_ADD");
 		String birth = request.getParameter("MEM_BIRTH");
 		
+		String phone1 = null;
+		String phone2 = null;
+		String phone3 = null;
+		String phone4 = null;
+
+		if (phone.length() == 11) {
+			phone1 = phone.substring(0, 3);
+			phone2 = phone.substring(3, 7);
+			phone3 = phone.substring(7, 11);
+			phone4 = phone1 + "-" + phone2 + "-" + phone3;
+		}
+		if (phone.length() == 10) {
+			phone1 = phone.substring(0, 3);
+			phone2 = phone.substring(3, 6);
+			phone3 = phone.substring(6, 10);
+			phone4 = phone1 + "-" + phone2 + "-" + phone3;
+		}
+		
 		String SQL = "INSERT INTO MEMBER (MEM_NAME, MEM_ID, MEM_PW, MEM_DATE, MEM_PHONE, MEM_MAIL,"
 				+ "MEM_ADD, MEM_BIRTH, LEV_NO)"
 				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
-		template.update(SQL, name, id, pw, date, phone, mail, add, birth, "2");
+		template.update(SQL, name, id, pw, date, phone4, mail, add, birth, "2");
 	}
 
 }

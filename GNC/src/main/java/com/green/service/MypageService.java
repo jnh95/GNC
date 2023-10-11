@@ -13,4 +13,6 @@ public interface MypageService {
 	void birthChange(HttpServletRequest request);
 	
 	void addChange(HttpServletRequest request);
+	
+	void delete(HttpServletRequest request);
 }

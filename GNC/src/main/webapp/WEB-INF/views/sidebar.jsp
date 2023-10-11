@@ -16,8 +16,6 @@ String question = (String) request.getAttribute("question");
 String questionDetail = (String) request.getAttribute("questionDetail");
 String answer = (String) request.getAttribute("answer");
 String answerDetail = (String) request.getAttribute("answerDetail");
-
-String loginFailed = (String) session.getAttribute("loginFailed");
 %>
 <!DOCTYPE html>
 <html>
@@ -30,16 +28,6 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 	font-weight: bold;
 }
 </style>
-<%
-if ("loginFailed".equals(loginFailed)) {
-%>
-<script>
-	alert("로그인에 실패하셨습니다.");
-</script>
-<%
-session.removeAttribute("loginFailed");
-}
-%>
 
 <!-- 좌상단 GNC 우상단 로그인 -->
 <!-- 로그인 버튼  -->

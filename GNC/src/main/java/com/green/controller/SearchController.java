@@ -1,8 +1,6 @@
 package com.green.controller;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +28,7 @@ public class SearchController {
 	@GetMapping
 	public String search(Model model, @RequestParam("content") String content) {
 
-		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]{2,}[0-9]*)*")) {
+		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]+[0-9\\s]*)*")) {
 			model.addAttribute("english", content);
 			content = searchService.engToKor(content);
 		}
@@ -109,7 +107,7 @@ public class SearchController {
 	@GetMapping("/in")
 	public String searchIn(Model model, @RequestParam("content") String content) {
 		
-		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]{2,}[0-9]*)*")) {
+		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]+[0-9\\s]*)*")) {
 			model.addAttribute("english", content);
 			content = searchService.engToKor(content);
 		}
@@ -164,7 +162,7 @@ public class SearchController {
 	@GetMapping("/title")
 	public String searchTitle(Model model, @RequestParam("content") String content) {
 		
-		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]{2,}[0-9]*)*")) {
+		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]+[0-9\\s]*)*")) {
 			model.addAttribute("english", content);
 			content = searchService.engToKor(content);
 		}
@@ -219,7 +217,7 @@ public class SearchController {
 	@GetMapping("/content")
 	public String searchContent(Model model, @RequestParam("content") String content) {
 		
-		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]{2,}[0-9]*)*")) {
+		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]+[0-9\\s]*)*")) {
 			model.addAttribute("english", content);
 			content = searchService.engToKor(content);
 		}

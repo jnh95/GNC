@@ -30,26 +30,32 @@
 		<form class="w3-container" action="<c:url value="/forgetPw"/>"
 			method="post" id="forgetPwForm" name="forgetPwForm">
 			<div class="w3-section">
+			
+				<label><b>이메일</b></label>
+				<input name="MEM_MAIL"
+					class="w3-input w3-border w3-margin-bottom" type="text"
+					placeholder="이메일을 입력해주세요." required />
+			
 				<label><b>ID</b></label>
 				<input name="MEM_ID"
 					class="w3-input w3-border w3-margin-bottom" type="text"
 					placeholder="ID를 입력해주세요." required />
 					
-					<label><b>비밀번호</b></label>
-					<input
-					id="forgetPw" name="MEM_PW" class="w3-input w3-border" style="margin-bottom:5px;" type="password"
-					placeholder="비밀번호를 입력해주세요." required />
+				<label><b>비밀번호</b></label>
+				<input
+				id="forgetPw" name="MEM_PW" class="w3-input w3-border" style="margin-bottom:5px;" type="password"
+				placeholder="비밀번호를 입력해주세요." required />
 					
-					<input
-					id="forgetPw2" name="MEM_PW2" class="w3-input w3-border" type="password"
-					placeholder="동일한 비밀번호를 입력해주세요." required />
+				<input
+				id="forgetPw2" name="MEM_PW2" class="w3-input w3-border" type="password"
+				placeholder="동일한 비밀번호를 입력해주세요." required />
+				
+				<a class="w3-right"
+				onclick="forgetPwOn()" id="MEM_PW3" style="display: block; margin-top: 3px; cursor: pointer;">비밀번호
+				보기</a>
 					
-					<a class="w3-right"
-					onclick="forgetPwOn()" id="MEM_PW3" style="display: block; margin-top: 3px; cursor: pointer;">비밀번호
-					보기</a>
-					
-					<a class="w3-right" onclick="forgetPwOff()" id="MEM_PW4"
-					style="display: none; margin-top: 3px; cursor: pointer;">비밀번호 숨기기</a>
+				<a class="w3-right" onclick="forgetPwOff()" id="MEM_PW4"
+				style="display: none; margin-top: 3px; cursor: pointer;">비밀번호 숨기기</a>
 			</div>
 		</form>
 		

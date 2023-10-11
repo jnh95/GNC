@@ -84,7 +84,7 @@ if (end != null) {
 							<hr>
 							<input type="image"
 								src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
-								style="max-width: 180px; max-height: 180px;">
+								style="max-width: 270px; height: 180px;">
 							<hr>
 							<p>${answer.ANS_CONTENT }</p>
 							<input style="display: none;" value="${answer.ANS_NO }"

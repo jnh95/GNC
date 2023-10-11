@@ -22,7 +22,19 @@ String ansNo = (String) request.getAttribute("ansNo");
 
 String searchLogin = (String) request.getAttribute("searchLogin");
 String search = (String) request.getAttribute("search");
+
+String loginSuccess = (String) session.getAttribute("loginSuccess");
+
+if ("loginSuccess".equals(loginSuccess)) {
 %>
+<script>
+	alert("로그인 되었습니다.");
+</script>
+<%
+session.removeAttribute("loginSuccess");
+}
+%>
+
 안녕하세요.
 <a href="<c:url value="/mypage"/>" class="w3-button"
 	style="margin-bottom: 4px; padding: 10px;"> <%=name%>님

@@ -73,4 +73,16 @@ public class MypageController {
 
 		return "redirect:/mypage";
 	}
+	
+	@PostMapping("/delete")
+	public String mypageDelete(Model model, HttpServletRequest request) {
+		
+		mypageService.delete(request);
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("delete", "delete");
+		
+		return "redirect:/";
+	}
 }

@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script
-	src="${pageContext.request.contextPath}/resources/js/join.js?ver=0.1"></script>
+	src="${pageContext.request.contextPath}/resources/js/join.js?ver=0.11"></script>
 <title>GNC 회원가입</title>
 </head>
 <body>
@@ -82,25 +82,25 @@
 
 						<label><b>전화번호</b></label>
 
-						<input id="phone" name="MEM_PHONE"
+						<input id="MEM_PHONE" name="MEM_PHONE"
 							class="w3-input w3-border w3-margin-bottom" type="text"
 							value="${usePhone }" placeholder="-를 빼고 전화번호를 입력해주세요." maxlength="11" />
 
 						<label><b>이메일</b></label>
 
-						<input id="mail" name="MEM_MAIL"
+						<input id="MEM_MAIL" name="MEM_MAIL"
 							class="w3-input w3-border w3-margin-bottom" type="text"
 							value="${useMail }" placeholder="이메일을 입력해주세요." />
 
 						<label><b>주소</b></label>
 
-						<input id="add" name="MEM_ADD"
+						<input id="MEM_ADD" name="MEM_ADD"
 							class="w3-input w3-border w3-margin-bottom" type="text"
 							value="${useAdd }" maxlength="50" placeholder="주소를 적어주세요." />
 
 						<label><b>생년월일</b></label>
 
-						<input id="birth" name="MEM_BIRTH" class="w3-input w3-border"
+						<input id="MEM_BIRTH" name="MEM_BIRTH" class="w3-input w3-border"
 							value="${useBirth }" type="text" maxlength="8" placeholder="예시 : 19990101" />
 					</c:when>
 
@@ -143,25 +143,25 @@
 
 						<label><b>전화번호</b></label>
 
-						<input id="phone" name="MEM_PHONE"
+						<input id="MEM_PHONE" name="MEM_PHONE"
 							class="w3-input w3-border w3-margin-bottom" type="text"
 							value="${usePhone }" placeholder="-를 빼고 전화번호를 입력해주세요." maxlength="11" />
 
 						<label><b>이메일</b></label>
 
-						<input id="mail" name="MEM_MAIL"
+						<input id="MEM_MAIL" name="MEM_MAIL"
 							class="w3-input w3-border w3-margin-bottom" type="text"
 							value="${useMail }" placeholder="이메일을 입력해주세요." />
 
 						<label><b>주소</b></label>
 
-						<input id="add" name="MEM_ADD"
+						<input id="MEM_ADD" name="MEM_ADD"
 							class="w3-input w3-border w3-margin-bottom" type="text"
 							value="${useAdd }" maxlength="50" placeholder="주소를 적어주세요." />
 
 						<label><b>생년월일</b></label>
 
-						<input id="birth" name="MEM_BIRTH" class="w3-input w3-border"
+						<input id="MEM_BIRTH" name="MEM_BIRTH" class="w3-input w3-border"
 							value="${useBirth }" type="text" maxlength="8" placeholder="예시 : 19990101" />
 
 					</c:when>
@@ -194,21 +194,21 @@
 						</div>
 
 						<label><b>전화번호</b></label>
-						<input id="phone" name="MEM_PHONE"
+						<input id="MEM_PHONE" name="MEM_PHONE"
 							class="w3-input w3-border w3-margin-bottom" type="text"
 							placeholder="-를 빼고 전화번호를 입력해주세요." maxlength="11" />
 						<label><b>이메일</b></label>
 
-						<input id="mail" name="MEM_MAIL"
+						<input id="MEM_MAIL" name="MEM_MAIL"
 							class="w3-input w3-border w3-margin-bottom" type="text"
 							placeholder="이메일을 입력해주세요." />
 						<label><b>주소</b></label>
-						<input id="add" name="MEM_ADD"
+						<input id="MEM_ADD" name="MEM_ADD"
 							class="w3-input w3-border w3-margin-bottom" type="text"
 							maxlength="50" placeholder="주소를 적어주세요." />
 						<label><b>생년월일</b></label>
 
-						<input id="birth" name="MEM_BIRTH" class="w3-input w3-border"
+						<input id="MEM_BIRTH" name="MEM_BIRTH" class="w3-input w3-border"
 							type="text" maxlength="8" placeholder="예시 : 19990101" />
 					</c:otherwise>
 				</c:choose>

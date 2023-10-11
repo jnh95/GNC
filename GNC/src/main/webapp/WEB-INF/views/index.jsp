@@ -10,8 +10,6 @@ request.setCharacterEncoding("UTF-8");
 String name = (String) session.getAttribute("namekey");
 String id = (String) session.getAttribute("idkey");
 String pw = (String) session.getAttribute("pwkey");
-
-String loginFailed = (String) session.getAttribute("loginFailed");
 %>
 <!DOCTYPE html>
 <html>
@@ -22,17 +20,6 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-	<%
-	if ("loginFailed".equals(loginFailed)) {
-	%>
-	<script>
-		alert("로그인에 실패하셨습니다.");
-	</script>
-	<%
-	session.removeAttribute("loginFailed");
-	}
-	%>
-
 	<!-- 좌상단 GNC 우상단 로그인 -->
 	<div style="margin: 5px;">
 		<a href="<c:url value="/"/>" class="w3-bar-item w3-button w3-xlarge"><b>GNC</b></a>
@@ -179,7 +166,7 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 						<hr>
 						<input type="image"
 							src="<c:url value="/resources/images/${blog.BLO_IMAGE }"/>"
-							style="max-width: 180px; max-height: 180px;">
+							style="max-width: 270px; height: 150px;">
 						<hr>
 						<p>${blog.BLO_CONTENT }</p>
 						<input style="display: none;" value="${blog.BLO_NO }" id="BLO_NO"
@@ -229,7 +216,7 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 						<hr>
 						<input type="image"
 							src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
-							style="max-width: 180px; max-height: 180px;">
+							style="max-width: 270px; height: 150px;">
 						<hr>
 						<p>${question.QUE_CONTENT }</p>
 						<input style="display: none;" value="${question.QUE_NO }"
@@ -279,7 +266,7 @@ String loginFailed = (String) session.getAttribute("loginFailed");
 						<hr>
 						<input type="image"
 							src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
-							style="max-width: 180px; max-height: 180px;">
+							style="max-width: 270px; height: 150px;">
 						<hr>
 						<p>${answer.ANS_CONTENT }</p>
 						<input style="display: none;" value="${answer.ANS_NO }"

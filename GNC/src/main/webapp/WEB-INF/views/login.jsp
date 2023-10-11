@@ -29,6 +29,38 @@ String ansNo = (String) request.getAttribute("ansNo");
 
 String searchLogin = (String) request.getAttribute("searchLogin");
 String search = (String) request.getAttribute("search");
+
+String loginFailed = (String) session.getAttribute("loginFailed");
+String logout = (String) session.getAttribute("logout");
+
+String delete = (String) session.getAttribute("delete");
+
+if ("delete".equals(delete)) {
+%>
+<script>
+	alert("탈퇴하셨습니다.");
+</script>
+<%
+session.removeAttribute("delete");
+}
+
+if ("loginFailed".equals(loginFailed)) {
+%>
+<script>
+	alert("로그인에 실패하셨습니다.");
+</script>
+<%
+session.removeAttribute("loginFailed");
+}
+
+if ("logout".equals(logout)) {
+%>
+<script>
+	alert("로그아웃 되었습니다.");
+</script>
+<%
+session.removeAttribute("logout");
+}
 %>
 <script
 	src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.2"></script>

@@ -19,9 +19,7 @@ public class SearchServiceImpl implements SearchService {
 	@Override
 	public String engToKor(String eng) {
 		// TODO Auto-generated method stub
-		
 		eng = searchRepository.engToKor(eng);
-		
 		return eng;
 	}
 	

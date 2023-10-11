@@ -52,6 +52,8 @@ public class LoginRepositoryImpl implements LoginRepository {
 				session.setAttribute("addkey", login.getMEM_ADD());
 				session.setAttribute("birthkey", login.getMEM_BIRTH());
 				session.setAttribute("lenokey", login.getLEV_NO());
+				
+				session.setAttribute("loginSuccess", "loginSuccess");
 			}				
 		} else {
 			session.setAttribute("loginFailed", "loginFailed");

@@ -101,6 +101,10 @@ public class LogoutController {
 			
 			return "redirect:/search/content";
 		}
+		
+		HttpSession session2 = request.getSession();
+		
+		session2.setAttribute("logout", "logout");
 
 		return "redirect:/";
 	}

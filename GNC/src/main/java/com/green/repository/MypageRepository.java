@@ -13,4 +13,6 @@ public interface MypageRepository {
 	void birthChange(HttpServletRequest request);
 	
 	void addChange(HttpServletRequest request);
+
+	void delete(HttpServletRequest request);
 }

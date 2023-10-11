@@ -47,5 +47,12 @@ public class MypageServiceImpl implements MypageService {
 		mypageRepository.addChange(request);
 
 	}
+	
+	@Override
+	public void delete(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		mypageRepository.delete(request);
+
+	}
 
 }

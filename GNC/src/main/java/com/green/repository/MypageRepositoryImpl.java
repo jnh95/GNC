@@ -36,7 +36,6 @@ public class MypageRepositoryImpl implements MypageRepository {
 			session.removeAttribute("pwkey");
 			session.setAttribute("pwkey", pw);
 		}
-
 	}
 
 	@Override
@@ -77,7 +76,6 @@ public class MypageRepositoryImpl implements MypageRepository {
 			session.removeAttribute("phonekey");
 			session.setAttribute("phonekey", phone4);
 		}
-
 	}
 
 	@Override
@@ -100,7 +98,6 @@ public class MypageRepositoryImpl implements MypageRepository {
 			session.removeAttribute("mailkey");
 			session.setAttribute("mailkey", mail);
 		}
-
 	}
 
 	@Override
@@ -135,7 +132,6 @@ public class MypageRepositoryImpl implements MypageRepository {
 			session.removeAttribute("birthkey");
 			session.setAttribute("birthkey", birth4);
 		}
-
 	}
 
 	@Override
@@ -158,7 +154,20 @@ public class MypageRepositoryImpl implements MypageRepository {
 			session.removeAttribute("addkey");
 			session.setAttribute("addkey", add);
 		}
-
+	}
+	
+	@Override
+	public void delete(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("idkey");
+		
+		session.invalidate();
+		
+		String SQL = "DELETE FROM member WHERE MEM_ID=?";
+			
+		template.update(SQL, id);
 	}
 
 }

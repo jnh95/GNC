@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.green.service.MypageService;
+import com.green.service.ForgetService;
 
 @Controller
 @RequestMapping("/forgetPw")
 public class ForgetPwController {
 	
 	@Autowired
-	private MypageService mypageService;
+	private ForgetService forgetService;
 
 	@GetMapping
 	public String forgetPw(Model model) {
@@ -26,11 +26,7 @@ public class ForgetPwController {
 	@PostMapping
 	public String pwChange(HttpServletRequest request) {
 
-		String id = request.getParameter("MEM_ID");
-		String pw = request.getParameter("MEM_PW");
-		String pw2 = request.getParameter("MEM_PW2");
-
-		mypageService.pwChange(id, pw, pw2, request);
+		forgetService.pwChange(request);
 		
 		return "redirect:/";
 	}
