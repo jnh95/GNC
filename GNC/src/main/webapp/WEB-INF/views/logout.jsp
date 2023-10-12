@@ -92,15 +92,19 @@ if (searchLogin == "searchLogin") {
 	value="searchLogin">
 <input name="content" id="content" style="display: none;"
 	value="${content }">
+<input name="english" id="english" style="display: none;"
+	value="${english }">
 <%
 }
 
-if (search == "in") {
+if (search != null) {
 %>
 <input name="search" id="search" style="display: none;"
 	value="${search }">
 <input name="content" id="content" style="display: none;"
 	value="${content }">
+<input name="english" id="english" style="display: none;"
+	value="${english }">
 <%
 }
 %>

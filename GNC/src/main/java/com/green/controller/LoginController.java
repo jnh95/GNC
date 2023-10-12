@@ -105,9 +105,30 @@ public class LoginController {
 		if("searchLogin".equals(searchLogin)) {
 			
 			String content = (String) request.getParameter("content");
+			String english = (String) request.getParameter("english");
+			
 			model.addAttribute("content", content);
 			
+			if(english != null) {
+				model.addAttribute("english", english);
+				model.addAttribute("content", english);
+			}
+			
+			System.out.println("eng컨트롤러"+english);
+			System.out.println("con컨트롤러"+content);
+			
 			return "redirect:/search";
+		}
+		
+		if("searchEnglish".equals(searchLogin)) {
+			
+			String content = (String) request.getParameter("content");
+			model.addAttribute("content", content);
+			
+			String english = (String) request.getParameter("english");
+			model.addAttribute("english", english);
+			
+			return "redirect:/search/english";
 		}
 		
 		if("in".equals(search)) {
@@ -118,6 +139,17 @@ public class LoginController {
 			return "redirect:/search/in";
 		}
 		
+		if("inEnglish".equals(search)) {
+			
+			String content = (String) request.getParameter("content");
+			model.addAttribute("content", content);
+			
+			String english = (String) request.getParameter("english");
+			model.addAttribute("english", english);
+			
+			return "redirect:/search/in/english";
+		}
+		
 		if("title".equals(search)) {
 			
 			String content = (String) request.getParameter("content");
@@ -126,12 +158,34 @@ public class LoginController {
 			return "redirect:/search/title";
 		}
 		
+		if("titleEnglish".equals(search)) {
+			
+			String content = (String) request.getParameter("content");
+			model.addAttribute("content", content);
+			
+			String english = (String) request.getParameter("english");
+			model.addAttribute("english", english);
+			
+			return "redirect:/search/title/english";
+		}
+		
 		if("content".equals(search)) {
 			
 			String content = (String) request.getParameter("content");
 			model.addAttribute("content", content);
 			
 			return "redirect:/search/content";
+		}
+		
+		if("contentEnglish".equals(search)) {
+			
+			String content = (String) request.getParameter("content");
+			model.addAttribute("content", content);
+			
+			String english = (String) request.getParameter("english");
+			model.addAttribute("english", english);
+			
+			return "redirect:/search/content/english";
 		}
 		
 		return "redirect:/";

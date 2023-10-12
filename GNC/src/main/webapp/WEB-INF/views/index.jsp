@@ -87,22 +87,18 @@ String pw = (String) session.getAttribute("pwkey");
 								<span>(으)로 검색하고 싶으신가요?</span>
 							</c:when>
 
-							<c:when test="${englishKeep eq 'englishKeep' }">
+							<c:when test="${'englishKeep' eq englishKeep }">
 								<input style="width: 600px; height: 50px; margin-top: 1px;"
 									type="search" placeholder="검색어를 입력해 주세요." maxlength="255"
-									name="content" value="${english }">
+									name="content" value="${content }">
 								<button type="submit">검색</button>
 								<br>
 								<div>
-									<a style="text-decoration: none;" href="<c:url value="/search/englishKeep?content=${english }"/>">최근</a>
-									<a style="text-decoration: none;" href="<c:url value="/search/in/english?content=${english }"/>">조회수</a>
-									<a style="text-decoration: none;" href="<c:url value="/search/title/english?content=${english }"/>">제목</a>
-									<a style="text-decoration: none;" href="<c:url value="/search/content/english?content=${english }"/>">제목+내용</a>
+									<a style="text-decoration: none;" href="<c:url value="/search/english?content=${content }"/>">최근</a>
+									<a style="text-decoration: none;" href="<c:url value="/search/in/english?content=${content }"/>">조회수</a>
+									<a style="text-decoration: none;" href="<c:url value="/search/title/english?content=${content }"/>">제목</a>
+									<a style="text-decoration: none;" href="<c:url value="/search/content/english?content=${content }"/>">제목+내용</a>
 								</div>
-								<span> 검색하신 단어를 ${content }(으)로 검색했습니다. </span>
-								<br>
-								<a style="text-decoration: none; color : blue;" href="<c:url value="/search/english?content=${english }"/>">${english }</a>
-								<span>(으)로 검색하고 싶으신가요?</span>
 							</c:when>
 
 							<c:otherwise>
@@ -280,6 +276,19 @@ String pw = (String) session.getAttribute("pwkey");
 			</c:if>
 		</div>
 	</div>
+<%
+String content = (String) request.getAttribute("content");
+String english = (String) request.getAttribute("english");
 
+if(english != null) {
+	request.setAttribute("english", english);
+	request.setAttribute("content", content);
+} else if (content != null) {
+	request.setAttribute("content", content);
+}
+
+System.out.println("eng인덱스"+english);
+System.out.println("con인덱스"+content);
+%>
 </body>
 </html>

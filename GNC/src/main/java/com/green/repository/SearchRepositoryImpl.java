@@ -41,10 +41,17 @@ public class SearchRepositoryImpl implements SearchRepository {
 				sb.append(eng.substring(i, i + 1));
 				continue;
 			}
-			// 초성코드 추출
-			initialCode = getCode(CodeType.chosung, eng.substring(i, i + 1));
-			i++; // 다음문자로
 			
+			// 초성코드 추출
+			if (eng.substring(i, i+1).matches("[rRseEfaqQtTdwWczxvg]")) {
+				initialCode = getCode(CodeType.chosung, eng.substring(i, i + 1));
+				i++; // 다음문자로
+			} else {
+				initialCode = getCode(CodeType.chosung, eng.substring(i, i + 1).toLowerCase());
+				i++; // 다음문자로
+			}
+			
+			// 자음이 없다면
 			if (initialCode == -1) {
 				initialCode = 11*21*28;
 				i--;
@@ -61,6 +68,7 @@ public class SearchRepositoryImpl implements SearchRepository {
 				i++;
 			}
 			
+			//모음이 없다면
 			if (medialCode == -1) {
 				i-=2;
 			}
@@ -131,12 +139,16 @@ public class SearchRepositoryImpl implements SearchRepository {
 			for (int i = 0; i < mid.length; i++) {
 				if (mid[i].equals(c)) {
 					return i * 28;
+				} else if (mid[i].equals(c.toLowerCase())){
+					return i * 28;
 				}
 			}
 			break;
 		case jongsung:
 			for (int i = 0; i < fin.length; i++) {
 				if (fin[i].equals(c)) {
+					return i + 1;
+				} else if (fin[i].equals(c.toLowerCase())){
 					return i + 1;
 				}
 			}

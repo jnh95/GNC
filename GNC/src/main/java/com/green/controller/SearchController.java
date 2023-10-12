@@ -27,21 +27,25 @@ public class SearchController {
 	
 	@GetMapping
 	public String search(Model model, @RequestParam("content") String content) {
+		
+		String content2 = content.replace("'", "");
+		String content3 = "";
 
-		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]+[0-9\\s]*)*")) {
+		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]*[0-9\\s\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]*[a-zA-Z\\\\s]*)*")) {
 			model.addAttribute("english", content);
-			content = searchService.engToKor(content);
+			content2 = searchService.engToKor(content2);
+			content3 = searchService.engToKor(content);
 		}
 		
-		List<Member> bloglist = searchService.blog(content);
+		List<Member> bloglist = searchService.blog(content2);
 
 		model.addAttribute("blogList", bloglist);
 		
-		List<Member> questionlist = searchService.question(content);
+		List<Member> questionlist = searchService.question(content2);
 
 		model.addAttribute("questionList", questionlist);
 		
-		List<Member> answerlist = searchService.answer(content);
+		List<Member> answerlist = searchService.answer(content2);
 
 		model.addAttribute("answerList", answerlist);
 		
@@ -49,7 +53,11 @@ public class SearchController {
 		
 		model.addAttribute("searchLogin", "searchLogin");
 		
-		model.addAttribute("content", content);
+		if("".equals(content3)) {
+			model.addAttribute("content", content);
+		} else {
+			model.addAttribute("content", content3);
+		}
 
 		return "index";
 	}
@@ -57,47 +65,25 @@ public class SearchController {
 	@GetMapping("/english")
 	public String searchEnglish(Model model, @RequestParam("content") String content) {
 		
-		List<Member> bloglist = searchService.blog(content);
-
-		model.addAttribute("blogList", bloglist);
-		
-		List<Member> questionlist = searchService.question(content);
-
-		model.addAttribute("questionList", questionlist);
-		
-		List<Member> answerlist = searchService.answer(content);
-
-		model.addAttribute("answerList", answerlist);
-		
-		model.addAttribute("indexSearch", "indexSearch");
-		
-		model.addAttribute("searchLogin", "searchLogin");
-		
-		model.addAttribute("content", content);
-
-		return "index";
-	}
-	
-	@GetMapping("/english/keep")
-	public String searchEnglishKeep(Model model, @RequestParam("content") String content) {
+		String content2 = content.replace("'", "");
 		
 		model.addAttribute("englishKeep", "englishKeep");
 		
-		List<Member> bloglist = searchService.blog(content);
+		List<Member> bloglist = searchService.blog(content2);
 
 		model.addAttribute("blogList", bloglist);
 		
-		List<Member> questionlist = searchService.question(content);
+		List<Member> questionlist = searchService.question(content2);
 
 		model.addAttribute("questionList", questionlist);
 		
-		List<Member> answerlist = searchService.answer(content);
+		List<Member> answerlist = searchService.answer(content2);
 
 		model.addAttribute("answerList", answerlist);
 		
 		model.addAttribute("indexSearch", "indexSearch");
 		
-		model.addAttribute("searchLogin", "searchLogin");
+		model.addAttribute("searchLogin", "searchEnglish");
 		
 		model.addAttribute("content", content);
 
@@ -107,20 +93,24 @@ public class SearchController {
 	@GetMapping("/in")
 	public String searchIn(Model model, @RequestParam("content") String content) {
 		
-		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]+[0-9\\s]*)*")) {
+		String content2 = content.replace("'", "");
+		String content3 = "";
+		
+		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]*[0-9\\s\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]*[a-zA-Z\\\\s]*)*")) {
 			model.addAttribute("english", content);
-			content = searchService.engToKor(content);
+			content2 = searchService.engToKor(content2);
+			content3 = searchService.engToKor(content);
 		}
 		
-		List<Member> bloglist = searchService.blog(content);
+		List<Member> bloglist = searchService.blog(content2);
 
 		model.addAttribute("blogList", bloglist);
 		
-		List<Member> questionlist = searchService.question(content);
+		List<Member> questionlist = searchService.question(content2);
 
 		model.addAttribute("questionList", questionlist);
 		
-		List<Member> answerlist = searchService.answer(content);
+		List<Member> answerlist = searchService.answer(content2);
 
 		model.addAttribute("answerList", answerlist);
 
@@ -128,7 +118,11 @@ public class SearchController {
 		
 		model.addAttribute("indexSearch", "indexSearch");
 		
-		model.addAttribute("content", content);
+		if("".equals(content3)) {
+			model.addAttribute("content", content);
+		} else {
+			model.addAttribute("content", content3);
+		}
 
 		return "index";
 	}
@@ -136,21 +130,23 @@ public class SearchController {
 	@GetMapping("/in/english")
 	public String searchInEnglish(Model model, @RequestParam("content") String content) {
 		
+		String content2 = content.replace("'", "");
+		
 		model.addAttribute("englishKeep", "englishKeep");
 		
-		List<Member> bloglist = searchService.blog(content);
+		List<Member> bloglist = searchService.blog(content2);
 
 		model.addAttribute("blogList", bloglist);
 		
-		List<Member> questionlist = searchService.question(content);
+		List<Member> questionlist = searchService.question(content2);
 
 		model.addAttribute("questionList", questionlist);
 		
-		List<Member> answerlist = searchService.answer(content);
+		List<Member> answerlist = searchService.answer(content2);
 
 		model.addAttribute("answerList", answerlist);
 
-		model.addAttribute("search", "in");
+		model.addAttribute("search", "inEnglish");
 		
 		model.addAttribute("indexSearch", "indexSearch");
 		
@@ -162,20 +158,24 @@ public class SearchController {
 	@GetMapping("/title")
 	public String searchTitle(Model model, @RequestParam("content") String content) {
 		
-		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]+[0-9\\s]*)*")) {
+		String content2 = content.replace("'", "");
+		String content3 = "";
+		
+		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]*[0-9\\s\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]*[a-zA-Z\\\\s]*)*")) {
 			model.addAttribute("english", content);
-			content = searchService.engToKor(content);
+			content2 = searchService.engToKor(content2);
+			content3 = searchService.engToKor(content);
 		}
 		
-		List<Member> bloglist = searchService.blogTitle(content);
+		List<Member> bloglist = searchService.blogTitle(content2);
 
 		model.addAttribute("blogList", bloglist);
 		
-		List<Member> questionlist = searchService.questionTitle(content);
+		List<Member> questionlist = searchService.questionTitle(content2);
 
 		model.addAttribute("questionList", questionlist);
 		
-		List<Member> answerlist = searchService.answerTitle(content);
+		List<Member> answerlist = searchService.answerTitle(content2);
 
 		model.addAttribute("answerList", answerlist);
 		
@@ -183,7 +183,11 @@ public class SearchController {
 		
 		model.addAttribute("indexSearch", "indexSearch");
 		
-		model.addAttribute("content", content);
+		if("".equals(content3)) {
+			model.addAttribute("content", content);
+		} else {
+			model.addAttribute("content", content3);
+		}
 
 		return "index";
 	}
@@ -191,21 +195,23 @@ public class SearchController {
 	@GetMapping("/title/english")
 	public String searchTitleEnglish(Model model, @RequestParam("content") String content) {
 		
+		String content2 = content.replace("'", "");
+		
 		model.addAttribute("englishKeep", "englishKeep");
 		
-		List<Member> bloglist = searchService.blogTitle(content);
+		List<Member> bloglist = searchService.blogTitle(content2);
 
 		model.addAttribute("blogList", bloglist);
 		
-		List<Member> questionlist = searchService.questionTitle(content);
+		List<Member> questionlist = searchService.questionTitle(content2);
 
 		model.addAttribute("questionList", questionlist);
 		
-		List<Member> answerlist = searchService.answerTitle(content);
+		List<Member> answerlist = searchService.answerTitle(content2);
 
 		model.addAttribute("answerList", answerlist);
 		
-		model.addAttribute("search", "title");
+		model.addAttribute("search", "titleEnglish");
 		
 		model.addAttribute("indexSearch", "indexSearch");
 		
@@ -217,20 +223,24 @@ public class SearchController {
 	@GetMapping("/content")
 	public String searchContent(Model model, @RequestParam("content") String content) {
 		
-		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]+[0-9\\s]*)*")) {
+		String content2 = content.replace("'", "");
+		String content3 = "";
+		
+		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]*[0-9\\s\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]*[a-zA-Z\\\\s]*)*")) {
 			model.addAttribute("english", content);
-			content = searchService.engToKor(content);
+			content2 = searchService.engToKor(content2);
+			content3 = searchService.engToKor(content);
 		}
 		
-		List<Member> bloglist = searchService.blogContent(content);
+		List<Member> bloglist = searchService.blogContent(content2);
 
 		model.addAttribute("blogList", bloglist);
 		
-		List<Member> questionlist = searchService.questionContent(content);
+		List<Member> questionlist = searchService.questionContent(content2);
 
 		model.addAttribute("questionList", questionlist);
 		
-		List<Member> answerlist = searchService.answerContent(content);
+		List<Member> answerlist = searchService.answerContent(content2);
 
 		model.addAttribute("answerList", answerlist);
 		
@@ -238,7 +248,11 @@ public class SearchController {
 		
 		model.addAttribute("indexSearch", "indexSearch");
 		
-		model.addAttribute("content", content);
+		if("".equals(content3)) {
+			model.addAttribute("content", content);
+		} else {
+			model.addAttribute("content", content3);
+		}
 
 		return "index";
 	}
@@ -246,21 +260,23 @@ public class SearchController {
 	@GetMapping("/content/english")
 	public String searchContentEnglish(Model model, @RequestParam("content") String content) {
 		
+		String content2 = content.replace("'", "");
+		
 		model.addAttribute("englishKeep", "englishKeep");
 		
-		List<Member> bloglist = searchService.blogContent(content);
+		List<Member> bloglist = searchService.blogContent(content2);
 
 		model.addAttribute("blogList", bloglist);
 		
-		List<Member> questionlist = searchService.questionContent(content);
+		List<Member> questionlist = searchService.questionContent(content2);
 
 		model.addAttribute("questionList", questionlist);
 		
-		List<Member> answerlist = searchService.answerContent(content);
+		List<Member> answerlist = searchService.answerContent(content2);
 
 		model.addAttribute("answerList", answerlist);
 		
-		model.addAttribute("search", "content");
+		model.addAttribute("search", "contentEnglish");
 		
 		model.addAttribute("indexSearch", "indexSearch");
 		

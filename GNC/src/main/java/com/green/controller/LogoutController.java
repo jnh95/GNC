@@ -37,6 +37,10 @@ public class LogoutController {
 		String searchLogin = (String) request.getParameter("searchLogin");
 		String search = (String) request.getParameter("search");
 		
+		HttpSession session2 = request.getSession();
+		
+		session2.setAttribute("logout", "logout");
+		
 		if("blog".equals(blog)) {
 			return "redirect:/blog";
 		}
@@ -78,12 +82,34 @@ public class LogoutController {
 			return "redirect:/search";
 		}
 		
+		if("searchEnglish".equals(searchLogin)) {
+			
+			String content = (String) request.getParameter("content");
+			model.addAttribute("content", content);
+			
+			String english = (String) request.getParameter("english");
+			model.addAttribute("english", english);
+			
+			return "redirect:/search/english";
+		}
+		
 		if("in".equals(search)) {
 			
 			String content = (String) request.getParameter("content");
 			model.addAttribute("content", content);
 			
 			return "redirect:/search/in";
+		}
+		
+		if("inEnglish".equals(search)) {
+			
+			String content = (String) request.getParameter("content");
+			model.addAttribute("content", content);
+			
+			String english = (String) request.getParameter("english");
+			model.addAttribute("english", english);
+			
+			return "redirect:/search/in/english";
 		}
 		
 		if("title".equals(search)) {
@@ -94,6 +120,17 @@ public class LogoutController {
 			return "redirect:/search/title";
 		}
 		
+		if("titleEnglish".equals(search)) {
+			
+			String content = (String) request.getParameter("content");
+			model.addAttribute("content", content);
+			
+			String english = (String) request.getParameter("english");
+			model.addAttribute("english", english);
+			
+			return "redirect:/search/title/english";
+		}
+		
 		if("content".equals(search)) {
 			
 			String content = (String) request.getParameter("content");
@@ -102,9 +139,16 @@ public class LogoutController {
 			return "redirect:/search/content";
 		}
 		
-		HttpSession session2 = request.getSession();
-		
-		session2.setAttribute("logout", "logout");
+		if("contentEnglish".equals(search)) {
+			
+			String content = (String) request.getParameter("content");
+			model.addAttribute("content", content);
+			
+			String english = (String) request.getParameter("english");
+			model.addAttribute("english", english);
+			
+			return "redirect:/search/content/english";
+		}
 
 		return "redirect:/";
 	}
