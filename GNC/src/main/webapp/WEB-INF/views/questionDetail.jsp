@@ -14,7 +14,7 @@ String questionDetail = (String) request.getAttribute("questionDetail");
 %>
 <!DOCTYPE html>
 <html>
-<title>블로그 상세</title>
+<title>질문 상세</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>

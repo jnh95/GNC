@@ -31,7 +31,7 @@ public class LogoutController {
 		String questionDetail = request.getParameter("questionDetail");
 		String queNo = request.getParameter("queNo");
 		String answer = request.getParameter("answer");
-		String answerDetail = request.getParameter("blogDeanswerDetailtail");
+		String answerDetail = request.getParameter("answerDetail");
 		String ansNo = request.getParameter("ansNo");
 		
 		String searchLogin = (String) request.getParameter("searchLogin");
@@ -70,6 +70,7 @@ public class LogoutController {
 		if("answerDetail".equals(answerDetail)) {
 			
 			model.addAttribute("ANS_NO", ansNo);
+			model.addAttribute("QUE_NO", queNo);
 			
 			return "redirect:/answer/answerDetail";
 		}
@@ -77,7 +78,14 @@ public class LogoutController {
 		if("searchLogin".equals(searchLogin)) {
 			
 			String content = (String) request.getParameter("content");
+			String english = (String) request.getParameter("english");
+			
 			model.addAttribute("content", content);
+			
+			if(english != null) {
+				model.addAttribute("english", english);
+				model.addAttribute("content", english);
+			}
 			
 			return "redirect:/search";
 		}
@@ -85,10 +93,14 @@ public class LogoutController {
 		if("searchEnglish".equals(searchLogin)) {
 			
 			String content = (String) request.getParameter("content");
+			String english = (String) request.getParameter("english");
+			
 			model.addAttribute("content", content);
 			
-			String english = (String) request.getParameter("english");
-			model.addAttribute("english", english);
+			if(english != null) {
+				model.addAttribute("english", english);
+				model.addAttribute("content", english);
+			}
 			
 			return "redirect:/search/english";
 		}
@@ -96,7 +108,14 @@ public class LogoutController {
 		if("in".equals(search)) {
 			
 			String content = (String) request.getParameter("content");
+			String english = (String) request.getParameter("english");
+			
 			model.addAttribute("content", content);
+			
+			if(english != null) {
+				model.addAttribute("english", english);
+				model.addAttribute("content", english);
+			}
 			
 			return "redirect:/search/in";
 		}
@@ -104,10 +123,14 @@ public class LogoutController {
 		if("inEnglish".equals(search)) {
 			
 			String content = (String) request.getParameter("content");
+			String english = (String) request.getParameter("english");
+			
 			model.addAttribute("content", content);
 			
-			String english = (String) request.getParameter("english");
-			model.addAttribute("english", english);
+			if(english != null) {
+				model.addAttribute("english", english);
+				model.addAttribute("content", english);
+			}
 			
 			return "redirect:/search/in/english";
 		}
@@ -115,7 +138,14 @@ public class LogoutController {
 		if("title".equals(search)) {
 			
 			String content = (String) request.getParameter("content");
+			String english = (String) request.getParameter("english");
+			
 			model.addAttribute("content", content);
+			
+			if(english != null) {
+				model.addAttribute("english", english);
+				model.addAttribute("content", english);
+			}
 			
 			return "redirect:/search/title";
 		}
@@ -123,10 +153,14 @@ public class LogoutController {
 		if("titleEnglish".equals(search)) {
 			
 			String content = (String) request.getParameter("content");
+			String english = (String) request.getParameter("english");
+			
 			model.addAttribute("content", content);
 			
-			String english = (String) request.getParameter("english");
-			model.addAttribute("english", english);
+			if(english != null) {
+				model.addAttribute("english", english);
+				model.addAttribute("content", english);
+			}
 			
 			return "redirect:/search/title/english";
 		}
@@ -134,7 +168,14 @@ public class LogoutController {
 		if("content".equals(search)) {
 			
 			String content = (String) request.getParameter("content");
+			String english = (String) request.getParameter("english");
+			
 			model.addAttribute("content", content);
+			
+			if(english != null) {
+				model.addAttribute("english", english);
+				model.addAttribute("content", english);
+			}
 			
 			return "redirect:/search/content";
 		}
@@ -142,10 +183,14 @@ public class LogoutController {
 		if("contentEnglish".equals(search)) {
 			
 			String content = (String) request.getParameter("content");
+			String english = (String) request.getParameter("english");
+			
 			model.addAttribute("content", content);
 			
-			String english = (String) request.getParameter("english");
-			model.addAttribute("english", english);
+			if(english != null) {
+				model.addAttribute("english", english);
+				model.addAttribute("content", english);
+			}
 			
 			return "redirect:/search/content/english";
 		}

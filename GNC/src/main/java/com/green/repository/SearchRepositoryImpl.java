@@ -211,8 +211,7 @@ public class SearchRepositoryImpl implements SearchRepository {
 
 		List<Member> blogList = new ArrayList<Member>();
 
-		String SQL = "select * from blog a join member b ON a.MEM_NO=b.MEM_NO WHERE BLO_CONTENT LIKE '%" + bloContent
-				+ "%' ORDER BY BLO_NO DESC";
+		String SQL = "select * from blog a join member b ON a.MEM_NO=b.MEM_NO WHERE BLO_CONTENT LIKE '%" + bloContent + "%' ORDER BY BLO_NO DESC";
 
 		blogList = template.query(SQL, new BlogRowMapper());
 

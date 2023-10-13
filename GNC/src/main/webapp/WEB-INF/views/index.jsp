@@ -70,7 +70,7 @@ String pw = (String) session.getAttribute("pwkey");
 					<c:when test="${indexSearch eq 'indexSearch' }">
 						<c:choose>
 							<c:when test="${english ne null }">
-								<input style="width: 600px; height: 50px; margin-top: 1px;"
+								<input style="width: 600px; height: 50px; margin-top: 5px;"
 									type="search" placeholder="검색어를 입력해 주세요." maxlength="255"
 									name="content" value="${english }">
 								<button type="submit">검색</button>
@@ -286,9 +286,6 @@ if(english != null) {
 } else if (content != null) {
 	request.setAttribute("content", content);
 }
-
-System.out.println("eng인덱스"+english);
-System.out.println("con인덱스"+content);
 %>
 </body>
 </html>

@@ -17,51 +17,33 @@ if (cookies != null) {
 	}
 }
 
-String blog = (String) request.getAttribute("blog");
-String blogDetail = (String) request.getAttribute("blogDetail");
-String bloNo = (String) request.getAttribute("bloNo");
-String question = (String) request.getAttribute("question");
-String questionDetail = (String) request.getAttribute("questionDetail");
-String queNo = (String) request.getAttribute("queNo");
-String answer = (String) request.getAttribute("answer");
-String answerDetail = (String) request.getAttribute("answerDetail");
-String ansNo = (String) request.getAttribute("ansNo");
-
-String searchLogin = (String) request.getAttribute("searchLogin");
-String search = (String) request.getAttribute("search");
-
 String loginFailed = (String) session.getAttribute("loginFailed");
 String logout = (String) session.getAttribute("logout");
-
-String delete = (String) session.getAttribute("delete");
-
-if ("delete".equals(delete)) {
 %>
+<!-- 회원 탈퇴 -->
+<c:if test="${delete eq 'delete' }">
 <script>
 	alert("탈퇴하셨습니다.");
 </script>
-<%
-session.removeAttribute("delete");
-}
+<c:remove var="delete"/>
+</c:if>
 
-if ("loginFailed".equals(loginFailed)) {
-%>
+<!-- 로그인 실패 -->
+<c:if test="${loginFailed eq 'loginFailed' }">
 <script>
 	alert("로그인에 실패하셨습니다.");
 </script>
-<%
-session.removeAttribute("loginFailed");
-}
+<c:remove var="loginFailed"/>
+</c:if>
 
-if ("logout".equals(logout)) {
-%>
+<!-- 로그아웃 -->
+<c:if test="${logout eq 'logout' }">
 <script>
 	alert("로그아웃 되었습니다.");
 </script>
-<%
-session.removeAttribute("logout");
-}
-%>
+<c:remove var="logout"/>
+</c:if>
+
 <script
 	src="${pageContext.request.contextPath}/resources/js/mypage.js?ver=0.2"></script>
 <button onclick="document.getElementById('id01').style.display='block'"
@@ -73,73 +55,65 @@ session.removeAttribute("logout");
 
 		<form class="w3-container" action="<c:url value="/login"/>"
 			method="post">
-			<%
-			if (blog == "blog") {
-			%>
-			<input name="blog" id="blog" style="display: none;" value="blog">
-			<%
-			}
+			<!-- 여기부터 페이지 위치 저장 후 로그인시 해당 페이지로 돌아가는 정보 저장 -->
+<!-- 			블로그 -->
+			<c:if test="${blog eq 'blog' }">
+				<input name="blog" id="blog" style="display: none;" value="blog">
+			</c:if>
 
-			if (blogDetail == "blogDetail") {
-			%>
-			<input name="blogDetail" id="blogDetail" style="display: none;"
-				value="blogDetail"> <input style="display: none;"
-				value="<%=bloNo%>" name="bloNo">
-			<%
-			}
+<!-- 			블로그 디테일 -->
+			<c:if test="${blogDetail eq 'blogDetail' }">
+				<input name="blogDetail" id="blogDetail" style="display: none;"
+					value="blogDetail">
+				<input style="display: none;" value="${bloNo}" name="bloNo">
+			</c:if>
 
-			if (question == "question") {
-			%>
-			<input name="question" id="question" style="display: none;"
-				value="question">
-			<%
-			}
-			
-			if (questionDetail == "questionDetail") {
-			%>
-			<input name="questionDetail" id="questionDetail"
-				style="display: none;" value="questionDetail"> <input
-				style="display: none;" value="<%=queNo%>" name="queNo">
-			<%
-			}
-			
-			if (answer == "answer") {
-			%>
-			<input name="answer" id="answer" style="display: none;"
-				value="answer">
-			<%
-			}
-			
-			if (answerDetail == "answerDetail") {
-			%>
-			<input name="answerDetail" id="answerDetail" style="display: none;"
-				value="answerDetail"> <input style="display: none;"
-				value="<%=ansNo%>" name="ansNo">
-			<%
-			}
-			
-			if (searchLogin == "searchLogin") {
-			%>
-			<input name="searchLogin" id="searchLogin" style="display: none;"
-				value="searchLogin">
-			<input name="content" id="content" style="display: none;"
-				value="${content }">
-			<input name="english" id="english" style="display: none;"
-				value="${english }">
-			<%
-			}
-			
-			if (search != null) {
-			%>
-			<input name="search" id="search" style="display: none;"
-				value="${search }">
-			<input name="content" id="content" style="display: none;"
-				value="${content }">
-			<input name="english" id="english" style="display: none;"
-				value="${english }">
-			<%
-			}
-			%>
+<!-- 			질문 -->
+			<c:if test="${question eq 'question' }">
+				<input name="question" id="question" style="display: none;"
+					value="question">
+			</c:if>
+
+<!-- 			질문 디테일 -->
+			<c:if test="${questionDetail eq 'questionDetail' }">
+				<input name="questionDetail" id="questionDetail"
+					style="display: none;" value="questionDetail">
+				<input style="display: none;" value="${queNo}" name="queNo">
+			</c:if>
+
+<!-- 			답변 -->
+			<c:if test="${answer eq 'answer' }">
+				<input name="answer" id="answer" style="display: none;"
+					value="answer">
+			</c:if>
+
+<!-- 			답변 디테일 -->
+			<c:if test="${answerDetail eq 'answerDetail' }">
+				<input name="answerDetail" id="answerDetail" style="display: none;"
+					value="answerDetail">
+				<input style="display: none;" value="${ansNo}" name="ansNo">
+				<input style="display: none;" value="${queNo}" name="queNo">
+			</c:if>
+
+<!-- 			검색 -->
+			<c:if test="${searchLogin eq 'searchLogin' }">
+				<input name="searchLogin" id="searchLogin" style="display: none;"
+					value="searchLogin">
+				<input name="content" id="content" style="display: none;"
+					value="${content }">
+				<input name="english" id="english" style="display: none;"
+					value="${english }">
+			</c:if>
+
+<!-- 			검색(제목, 제목+내용, 조회수) -->
+			<c:if test="${search ne null }">
+				<input name="search" id="search" style="display: none;"
+					value="${search }">
+				<input name="content" id="content" style="display: none;"
+					value="${content }">
+				<input name="english" id="english" style="display: none;"
+					value="${english }">
+			</c:if>
 			<div class="w3-section">
 				<label><b>ID</b></label>
 				<%
