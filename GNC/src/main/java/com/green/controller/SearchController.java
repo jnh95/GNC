@@ -28,10 +28,11 @@ public class SearchController {
 	@GetMapping
 	public String search(Model model, @RequestParam("content") String content) {
 		
-		String content2 = content.replace("'", "");
+		content = content.replace("\"", "'");
+		String content2 = content.replace("\'", "");
 		String content3 = "";
 
-		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]*[0-9\\s\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]*[a-zA-Z\\\\s]*)*")) {
+		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]+[0-9\\s\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]*[a-zA-Z\\\\s]*)*")) {
 			model.addAttribute("english", content);
 			content2 = searchService.engToKor(content2);
 			content3 = searchService.engToKor(content);
@@ -65,6 +66,7 @@ public class SearchController {
 	@GetMapping("/english")
 	public String searchEnglish(Model model, @RequestParam("content") String content) {
 		
+		content = content.replace("\"", "'");
 		String content2 = content.replace("'", "");
 		
 		model.addAttribute("englishKeep", "englishKeep");
@@ -93,10 +95,11 @@ public class SearchController {
 	@GetMapping("/in")
 	public String searchIn(Model model, @RequestParam("content") String content) {
 		
+		content = content.replace("\"", "'");
 		String content2 = content.replace("'", "");
 		String content3 = "";
 		
-		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]*[0-9\\s\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]*[a-zA-Z\\\\s]*)*")) {
+		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]+[0-9\\s\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]*[a-zA-Z\\\\s]*)*")) {
 			model.addAttribute("english", content);
 			content2 = searchService.engToKor(content2);
 			content3 = searchService.engToKor(content);
@@ -130,6 +133,7 @@ public class SearchController {
 	@GetMapping("/in/english")
 	public String searchInEnglish(Model model, @RequestParam("content") String content) {
 		
+		content = content.replace("\"", "'");
 		String content2 = content.replace("'", "");
 		
 		model.addAttribute("englishKeep", "englishKeep");
@@ -158,10 +162,11 @@ public class SearchController {
 	@GetMapping("/title")
 	public String searchTitle(Model model, @RequestParam("content") String content) {
 		
+		content = content.replace("\"", "'");
 		String content2 = content.replace("'", "");
 		String content3 = "";
 		
-		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]*[0-9\\s\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]*[a-zA-Z\\\\s]*)*")) {
+		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]+[0-9\\s\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]*[a-zA-Z\\\\s]*)*")) {
 			model.addAttribute("english", content);
 			content2 = searchService.engToKor(content2);
 			content3 = searchService.engToKor(content);
@@ -195,6 +200,7 @@ public class SearchController {
 	@GetMapping("/title/english")
 	public String searchTitleEnglish(Model model, @RequestParam("content") String content) {
 		
+		content = content.replace("\"", "'");
 		String content2 = content.replace("'", "");
 		
 		model.addAttribute("englishKeep", "englishKeep");
@@ -223,10 +229,11 @@ public class SearchController {
 	@GetMapping("/content")
 	public String searchContent(Model model, @RequestParam("content") String content) {
 		
+		content = content.replace("\"", "'");
 		String content2 = content.replace("'", "");
 		String content3 = "";
 		
-		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]*[0-9\\s\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]*[a-zA-Z\\\\s]*)*")) {
+		if (content.isBlank() == false && content.matches("^([a-zA-Z\\s]+[0-9\\s\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]*[a-zA-Z\\\\s]*)*")) {
 			model.addAttribute("english", content);
 			content2 = searchService.engToKor(content2);
 			content3 = searchService.engToKor(content);
@@ -260,6 +267,7 @@ public class SearchController {
 	@GetMapping("/content/english")
 	public String searchContentEnglish(Model model, @RequestParam("content") String content) {
 		
+		content = content.replace("\"", "'");
 		String content2 = content.replace("'", "");
 		
 		model.addAttribute("englishKeep", "englishKeep");

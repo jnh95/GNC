@@ -76,6 +76,10 @@ public class SearchRepositoryImpl implements SearchRepository {
 			if (medialCode != -1) {
 				// 종성코드 추출
 				tempFinalCode = getDoubleFinal(i, eng); // 두 자로 이루어진 종성코드 추출
+				
+				if (tempFinalCode == -1) {
+					tempFinalCode = getDoubleFinal(i, eng.toLowerCase());
+				}
 
 				if (tempFinalCode != -1) {
 					finalCode = tempFinalCode; // 그 다음의 중성 문자에 대한 코드를 추출한다.
@@ -83,6 +87,10 @@ public class SearchRepositoryImpl implements SearchRepository {
 
 					if (tempMedialCode != -1) { // 코드 값이 있을 경우
 						finalCode = getSingleFinal(i, eng); // 종성 코드 값을 저장한다.
+						
+						if(finalCode == -1) {
+							finalCode = getSingleFinal(i, eng.toLowerCase());
+						}
 					} else {
 						i++;
 					}
@@ -94,6 +102,11 @@ public class SearchRepositoryImpl implements SearchRepository {
 						i--;
 					} else {
 						finalCode = getSingleFinal(i, eng); // 종성 문자 추출
+						
+						if (finalCode == -1) {
+							finalCode = getSingleFinal(i, eng.toLowerCase());
+						}
+						
 						if (finalCode == -1) {
 							finalCode = 0;
 							i--;
@@ -147,8 +160,6 @@ public class SearchRepositoryImpl implements SearchRepository {
 		case jongsung:
 			for (int i = 0; i < fin.length; i++) {
 				if (fin[i].equals(c)) {
-					return i + 1;
-				} else if (fin[i].equals(c.toLowerCase())){
 					return i + 1;
 				}
 			}

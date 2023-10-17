@@ -70,7 +70,7 @@ String pw = (String) session.getAttribute("pwkey");
 					<c:when test="${indexSearch eq 'indexSearch' }">
 						<c:choose>
 							<c:when test="${english ne null }">
-								<input style="width: 600px; height: 50px; margin-top: 5px;"
+								<input style="width: 600px; height: 50px; margin-top: 10px;"
 									type="search" placeholder="검색어를 입력해 주세요." maxlength="255"
 									name="content" value="${english }">
 								<button type="submit">검색</button>
@@ -88,7 +88,7 @@ String pw = (String) session.getAttribute("pwkey");
 							</c:when>
 
 							<c:when test="${'englishKeep' eq englishKeep }">
-								<input style="width: 600px; height: 50px; margin-top: 1px;"
+								<input style="width: 600px; height: 50px; margin-top: 10px;"
 									type="search" placeholder="검색어를 입력해 주세요." maxlength="255"
 									name="content" value="${content }">
 								<button type="submit">검색</button>
