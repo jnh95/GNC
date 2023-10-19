@@ -4,13 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%
-request.setCharacterEncoding("UTF-8");
-
-String name = (String) session.getAttribute("namekey");
-String id = (String) session.getAttribute("idkey");
-String pw = (String) session.getAttribute("pwkey");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,40 +16,24 @@ String pw = (String) session.getAttribute("pwkey");
 	<!-- 좌상단 GNC 우상단 로그인 -->
 	<div style="margin: 5px;">
 		<a href="<c:url value="/"/>" class="w3-bar-item w3-button w3-xlarge"><b>GNC</b></a>
-		<%
-		if (id == null || pw == null) {
-		%>
-		<!-- 로그인 버튼  -->
-		<div class="w3-right" style="margin-top: 2px;">
-			<jsp:include page="login.jsp" />
-		</div>
 
-		<%} else {%>
-		<!-- 로그인이 되었을 때  -->
-		<form action="<c:url value="/logout"/>" method="post" class="w3-right"
-			style="margin-top: 8px;">
-			<jsp:include page="logout.jsp" />
-		</form>
+		<c:choose>
+			<c:when test="${idkey eq null || pwkey eq null }">
+				<!-- 로그인 버튼  -->
+				<div class="w3-right" style="margin-top: 2px;">
+					<jsp:include page="login.jsp" />
+				</div>
+			</c:when>
+			<c:otherwise>
+				<!-- 로그인이 되었을 때  -->
+				<form action="<c:url value="/logout"/>" method="post"
+					class="w3-right" style="margin-top: 8px;">
+					<jsp:include page="logout.jsp" />
+				</form>
+			</c:otherwise>
+		</c:choose>
 	</div>
-	<%
-	}
-	%>
-	<form name="newForm" style="display: none;"
-		action="<c:url value="/search"/>">
-		<input name="content" style="display: none;">
-	</form>
-	<form name="inForm" style="display: none;"
-		action="<c:url value="/search/in"/>">
-		<input name="content" style="display: none;">
-	</form>
-	<form name="titleForm" style="display: none;"
-		action="<c:url value="/search/title"/>">
-		<input name="content" style="display: none;">
-	</form>
-	<form name="contentForm" style="display: none;"
-		action="<c:url value="/search/content"/>">
-		<input name="content" style="display: none;">
-	</form>
+	
 	<!-- 검색창 -->
 	<header class="w3-display-container w3-content w3-wide"
 		style="max-width: 1500px; padding: 100px 0px 100px 150px; margin: 50px 0px 0 200px;"
@@ -76,14 +53,19 @@ String pw = (String) session.getAttribute("pwkey");
 								<button type="submit">검색</button>
 								<br>
 								<div>
-									<a style="text-decoration: none;" href="<c:url value="/search?content=${english }"/>">최근</a>
-									<a style="text-decoration: none;" href="<c:url value="/search/in?content=${english }"/>">조회수</a>
-									<a style="text-decoration: none;" href="<c:url value="/search/title?content=${english }"/>">제목</a>
-									<a style="text-decoration: none;" href="<c:url value="/search/content?content=${english }"/>">제목+내용</a>
+									<a style="text-decoration: none;"
+										href="<c:url value="/search?content=${english }"/>">최근</a> <a
+										style="text-decoration: none;"
+										href="<c:url value="/search/in?content=${english }"/>">조회수</a>
+									<a style="text-decoration: none;"
+										href="<c:url value="/search/title?content=${english }"/>">제목</a>
+									<a style="text-decoration: none;"
+										href="<c:url value="/search/content?content=${english }"/>">제목+내용</a>
 								</div>
 								<span> 검색하신 단어를 ${content }(으)로 검색했습니다. </span>
 								<br>
-								<a style="text-decoration: none; color : blue;" href="<c:url value="/search/english?content=${english }"/>">${english }</a>
+								<a style="text-decoration: none; color: blue;"
+									href="<c:url value="/search/english?content=${english }"/>">${english }</a>
 								<span>(으)로 검색하고 싶으신가요?</span>
 							</c:when>
 
@@ -94,10 +76,14 @@ String pw = (String) session.getAttribute("pwkey");
 								<button type="submit">검색</button>
 								<br>
 								<div>
-									<a style="text-decoration: none;" href="<c:url value="/search/english?content=${content }"/>">최근</a>
-									<a style="text-decoration: none;" href="<c:url value="/search/in/english?content=${content }"/>">조회수</a>
-									<a style="text-decoration: none;" href="<c:url value="/search/title/english?content=${content }"/>">제목</a>
-									<a style="text-decoration: none;" href="<c:url value="/search/content/english?content=${content }"/>">제목+내용</a>
+									<a style="text-decoration: none;"
+										href="<c:url value="/search/english?content=${content }"/>">최근</a>
+									<a style="text-decoration: none;"
+										href="<c:url value="/search/in/english?content=${content }"/>">조회수</a>
+									<a style="text-decoration: none;"
+										href="<c:url value="/search/title/english?content=${content }"/>">제목</a>
+									<a style="text-decoration: none;"
+										href="<c:url value="/search/content/english?content=${content }"/>">제목+내용</a>
 								</div>
 							</c:when>
 
@@ -276,16 +262,5 @@ String pw = (String) session.getAttribute("pwkey");
 			</c:if>
 		</div>
 	</div>
-<%
-String content = (String) request.getAttribute("content");
-String english = (String) request.getAttribute("english");
-
-if(english != null) {
-	request.setAttribute("english", english);
-	request.setAttribute("content", content);
-} else if (content != null) {
-	request.setAttribute("content", content);
-}
-%>
 </body>
 </html>

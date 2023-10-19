@@ -18,4 +18,5 @@ public interface QuestionService {
 	
 	void questionIn(String queNo);
 	
+	void questionDelete(String queNo);
 }

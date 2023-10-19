@@ -69,4 +69,10 @@ public class BlogServiceImpl implements BlogService {
 		blogRepository.blogIn(bloNo);
 	}
 	
+	@Override
+	public void blogDelete(String bloNo) {
+		// TODO Auto-generated method stub
+		
+		blogRepository.blogDelete(bloNo);
+	}
 }

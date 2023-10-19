@@ -2,18 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%
-request.setCharacterEncoding("UTF-8");
-
-String name = (String) session.getAttribute("namekey");
-String id = (String) session.getAttribute("idkey");
-String pw = (String) session.getAttribute("pwkey");
-String date = (String) session.getAttribute("datekey");
-String phone = (String) session.getAttribute("phonekey");
-String mail = (String) session.getAttribute("mailkey");
-String add = (String) session.getAttribute("addkey");
-String birth = (String) session.getAttribute("birthkey");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +24,7 @@ String birth = (String) session.getAttribute("birthkey");
 			<div style="padding: 30px 10px 0px 10px;">
 				<label><b>이름</b></label>
 				<div>
-					<%=name%>
+					${namekey}
 				</div>
 			</div>
 			<hr>
@@ -45,7 +33,7 @@ String birth = (String) session.getAttribute("birthkey");
 			<div style="padding: 0px 10px 0px 10px;">
 				<label><b>ID</b></label>
 				<div>
-					<%=id%>
+					${idkey}
 				</div>
 			</div>
 			<hr>
@@ -54,7 +42,7 @@ String birth = (String) session.getAttribute("birthkey");
 			<div style="padding: 0px 10px 0px 10px;">
 				<label><b>가입일</b></label>
 				<div>
-					<%=date%>
+					${datekey}
 				</div>
 			</div>
 			<hr>
@@ -64,7 +52,7 @@ String birth = (String) session.getAttribute("birthkey");
 				<div class="space">
 					<div id="pwBox" style="padding: 10px 0 0 0;">
 						<a id="pw2"> **** </a>
-						<a id="pw12" class="nonebox"> <%=pw%>
+						<a id="pw12" class="nonebox"> ${pwkey}
 						</a>
 
 						<form action="<c:url value="/mypage/pw"/>" method="post"
@@ -107,7 +95,7 @@ String birth = (String) session.getAttribute("birthkey");
 				<label><b id="phone">전화번호</b></label>
 				<div class="space">
 					<div style="padding: 8px 0 0 0;">
-						<a id="phone2"> <%=phone%>
+						<a id="phone2"> ${phonekey}
 						</a>
 						<form action="<c:url value="/mypage/phone"/>" method="post"
 							name="phone6" id="phone6">
@@ -141,7 +129,7 @@ String birth = (String) session.getAttribute("birthkey");
 				<label><b id="mail">이메일</b></label>
 				<div class="space">
 					<div style="padding: 8px 0 0 0;">
-						<a id="mail2"> <%=mail%>
+						<a id="mail2"> ${mailkey}
 						</a>
 						<form action="<c:url value="/mypage/mail"/>" method="post"
 							name="mail6" id="mail6">
@@ -176,7 +164,7 @@ String birth = (String) session.getAttribute("birthkey");
 				<label><b id="add">주소</b></label>
 				<div class="space">
 					<div style="padding: 8px 0 0 0;">
-						<a id="add2"> <%=add%>
+						<a id="add2"> ${addkey}
 						</a>
 						<form action="<c:url value="/mypage/add"/>" method="post"
 							name="add6" id="add6">
@@ -208,7 +196,7 @@ String birth = (String) session.getAttribute("birthkey");
 				<label><b id="birth">생년월일</b></label>
 				<div class="space">
 					<div style="padding: 8px 0 0 0;">
-						<a id="birth2"> <%=birth%>
+						<a id="birth2"> ${birthkey}
 						</a>
 						<form action="<c:url value="/mypage/birth"/>" method="post"
 							name="birth6" id="birth6">

@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,4 +106,12 @@ public class BlogRepositoryImpl implements BlogRepository {
 		template.update(SQL, bloNo);
 	}
 	
+	@Override
+	public void blogDelete(String bloNo) {
+		// TODO Auto-generated method stub
+		
+		String SQL = "DELETE FROM blog WHERE BLO_NO=?";
+			
+		template.update(SQL, bloNo);
+	}
 }

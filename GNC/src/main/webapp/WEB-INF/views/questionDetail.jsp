@@ -3,15 +3,6 @@
 <%@ page import="java.util.*, com.green.domain.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%
-request.setCharacterEncoding("UTF-8");
-
-String name = (String) session.getAttribute("namekey");
-String id = (String) session.getAttribute("idkey");
-String pw = (String) session.getAttribute("pwkey");
-
-String questionDetail = (String) request.getAttribute("questionDetail");
-%>
 <!DOCTYPE html>
 <html>
 <title>질문 상세</title>
@@ -25,29 +16,23 @@ String questionDetail = (String) request.getAttribute("questionDetail");
 			style="max-width: 1500px; padding-top: 0px !important;">
 			<p class="w3-left"
 				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">질문</p>
-				
-			<%
-			if (id != null & pw != null) {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;"
-				href="<c:url value="/question/questionWrite"/>">작성하기</a>
-			<%
-			if ("questionDetail".equals(questionDetail)) {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;" href="<c:url value="/question"/>">질문</a>
-			<%
-			} else {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;" onclick="myQuestion()">내 질문</a>
-			<%
-			}
-			%>
-			<%
-			}
-			%>
+
+			<c:if test="${idkey ne null && pwkey ne null }">
+				<a class="w3-right w3-button w3-medium"
+					style="margin: 20px 0 10px 0;"
+					href="<c:url value="/question/questionWrite"/>">작성하기</a>
+				<c:choose>
+					<c:when test="${questionDetail eq 'questionDetail' }">
+						<a class="w3-right w3-button w3-medium"
+							style="margin: 20px 0 10px 0;" href="<c:url value="/question"/>">질문</a>
+					</c:when>
+
+					<c:otherwise>
+						<a class="w3-right w3-button w3-medium"
+							style="margin: 20px 0 10px 0;" onclick="myQuestion()">내 질문</a>
+					</c:otherwise>
+				</c:choose>
+			</c:if>
 
 
 			<div class="w3-row-padding">
@@ -62,20 +47,37 @@ String questionDetail = (String) request.getAttribute("questionDetail");
 					<hr>
 					<p>${question.QUE_CONTENT }</p>
 
-					<%
-					if (id != null & pw != null) {
-					%>
-					<hr>
-					<a
-						href="<c:url value="/answer/answerWrite?QUE_NO=${question.QUE_NO }"/>"
-						class="w3-button w3-block w3-light-grey w3-padding">답변하기</a>
-					<%
-					}
-					%>
+					<c:if test="${idkey ne null && pwkey ne null }">
+						<hr>
+						<a
+							href="<c:url value="/answer/answerWrite?QUE_NO=${question.QUE_NO }"/>"
+							class="w3-button w3-block w3-light-grey w3-padding">답변하기</a>
+					</c:if>
+
+					<c:if test="${lenokey eq '1' }">
+					<br>
+						<a onclick="questionDelete(${question.QUE_NO})"
+							class="w3-button w3-block w3-light-grey w3-padding">삭제하기</a>
+					</c:if>
 				</c:forEach>
 			</div>
 		</div>
 	</div>
+	<form name="questionDeleteForm"
+		action="<c:url value="/question/questionDelete"/>" method="post"
+		style="display: none;">
+		<input name="QUE_NO">
+	</form>
 
+	<script>
+	function questionDelete(queNo) {
+		if (confirm("삭제하시겠습니까?") == true){ //확인
+			document.questionDeleteForm.QUE_NO.value = queNo;
+			document.questionDeleteForm.submit();
+		}else{ //취소
+			return false;
+		}
+	}
+	</script>
 </body>
 </html>

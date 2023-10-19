@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -175,6 +176,32 @@ public class AnswerController {
 		model.addAttribute("answerList", answerlist);
 		
 		model.addAttribute("MEM_NO", answer.getMEM_NO());
+		
+		return "redirect:/answer/myAnswer";
+	}
+	
+	@PostMapping("answerDelete")
+	public String answerDelete(Model model, @RequestParam("ANS_NO") String ansNo, HttpServletRequest request) {
+		
+		answerService.answerDelete(ansNo);
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("answerDelete", "answerDelete");
+		
+		return "redirect:/answer";
+	}
+	
+	@PostMapping("myAnswerDelete")
+	public String myAnswerDelete(Model model, @RequestParam("ANS_NO") String ansNo, @RequestParam("MEM_NO") String memNo, HttpServletRequest request) {
+		
+		answerService.answerDelete(ansNo);
+		
+		model.addAttribute("MEM_NO", memNo);
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("answerDelete", "answerDelete");
 		
 		return "redirect:/answer/myAnswer";
 	}

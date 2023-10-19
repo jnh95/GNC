@@ -18,4 +18,5 @@ public interface BlogRepository {
 
 	void blogIn(String bloNo);
 	
+	void blogDelete(String bloNo);
 }

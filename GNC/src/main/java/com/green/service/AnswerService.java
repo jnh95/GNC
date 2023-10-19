@@ -18,4 +18,5 @@ public interface AnswerService {
 	
 	void answerIn(String ansNo);
 	
+	void answerDelete(String ansNo);
 }

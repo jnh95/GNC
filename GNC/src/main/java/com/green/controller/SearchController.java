@@ -54,7 +54,7 @@ public class SearchController {
 		
 		model.addAttribute("searchLogin", "searchLogin");
 		
-		if("".equals(content3)) {
+		if("".equals(content3) || content3 == null) {
 			model.addAttribute("content", content);
 		} else {
 			model.addAttribute("content", content3);

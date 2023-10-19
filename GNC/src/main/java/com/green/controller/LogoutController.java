@@ -82,7 +82,7 @@ public class LogoutController {
 			
 			model.addAttribute("content", content);
 			
-			if(english != null) {
+			if(!english.isBlank()) {
 				model.addAttribute("english", english);
 				model.addAttribute("content", english);
 			}
@@ -97,7 +97,7 @@ public class LogoutController {
 			
 			model.addAttribute("content", content);
 			
-			if(english != null) {
+			if(!english.isBlank()) {
 				model.addAttribute("english", english);
 				model.addAttribute("content", english);
 			}
@@ -112,7 +112,7 @@ public class LogoutController {
 			
 			model.addAttribute("content", content);
 			
-			if(english != null) {
+			if(!english.isBlank()) {
 				model.addAttribute("english", english);
 				model.addAttribute("content", english);
 			}
@@ -127,7 +127,7 @@ public class LogoutController {
 			
 			model.addAttribute("content", content);
 			
-			if(english != null) {
+			if(!english.isBlank()) {
 				model.addAttribute("english", english);
 				model.addAttribute("content", english);
 			}
@@ -142,7 +142,7 @@ public class LogoutController {
 			
 			model.addAttribute("content", content);
 			
-			if(english != null) {
+			if(!english.isBlank()) {
 				model.addAttribute("english", english);
 				model.addAttribute("content", english);
 			}
@@ -157,7 +157,7 @@ public class LogoutController {
 			
 			model.addAttribute("content", content);
 			
-			if(english != null) {
+			if(!english.isBlank()) {
 				model.addAttribute("english", english);
 				model.addAttribute("content", english);
 			}
@@ -172,7 +172,7 @@ public class LogoutController {
 			
 			model.addAttribute("content", content);
 			
-			if(english != null) {
+			if(!english.isBlank()) {
 				model.addAttribute("english", english);
 				model.addAttribute("content", english);
 			}
@@ -187,7 +187,7 @@ public class LogoutController {
 			
 			model.addAttribute("content", content);
 			
-			if(english != null) {
+			if(!english.isBlank()) {
 				model.addAttribute("english", english);
 				model.addAttribute("content", english);
 			}

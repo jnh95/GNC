@@ -69,4 +69,10 @@ public class AnswerServiceImpl implements AnswerService {
 		answerRepository.answerIn(ansNo);
 	}
 	
+	@Override
+	public void answerDelete(String ansNo) {
+		// TODO Auto-generated method stub
+		
+		answerRepository.answerDelete(ansNo);
+	}
 }

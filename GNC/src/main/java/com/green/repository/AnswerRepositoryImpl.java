@@ -103,4 +103,13 @@ public class AnswerRepositoryImpl implements AnswerRepository {
 		
 		template.update(SQL, ansNo);
 	}
+	
+	@Override
+	public void answerDelete(String ansNo) {
+		// TODO Auto-generated method stub
+		
+		String SQL = "DELETE FROM answer WHERE ANS_NO=?";
+			
+		template.update(SQL, ansNo);
+	}
 }

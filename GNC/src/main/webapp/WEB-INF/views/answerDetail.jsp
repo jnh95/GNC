@@ -3,15 +3,6 @@
 <%@ page import="java.util.*, com.green.domain.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%
-request.setCharacterEncoding("UTF-8");
-
-String name = (String) session.getAttribute("namekey");
-String id = (String) session.getAttribute("idkey");
-String pw = (String) session.getAttribute("pwkey");
-
-String answerDetail = (String) request.getAttribute("answerDetail");
-%>
 <!DOCTYPE html>
 <html>
 <title>답변 상세</title>
@@ -26,23 +17,17 @@ String answerDetail = (String) request.getAttribute("answerDetail");
 			<p class="w3-left"
 				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">질문</p>
 				
-			<%
-			if (id != null & pw != null) {
-				if ("answerDetail".equals(answerDetail)) {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;" href="<c:url value="/answer"/>">답변</a>
-			<%
-			} else {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;" onclick="myAnswer()">내 답변</a>
-			<%
-			}
-			%>
-			<%
-			}
-			%>
+			<c:if test="${idkey ne null && pwkey ne null}">
+				<c:choose>
+					<c:when test="${answerDetail eq 'answerDetail' }">
+						<a class="w3-right w3-button w3-medium" style="margin: 20px 0 10px 0;" href="<c:url value="/answer"/>">답변</a>
+					</c:when>
+						
+					<c:otherwise>
+						<a class="w3-right w3-button w3-medium" style="margin: 20px 0 10px 0;" onclick="myAnswer()">내 답변</a>
+					</c:otherwise>
+				</c:choose>
+			</c:if>
 
 
 			<div class="w3-row-padding">
@@ -72,10 +57,30 @@ String answerDetail = (String) request.getAttribute("answerDetail");
 					</c:if>
 					<hr>
 					<p>${answer.ANS_CONTENT }</p>
+					
+					<hr>
+					<c:if test="${lenokey eq '1' }">
+								<a onclick="answerDelete(${answer.ANS_NO})" class="w3-button w3-block w3-light-grey w3-padding">삭제하기</a>
+							</c:if>
 				</c:forEach>
 			</div>
 		</div>
 	</div>
+	
+	<form name="answerDeleteForm" action="<c:url value="/answer/answerDelete"/>" method="post" style="display:none;">
+		<input name="ANS_NO">
+	</form>
+	
+	<script>
+		function answerDelete(ansNo) {
+		if (confirm("삭제하시겠습니까?") == true){ //확인
+			document.answerDeleteForm.ANS_NO.value = ansNo;
+			document.answerDeleteForm.submit();
+		}else{ //취소
+			return false;
+		}
+	}
+	</script>
 
 </body>
 </html>

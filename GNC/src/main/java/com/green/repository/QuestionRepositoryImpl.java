@@ -103,4 +103,12 @@ public class QuestionRepositoryImpl implements QuestionRepository {
 		template.update(SQL, queNo);
 	}
 	
+	@Override
+	public void questionDelete(String queNo) {
+		// TODO Auto-generated method stub
+		
+		String SQL = "DELETE FROM question WHERE QUE_NO=?";
+			
+		template.update(SQL, queNo);
+	}
 }

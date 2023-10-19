@@ -3,11 +3,6 @@
 <%@ page import="java.util.*, com.green.domain.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%
-request.setCharacterEncoding("UTF-8");
-
-String name = (String) session.getAttribute("namekey");
-%>
 <c:if test="${loginSuccess eq 'loginSuccess' }">
 	<script>
 		alert("로그인 되었습니다.");
@@ -17,7 +12,7 @@ String name = (String) session.getAttribute("namekey");
 
 안녕하세요.
 <a href="<c:url value="/mypage"/>" class="w3-button"
-	style="margin-bottom: 4px; padding: 10px;"> <%=name%>님
+	style="margin-bottom: 4px; padding: 10px;"> ${namekey}님
 </a>
 
 <button type="submit" class="w3-button"

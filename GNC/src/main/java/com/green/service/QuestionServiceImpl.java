@@ -69,4 +69,10 @@ public class QuestionServiceImpl implements QuestionService {
 		questionRepository.questionIn(queNo);
 	}
 	
+	@Override
+	public void questionDelete(String queNo) {
+		// TODO Auto-generated method stub
+		
+		questionRepository.questionDelete(queNo);
+	}
 }

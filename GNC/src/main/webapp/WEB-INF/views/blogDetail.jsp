@@ -3,15 +3,6 @@
 <%@ page import="java.util.*, com.green.domain.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%
-request.setCharacterEncoding("UTF-8");
-
-String name = (String) session.getAttribute("namekey");
-String id = (String) session.getAttribute("idkey");
-String pw = (String) session.getAttribute("pwkey");
-
-String blogDetail = (String) request.getAttribute("blogDetail");
-%>
 <!DOCTYPE html>
 <html>
 <title>블로그 상세</title>
@@ -26,29 +17,18 @@ String blogDetail = (String) request.getAttribute("blogDetail");
 			<p class="w3-left"
 				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">블로그</p>
 				
-			<%
-			if (id != null & pw != null) {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;"
-				href="<c:url value="/blog/blogWrite"/>">작성하기</a>
-			<%
-			if ("blogDetail".equals(blogDetail)) {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;" href="<c:url value="/blog"/>">블로그</a>
-			<%
-			} else {
-			%>
-			<a class="w3-right w3-button w3-medium"
-				style="margin: 20px 0 10px 0;" onclick="myBlog()">내 블로그</a>
-			<%
-			}
-			%>
-			<%
-			}
-			%>
-
+			<c:if test="${idkey ne null && pwkey ne null}">
+				<a class="w3-right w3-button w3-medium" style="margin: 20px 0 10px 0;" href="<c:url value="/blog/blogWrite"/>">작성하기</a>
+				<c:choose>
+					<c:when test="${blogDetail eq 'blogDetail' }">
+						<a class="w3-right w3-button w3-medium" style="margin: 20px 0 10px 0;" href="<c:url value="/blog"/>">블로그</a>
+					</c:when>
+						
+					<c:otherwise>
+						<a class="w3-right w3-button w3-medium" style="margin: 20px 0 10px 0;" onclick="myBlog()">내 블로그</a>
+					</c:otherwise>
+				</c:choose>
+			</c:if>
 
 			<div class="w3-row-padding">
 				<c:forEach items="${blogList }" var="blog">
@@ -60,10 +40,29 @@ String blogDetail = (String) request.getAttribute("blogDetail");
 					</c:if>
 					<hr>
 					<p>${blog.BLO_CONTENT }</p>
+					
+					<hr>
+					<c:if test="${lenokey eq '1' }">
+								<a onclick="blogDelete(${blog.BLO_NO})" class="w3-button w3-block w3-light-grey w3-padding">삭제하기</a>
+							</c:if>
 				</c:forEach>
 			</div>
 		</div>
 	</div>
 
+	<form name="blogDeleteForm" action="<c:url value="/blog/blogDelete"/>" method="post" style="display:none;">
+		<input name="BLO_NO">
+	</form>
+
+	<script>
+	function blogDelete(bloNo) {
+		if (confirm("삭제하시겠습니까?") == true){ //확인
+			document.blogDeleteForm.BLO_NO.value = bloNo;
+			document.blogDeleteForm.submit();
+		}else{ //취소
+			return false;
+		}
+	}
+	</script>
 </body>
 </html>

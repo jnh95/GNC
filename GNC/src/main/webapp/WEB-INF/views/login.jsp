@@ -2,24 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%
-Cookie[] cookies = request.getCookies();
-String id = null;
-if (cookies != null) {
-
-	for (Cookie c : cookies) {
-		String name = c.getName();
-		String value = c.getValue();
-
-		if (name.equals("rememberId")) {
-	id = value;
-		}
-	}
-}
-
-String loginFailed = (String) session.getAttribute("loginFailed");
-String logout = (String) session.getAttribute("logout");
-%>
 <!-- 회원 탈퇴 -->
 <c:if test="${delete eq 'delete' }">
 <script>
@@ -116,19 +98,19 @@ String logout = (String) session.getAttribute("logout");
 			</c:if>
 			<div class="w3-section">
 				<label><b>ID</b></label>
-				<%
-				if (id != null) {
-				%>
-				<input name="MEM_ID" class="w3-input w3-border w3-margin-bottom"
-					type="text" placeholder="ID를 입력해주세요." value="<%=id%>" required />
-				<%
-				} else {
-				%>
-				<input name="MEM_ID" class="w3-input w3-border w3-margin-bottom"
-					type="text" placeholder="ID를 입력해주세요." required />
-				<%
-				}
-				%>
+				
+<!-- 			쿠키 이용해서 ID 저장하기 -->
+				<c:choose>
+					<c:when test="${cookie.rememberId.value ne null}">
+						<input name="MEM_ID" class="w3-input w3-border w3-margin-bottom"
+							type="text" placeholder="ID를 입력해주세요." value="${cookie.rememberId.value }" required />
+					</c:when>
+					<c:otherwise>
+						<input name="MEM_ID" class="w3-input w3-border w3-margin-bottom"
+							type="text" placeholder="ID를 입력해주세요." required />
+					</c:otherwise>
+				</c:choose>
+				
 				<label><b>비밀번호</b></label> <input id="pw" name="MEM_PW"
 					class="w3-input w3-border" type="password"
 					placeholder="비밀번호를 입력해주세요." required /> <a class="w3-right"

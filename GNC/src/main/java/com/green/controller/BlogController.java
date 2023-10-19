@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -166,6 +167,32 @@ public class BlogController {
 		model.addAttribute("blogList", bloglist);
 		
 		model.addAttribute("MEM_NO", blog.getMEM_NO());
+		
+		return "redirect:/blog/myBlog";
+	}
+	
+	@PostMapping("blogDelete")
+	public String blogDelete(Model model, @RequestParam("BLO_NO") String bloNo, HttpServletRequest request) {
+		
+		blogService.blogDelete(bloNo);
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("blogDelete", "blogDelete");
+		
+		return "redirect:/blog";
+	}
+	
+	@PostMapping("myBlogDelete")
+	public String myAnswerDelete(Model model, @RequestParam("BLO_NO") String bloNo, @RequestParam("MEM_NO") String memNo, HttpServletRequest request) {
+		
+		blogService.blogDelete(bloNo);
+		
+		model.addAttribute("MEM_NO", memNo);
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("blogDelete", "blogDelete");
 		
 		return "redirect:/blog/myBlog";
 	}
