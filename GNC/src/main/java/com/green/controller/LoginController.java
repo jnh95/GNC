@@ -102,7 +102,6 @@ public class LoginController {
 			
 			return "redirect:/answer/answerDetail";
 		}
-		
 		if("searchLogin".equals(searchLogin)) {
 			
 			String content = (String) request.getParameter("content");

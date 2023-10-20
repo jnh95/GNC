@@ -12,8 +12,7 @@
 
 안녕하세요.
 <a href="<c:url value="/mypage"/>" class="w3-button"
-	style="margin-bottom: 4px; padding: 10px;"> ${namekey}님
-</a>
+	style="margin-bottom: 4px; padding: 10px;"> ${namekey}님 </a>
 
 <button type="submit" class="w3-button"
 	style="margin-bottom: 4px; padding: 10px;">로그아웃</button>
@@ -58,9 +57,9 @@
 </c:if>
 
 <!-- 검색 -->
-<c:if test="${searchLogin eq 'searchLogin' }">
+<c:if test="${searchLogin ne null }">
 	<input name="searchLogin" id="searchLogin" style="display: none;"
-		value="searchLogin">
+		value="${searchLogin}">
 	<input name="content" id="content" style="display: none;"
 		value="${content }">
 	<input name="english" id="english" style="display: none;"

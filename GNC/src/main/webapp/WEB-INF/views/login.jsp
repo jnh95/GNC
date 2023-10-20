@@ -78,9 +78,9 @@
 			</c:if>
 
 <!-- 			검색 -->
-			<c:if test="${searchLogin eq 'searchLogin' }">
+			<c:if test="${searchLogin ne null }">
 				<input name="searchLogin" id="searchLogin" style="display: none;"
-					value="searchLogin">
+					value="${searchLogin}">
 				<input name="content" id="content" style="display: none;"
 					value="${content }">
 				<input name="english" id="english" style="display: none;"
