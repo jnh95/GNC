@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,7 +151,7 @@
 							src="<c:url value="/resources/images/${blog.BLO_IMAGE }"/>"
 							style="max-width: 270px; height: 150px;">
 						<hr>
-						<p>${blog.BLO_CONTENT }</p>
+						<p>${fn:substring(blog.BLO_CONTENT, 0, 50)}</p>
 						<input style="display: none;" value="${blog.BLO_NO }" id="BLO_NO"
 							name="BLO_NO">
 					</div>
@@ -200,7 +201,7 @@
 							src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
 							style="max-width: 270px; height: 150px;">
 						<hr>
-						<p>${question.QUE_CONTENT }</p>
+						<p>${fn:substring(question.QUE_CONTENT, 0, 50)}</p>
 						<input style="display: none;" value="${question.QUE_NO }"
 							id="QUE_NO" name="QUE_NO">
 					</div>
@@ -250,7 +251,7 @@
 							src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
 							style="max-width: 270px; height: 150px;">
 						<hr>
-						<p>${answer.ANS_CONTENT }</p>
+						<p>${fn:substring(answer.ANS_CONTENT, 0, 50)}</p>
 						<input style="display: none;" value="${answer.ANS_NO }"
 							id="ANS_NO" name="ANS_NO"> <input style="display: none;"
 							value="${answer.QUE_NO }" id="QUE_NO" name="QUE_NO">

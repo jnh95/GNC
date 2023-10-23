@@ -43,10 +43,10 @@
 					<p>${question.QUE_CONTENT }</p>
 				</c:forEach>
 			</div>
-
-			<p class="w3-left"
-				style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">질문에
-				대한 답변</p>
+			
+			<c:forEach items="${questionList }" var="questionList">
+			<p class="w3-left" style="font-size: 20px; padding: 8px 16px 8px 16px; margin: 20px 0 10px 0;">질문 ${questionList.QUE_TITLE }에 대한 답변</p>
+			</c:forEach>
 			<div class="w3-row-padding">
 				<c:forEach items="${answerList }" var="answer">
 					<h4>${answer.ANS_TITLE }</h4>

@@ -80,7 +80,7 @@
 								src="<c:url value="/resources/images/${answer.ANS_IMAGE }"/>"
 								style="max-width: 270px; height: 180px;">
 							<hr>
-							<p>${answer.ANS_CONTENT }</p>
+							<p>${fn:substring(answer.ANS_CONTENT, 0, 50)}</p>
 							<input style="display: none;" value="${answer.ANS_NO }"
 								id="ANS_NO" name="ANS_NO"> <input style="display: none;"
 								value="${answer.QUE_NO }" id="QUE_NO" name="QUE_NO">

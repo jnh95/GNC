@@ -82,7 +82,7 @@
 								src="<c:url value="/resources/images/${question.QUE_IMAGE }"/>"
 								style="max-width: 270px; height: 180px;">
 							<hr>
-							<p>${question.QUE_CONTENT }</p>
+							<p>${fn:substring(question.QUE_CONTENT, 0, 50)}</p>
 							<input style="display: none;" value="${question.QUE_NO }"
 								id="QUE_NO" name="QUE_NO">
 							<c:choose>
