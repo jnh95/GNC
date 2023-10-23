@@ -18,7 +18,7 @@
 <!-- 좌상단 GNC 우상단 로그인 -->
 <!-- 로그인 버튼  -->
 <div
-	style="height: 70px; width: 100%; position: fixed !important; background-color: #fff;">
+	style="height: 70px; width: 100%; position: fixed !important; background-color: #fff;" class="w3-light-grey">
 	<a href="<c:url value="/"/>" class="w3-bar-item w3-button w3-xlarge"
 		style="margin: 5px;"><b>GNC</b></a>
 	<c:choose>

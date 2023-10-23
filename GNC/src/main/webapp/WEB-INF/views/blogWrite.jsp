@@ -100,7 +100,7 @@
 								<input name="BLO_TITLE" placeholder="제목을 입력해주세요."
 									style="width: 1200px;">
 							</div>
-
+<input hidden='hidden'/>
 							<div style="padding: 10px;">
 								<input name="BLO_CONTENT" placeholder="내용을 입력해주세요."
 									style="width: 1200px; height: 1000px;">

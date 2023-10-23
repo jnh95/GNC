@@ -15,7 +15,7 @@
 </head>
 <body>
 	<!-- 좌상단 GNC 우상단 로그인 -->
-	<div style="margin: 5px;">
+	<div style="padding: 5px; height: 70px; width: 100%; background-color: #fff;" class="w3-light-grey">
 		<a href="<c:url value="/"/>" class="w3-bar-item w3-button w3-xlarge"><b>GNC</b></a>
 
 		<c:choose>
@@ -37,7 +37,7 @@
 	
 	<!-- 검색창 -->
 	<header class="w3-display-container w3-content w3-wide"
-		style="max-width: 1500px; padding: 100px 0px 100px 150px; margin: 50px 0px 0 200px;"
+		style="max-width: 1500px; padding: 30px 0px 100px 150px; margin: 50px 0px 0 200px;"
 		id="home">
 		<form name="inputForm"
 			class="w3-display-middle w3-margin-top w3-center"
