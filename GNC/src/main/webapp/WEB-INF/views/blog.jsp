@@ -76,7 +76,7 @@
 					end="${blogEnd }">
 					<form action="<c:url value="/blog/blogDetail"/>" method="get">
 						<div class="w3-col l3 m6"
-							style="margin: 0 20px 50px 20px; height: 400px;">
+							style="margin: 0 20px 120px 20px; height: 400px;">
 							<h4>${blog.BLO_TITLE }</h4>
 							<hr>
 							<input type="image"
