@@ -51,6 +51,11 @@ public class JoinRepositoryImpl implements JoinRepository {
 		String phone2 = null;
 		String phone3 = null;
 		String phone4 = null;
+		
+		String birth1 = null;
+		String birth2 = null;
+		String birth3 = null;
+		String birth4 = null;
 
 		if (phone.length() == 11) {
 			phone1 = phone.substring(0, 3);
@@ -65,11 +70,19 @@ public class JoinRepositoryImpl implements JoinRepository {
 			phone4 = phone1 + "-" + phone2 + "-" + phone3;
 		}
 		
+		if (birth.length() == 8) {
+			birth1 = birth.substring(0, 4);
+			birth2 = birth.substring(4, 6);
+			birth3 = birth.substring(6, 8);
+			
+			birth4 = birth1 + "-" + birth2 + "-" + birth3;
+		}
+		
 		String SQL = "INSERT INTO MEMBER (MEM_NAME, MEM_ID, MEM_PW, MEM_DATE, MEM_PHONE, MEM_MAIL,"
 				+ "MEM_ADD, MEM_BIRTH, LEV_NO)"
 				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
-		template.update(SQL, name, id, pw, date, phone4, mail, add, birth, "2");
+		template.update(SQL, name, id, pw, date, phone4, mail, add, birth4, "2");
 	}
 
 }
