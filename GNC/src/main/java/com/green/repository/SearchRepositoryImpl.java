@@ -150,9 +150,10 @@ public class SearchRepositoryImpl implements SearchRepository {
 			break;
 		case jungsung:
 			for (int i = 0; i < mid.length; i++) {
+				
 				if (mid[i].equals(c)) {
 					return i * 28;
-				} else if (mid[i].equals(c.toLowerCase())){
+				} if (mid[i].equals(c.toLowerCase()) && !c.equals("O") && !c.equals("P")){
 					return i * 28;
 				}
 			}
